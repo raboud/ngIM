@@ -6,5 +6,36 @@
 */
 {
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./projects/im-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/im-lib/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/im-app/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/im-app/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/randr-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/randr-lib/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/msal-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/msal-lib/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/mat-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/mat-lib/tsconfig.spec.json"
+    }
+]
 }

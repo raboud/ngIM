@@ -1,4 +1,3 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -15,6 +14,24 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "randr-lib": [
+        "dist/randr-lib/randr-lib",
+        "dist/randr-lib"
+      ],
+      "im-lib": [
+        "dist/im-lib/im-lib",
+        "dist/im-lib"
+      ],
+      "msal-lib": [
+        "dist/msal-lib/msal-lib",
+        "dist/msal-lib"
+      ],
+      "mat-lib": [
+        "dist/mat-lib/mat-lib",
+        "dist/mat-lib"
+      ]
+    }
   }
 }
