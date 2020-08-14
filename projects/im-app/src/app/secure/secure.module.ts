@@ -10,6 +10,7 @@ import { CustomerComponent } from './Components/customer/customer.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { RandrLibModule } from 'randr-lib';
 import { MatLibModule } from 'mat-lib';
+import { MsalConfigModule } from '../msal-config/msal-config.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MatLibModule } from 'mat-lib';
     RandrLibModule,
     MatLibModule,
     SecureRoutingModule,
+    MsalConfigModule,
 
     HttpClientModule
   ],

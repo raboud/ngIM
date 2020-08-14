@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\projects",
+    "\\projects\\im-lib",
+    "\\projects\\mat-lib",
+    "\\projects\\mat-lib\\src",
+    "\\projects\\mat-lib\\src\\lib",
+    "\\projects\\msal-lib",
+    "\\projects\\randr-lib",
+    "\\projects\\randr-lib\\src",
+    "\\projects\\randr-lib\\src\\lib"
+  ],
+  "SelectedNode": "\\projects\\im-lib\\tsconfig.lib.json",
+  "PreviewInSolutionExplorer": false
+}
