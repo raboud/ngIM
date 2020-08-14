@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MsalLibComponent } from './msal-lib.component';
+import { LoginSubMenuComponent } from './msal-lib.component';
 
 import {
   MsalModule,
@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 import { MatLibModule } from 'mat-lib';
 
 @NgModule({
-  declarations: [MsalLibComponent],
+  declarations: [LoginSubMenuComponent],
   imports: [
     CommonModule,
     RandrLibModule,
@@ -23,7 +23,7 @@ import { MatLibModule } from 'mat-lib';
     MatLibModule
   ],
   exports: [
-    MsalLibComponent,
+    LoginSubMenuComponent,
   ]
   ,
   providers:  [{

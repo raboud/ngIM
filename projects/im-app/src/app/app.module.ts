@@ -4,7 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { RandrLibModule } from 'randr-lib';
+import { FooterComponent } from './Components/footer/footer.component';
+import { HeaderComponent } from './Components/header/header.component';
+import { NavigationComponent } from './Components/navigation/navigation.component';
+import { HomeComponent } from './Components/home/home.component';
+
+import { RandrLibModule, AlertService } from 'randr-lib';
 import { ImLibModule } from 'im-lib';
 import { Configuration } from 'msal';
 import { MsalLibModule } from 'msal-lib';
@@ -63,7 +68,11 @@ function MSALAngularConfigFactory(): MsalAngularConfiguration {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FooterComponent,
+    HeaderComponent,
+    NavigationComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +91,9 @@ function MSALAngularConfigFactory(): MsalAngularConfiguration {
     {
       provide: MSAL_CONFIG_ANGULAR,
       useFactory: MSALAngularConfigFactory
-    },  ],
+    },
+    AlertService
+   ],
   bootstrap: [AppComponent]
 })
 
