@@ -33,7 +33,7 @@ export class CustomerService {
   
   getCustomer(sort: string, order: string, page: number, pageSize: number): Observable<Page<Customer>> {
     this.busyService.AddBusy();
-    const href = environment.apiUrl + '/api/customer';
+    const href = environment.resources.imApi.resourceUri + 'customer';
     const requestUrl =
       `${href}?sortColumn=${sort}&sortDirection=${order}&pageSize=${pageSize}&page=${page + 1}`;
 

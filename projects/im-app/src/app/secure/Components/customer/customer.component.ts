@@ -5,7 +5,7 @@ import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Customer } from '../../Models';
-import { CustomerService } from '../../services/customer.service';
+import { CustomerService } from '../../Services/customer.service';
 
 @Component({
   selector: 'app-customer',

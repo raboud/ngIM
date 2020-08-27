@@ -4,10 +4,7 @@ import { LoginSubMenuComponent } from './msal-lib.component';
 import {
   MsalModule,
   MsalInterceptor,
-  MSAL_CONFIG,
-  MSAL_CONFIG_ANGULAR,
   MsalService,
-  MsalAngularConfiguration
 } from '@azure/msal-angular';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RandrLibModule } from 'randr-lib';

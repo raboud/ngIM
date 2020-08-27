@@ -4,21 +4,19 @@ import { CommonModule } from '@angular/common';
 
 import { environment } from '../../environments/environment';
 
-import { Configuration } from 'msal';
+import { Configuration, CacheLocation } from 'msal';
 import { MsalLibModule } from 'msal-lib';
 
  
 import {
-  MsalModule,
   MsalInterceptor,
   MSAL_CONFIG,
   MSAL_CONFIG_ANGULAR,
-  MsalService,
   MsalAngularConfiguration
 } from '@azure/msal-angular';
 
 export const protectedResourceMap: [string, string[]][] = [
-  [environment.apiUrl + '/api/', ['api://8b16e065-1a59-4f1c-a619-a50f918b9984/api']]
+  [environment.resources.imApi.resourceUri, [environment.resources.imApi.resourceScope]]
 ];
 
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
@@ -26,15 +24,15 @@ const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigato
 function MSALConfigFactory(): Configuration {
   return {
     auth: {
-      clientId: '8b16e065-1a59-4f1c-a619-a50f918b9984',
-      authority: 'https://login.microsoftonline.com/e3d53bb7-38c6-4c96-8a81-94089d81b8ff',
+      clientId: environment.auth.clientId,
+      authority: environment.auth.authority,
       validateAuthority: true,
-      redirectUri: environment.redirectUri,
-      postLogoutRedirectUri: environment.postLogoutRedirectUri,
-      navigateToLoginRequestUrl: true,
+      redirectUri: environment.auth.redirectUri,
+      postLogoutRedirectUri: environment.auth.postLogoutRedirectUri,
+      navigateToLoginRequestUrl: environment.auth.navigateToLoginRequestUrl,
     },
     cache: {
-      cacheLocation: "localStorage",
+      cacheLocation: <CacheLocation> environment.cache.cacheLocation,
       storeAuthStateInCookie: isIE, // set to true for IE 11
     },
   };
@@ -44,10 +42,8 @@ function MSALAngularConfigFactory(): MsalAngularConfiguration {
   return {
     popUp: !isIE,
     consentScopes: [
-      "user.read",
-      "openid",
-      "profile",
-      'api://8b16e065-1a59-4f1c-a619-a50f918b9984/api'
+      environment.resources.imApi.resourceScope,
+      ...environment.scopes.loginRequest
     ],
 //    unprotectedResources: ["https://www.microsoft.com/en-us/"],
     protectedResourceMap,
