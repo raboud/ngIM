@@ -1,41 +1,37 @@
-/*
-  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
-  It is not intended to be used to perform a compilation.
-
-  To learn more about this file see: https://angular.io/config/solution-tsconfig.
-*/
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./projects/im-lib/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/im-lib/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/im-app/tsconfig.app.json"
-    },
-    {
-      "path": "./projects/im-app/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/randr-lib/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/randr-lib/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/msal-lib/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/msal-lib/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/mat-lib/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/mat-lib/tsconfig.spec.json"
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "randr-lib": [
+        "dist/randr-lib/randr-lib",
+        "dist/randr-lib"
+      ],
+      "im-lib": [
+        "dist/im-lib/im-lib",
+        "dist/im-lib"
+      ],
+      "msal-lib": [
+        "dist/msal-lib/msal-lib",
+        "dist/msal-lib"
+      ],
+      "mat-lib": [
+        "dist/mat-lib/mat-lib",
+        "dist/mat-lib"
+      ]
     }
-]
+  }
 }
