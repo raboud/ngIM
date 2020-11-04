@@ -1,21 +1,21 @@
-export interface GithubApi {
-    items: GithubIssue[];
-    total_count: number;
+
+  export interface Sort<T> {
+    property: keyof T;
+    order: 'asc' | 'desc' | '';
   }
   
-  export interface GithubIssue {
-    created_at: string;
-    number: string;
-    state: string;
-    title: string;
+  export interface PageRequest<T> {
+    page: number;
+    size: number;
+    sort?: Sort<T>;
   }
-
+  
   export interface Page<t> {
     currentPage: number;
     pageCount: number;
     pageSize: number;
     rowCount: number;
-    results: Customer[];
+    results: t[];
   }
 
   export interface Customer {

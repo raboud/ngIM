@@ -4,9 +4,14 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, finalize } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
-import { GithubApi, Page, Customer } from '../Models';
+import { Page, Customer, PageRequest } from '../Models';
 import { AlertService } from 'randr-lib';
 import { BusyService } from 'randr-lib';
+
+
+export interface CustomerQuery {
+  lastname: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -14,38 +19,38 @@ import { BusyService } from 'randr-lib';
 export class CustomerService {
 
   constructor(
-    private _httpClient: HttpClient, 
+    private _httpClient: HttpClient,
     private alertService: AlertService,
     private busyService: BusyService,
   ) { }
 
-  getRepoIssues(sort: string, order: string, page: number, pageSize: number): Observable<GithubApi> {
-    const href = 'https://api.github.com/search/issues';
-    const requestUrl =
-      `${href}?q=repo:angular/components&sort=${sort}&order=${order}&per_page=${pageSize}&page=${page + 1}`;
+  customerPage(request: PageRequest<Customer>, query: CustomerQuery): Observable<Page<Customer>> {
+    // fake pagination, do your server request here instead
+    //  let { search, registration } = query;
 
-    return this._httpClient.get<GithubApi>(requestUrl)     
-    .pipe(
-      catchError(err => this.handleError(err))
-    );
-  }
-
-  
-  getCustomer(sort: string, order: string, page: number, pageSize: number): Observable<Page<Customer>> {
     this.busyService.AddBusy();
     const href = environment.resources.imApi.resourceUri + 'customer';
-    const requestUrl =
-      `${href}?sortColumn=${sort}&sortDirection=${order}&pageSize=${pageSize}&page=${page + 1}`;
+    let requestUrl = `${href}?pageSize=${request.size}&page=${request.page + 1}`;
+    //`${href}?filter=${filter}&sortColumn=${sort}&sortDirection=${order}&pageSize=${request.size}&page=${request.page + 1}`;
+    
+    if (query?.lastname) {
+      requestUrl += `&filter=lastname=${query.lastname}`;
+    }
 
-    return this._httpClient.get<Page<Customer>>(requestUrl)      
-    .pipe(
-      catchError(err => this.handleError(err)),
-      finalize(() => this.busyService.RemoveBusy())
-    );
+    if (request.sort) {
+      requestUrl += `&sortColumn=${request.sort.property}&sortDirection=${request.sort.order}`;
+    }
+
+    return this._httpClient.get<Page<Customer>>(requestUrl)
+      .pipe(
+        catchError(err => this.handleError(err)), 
+        finalize(() => this.busyService.RemoveBusy())
+      );
+
   }
 
   private handleError(error: HttpErrorResponse) {
-//    this.busyService.RemoveBusy();
+    //    this.busyService.RemoveBusy();
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       this.alertService.AddErrorMessage(`An error occurred:, ${error.error.message}`);
