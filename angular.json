@@ -10,7 +10,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/im-lib/tsconfig.lib.json",
             "project": "projects/im-lib/ng-package.json"
@@ -62,7 +62,6 @@
             "main": "projects/im-app/src/main.ts",
             "polyfills": "projects/im-app/src/polyfills.ts",
             "tsConfig": "projects/im-app/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/im-app/src/favicon.ico",
               "projects/im-app/src/assets"
@@ -70,7 +69,13 @@
             "styles": [
               "projects/im-app/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -83,7 +88,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -101,7 +105,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -171,7 +176,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/randr-lib/tsconfig.lib.json",
             "project": "projects/randr-lib/ng-package.json"
@@ -211,7 +216,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/msal-lib/tsconfig.lib.json",
             "project": "projects/msal-lib/ng-package.json"
@@ -251,7 +256,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/mat-lib/tsconfig.lib.json",
             "project": "projects/mat-lib/ng-package.json"
