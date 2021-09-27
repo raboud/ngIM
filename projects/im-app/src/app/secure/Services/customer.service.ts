@@ -29,7 +29,7 @@ export class CustomerService {
     //  let { search, registration } = query;
 
     this.busyService.AddBusy();
-    const href = environment.resources.imApi.resourceUri + 'customer';
+    const href = environment.resources.imApi.endpoint + 'customer';
     let requestUrl = `${href}?pageSize=${request.size}&page=${request.page + 1}`;
     //`${href}?filter=${filter}&sortColumn=${sort}&sortDirection=${order}&pageSize=${request.size}&page=${request.page + 1}`;
     

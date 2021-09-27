@@ -12,7 +12,6 @@ import { SecureRoutingModule } from './secure-routing.module';
 
 import { RandrLibModule } from 'randr-lib';
 import { MatLibModule } from 'mat-lib';
-import { MsalConfigModule } from '../msal-config/msal-config.module';
 import { CustomerService } from './Services/customer.service';
 
 @NgModule({
@@ -27,7 +26,6 @@ import { CustomerService } from './Services/customer.service';
 
     RandrLibModule,
     MatLibModule,
-    MsalConfigModule,
 
     SecureRoutingModule,
     HttpClientModule

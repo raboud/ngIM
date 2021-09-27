@@ -4,27 +4,29 @@
 
 export const environment = {
   production: false,
+  msalConfig: {
 
-  auth: {
-    clientId: '8b16e065-1a59-4f1c-a619-a50f918b9984',
-    authority: 'https://login.microsoftonline.com/e3d53bb7-38c6-4c96-8a81-94089d81b8ff',
-    validateAuthority: true,
-    redirectUri: 'http://localhost:4200',
-    postLogoutRedirectUri: "http://localhost:4200",
-    navigateToLoginRequestUrl: true
-  },
+    auth: {
+      clientId: '8b16e065-1a59-4f1c-a619-a50f918b9984',
+      authority: 'https://login.microsoftonline.com/e3d53bb7-38c6-4c96-8a81-94089d81b8ff',
+      validateAuthority: true,
+      redirectUri: 'http://localhost:4200',
+      postLogoutRedirectUri: "http://localhost:4200",
+      navigateToLoginRequestUrl: true
+    },
     cache: {
-        cacheLocation: 'localStorage'
+      cacheLocation: 'localStorage'
     },
     scopes: {
-        loginRequest: ['user.read', 'openid', 'profile']
+      loginRequest: ['user.read', 'openid', 'profile']
     },
     resources: {
       imApi: {
-        resourceUri: 'https://localhost:5001/api/',
-        resourceScope: 'api://8b16e065-1a59-4f1c-a619-a50f918b9984/api'
+        endpoint: 'https://localhost:5001/api/',
+        scopes: ['api://8b16e065-1a59-4f1c-a619-a50f918b9984/api']
       }
-    }     
+    }
+  }
 };
 
 /*

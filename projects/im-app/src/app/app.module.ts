@@ -12,9 +12,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { RandrLibModule, AlertService } from 'randr-lib';
 import { MatLibModule } from 'mat-lib';
-import { MsalConfigModule } from './msal-config/msal-config.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MsalLibModule, MsalConfig,  MSALCONFIG} from 'msal-lib';
 
 @NgModule({
   declarations: [
@@ -32,9 +32,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
     RandrLibModule,
     MatLibModule, 
-    MsalConfigModule
+    MsalLibModule
   ],
   providers: [
+    {
+      MSALCONFIG
+    }
     AlertService
    ],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ImLibService } from '../../public-api';
+import { ImLibService } from '../services/im-lib.service';
+
 
 @Component({
   selector: 'lib-im-lib',
