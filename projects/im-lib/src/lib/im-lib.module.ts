@@ -1,13 +1,9 @@
 import { NgModule } from '@angular/core';
-import { ImLibComponent } from './components/im-lib.component';
-
-
 
 @NgModule({
-  declarations: [
-    ImLibComponent],
+  declarations: [],
   imports: [
   ],
-  exports: [ImLibComponent]
+  exports: []
 })
 export class ImLibModule { }
