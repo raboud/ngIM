@@ -10,7 +10,7 @@ import { MatLibModule } from 'mat-lib';
 
 import { LogLevel, Configuration, BrowserCacheLocation, IPublicClientApplication, PublicClientApplication, InteractionType } from '@azure/msal-browser';
 import { MsalGuard, MsalInterceptor, MsalBroadcastService, MsalInterceptorConfiguration, MsalModule, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG, MsalGuardConfiguration, MsalRedirectComponent } from '@azure/msal-angular';
-import { MSALCONIG } from './msal-config.token';
+import { MSALCONFIG } from './msal-config.token';
 import { MsalConfig } from './msal-config.interface';
 
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
@@ -125,7 +125,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     {
       provide: MSAL_INSTANCE,
       useFactory: MSALInstanceFactory,
-      deps:[MSALCONIG]
+      deps:[MSALCONFIG]
     },
     {
       provide: MSAL_GUARD_CONFIG,
@@ -134,7 +134,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     {
       provide: MSAL_INTERCEPTOR_CONFIG,
       useFactory: MSALInterceptorConfigFactory,
-      deps:[MSALCONIG]
+      deps:[MSALCONFIG]
     },
     MsalService,
     MsalGuard,
