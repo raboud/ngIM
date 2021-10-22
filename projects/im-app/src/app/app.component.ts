@@ -8,6 +8,7 @@ import { AlertService, BusyService } from 'randr-lib';
 })
 export class AppComponent implements OnInit {
   title = 'im-app';
+  isIframe = false;
   toggle = false;
   authenticated = false;
   product = 'Test'
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit {
   } 
 
   ngOnInit() {
+    this.isIframe = window !== window.parent && !window.opener;
   }
 
 }

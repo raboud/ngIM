@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginSubMenuComponent } from './msal-lib.component';
+import { LoginSubMenuComponent } from './login-sub-menu.component';
 
 describe('MsalLibComponent', () => {
   let component: LoginSubMenuComponent;

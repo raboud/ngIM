@@ -3,7 +3,9 @@
  */
 
 //export * from './lib/msal-lib.service';
-export * from './lib/msal-lib.component';
+export * from './lib/login-sub-menu.component';
 export * from './lib/msal-lib.module';
-export * from './lib/msal-config.interface';
-export * from './lib/msal-config.token';
+export * from './lib/auth.service';
+export * from './lib/role.guard';
+export * from './lib/auth.guard';
+

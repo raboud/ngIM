@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
+import { AuthService } from 'msal-lib';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -9,6 +10,8 @@ import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  private readonly _destroying$ = new Subject<void>();
+
   public isActive = true;
   public authenticated = false;
   badge = 0;
@@ -19,11 +22,19 @@ export class HeaderComponent implements OnInit {
   
   constructor(
     private router: Router,
-    private authService: MsalService,
+    private authService: AuthService,
     ) { 
     }
 
     ngOnInit() {
+      this.authService.Authenticated$
+      .pipe(
+        takeUntil(this._destroying$)
+      )
+      .subscribe((result) => {
+        console.log(result);
+        this.authenticated = result;
+      });
     }
   
     menu() {

@@ -4,10 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { CustomerComponent } from './Components/customer/customer.component';
 import { MsalGuard } from '@azure/msal-angular';
+import { AuthGuard } from 'msal-lib';
 
 const routes: Routes = [
-  { path: 'dashboard', canActivate: [MsalGuard], component: DashboardComponent },
-  { path: 'customer', canActivate: [MsalGuard], component: CustomerComponent },
+  { path: 'dashboard', canActivate: [], component: DashboardComponent },
+  { path: 'customer', canActivate: [AuthGuard], component: CustomerComponent },
 ];
 
 @NgModule({
