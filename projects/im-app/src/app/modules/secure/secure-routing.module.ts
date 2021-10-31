@@ -9,6 +9,7 @@ import { AuthGuard } from 'msal-lib';
 const routes: Routes = [
   { path: 'dashboard', canActivate: [], component: DashboardComponent },
   { path: 'customer', canActivate: [AuthGuard], component: CustomerComponent },
+//  { path: 'client', canActivate: [AuthGuard], component: ClientComponent },
 ];
 
 @NgModule({

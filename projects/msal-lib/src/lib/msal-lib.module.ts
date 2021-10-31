@@ -11,6 +11,7 @@ import { MsalGuard, MsalInterceptor, MsalBroadcastService, MsalInterceptorConfig
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { RoleGuard } from './role.guard';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 
@@ -22,6 +23,8 @@ import { RoleGuard } from './role.guard';
     MsalModule,
     MatLibModule,
     MsalModule,
+    HttpClientModule,
+
   ],
   exports: [
     LoginSubMenuComponent,
@@ -31,6 +34,11 @@ import { RoleGuard } from './role.guard';
     MsalService,
     MsalGuard,
     MsalBroadcastService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MsalInterceptor,
+      multi: true
+    },    
     AuthGuard,
     AuthService,
     RoleGuard

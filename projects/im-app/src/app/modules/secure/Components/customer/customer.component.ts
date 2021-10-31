@@ -2,10 +2,11 @@ import { Component, ViewChild } from '@angular/core';
 
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Customer, Page } from '../../Models';
+
+import { Customer } from '../../Models';
 import { CustomerQuery, CustomerService } from '../../Services/customer.service';
-import { PaginatedDataSource } from '../../Services/paginated.datasource';
-//import { Console } from 'console';
+import { PaginatedDataSource } from '../../../../models/paginated.datasource';
+
 
 @Component({
   selector: 'app-customer',

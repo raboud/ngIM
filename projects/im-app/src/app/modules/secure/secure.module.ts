@@ -23,12 +23,9 @@ import { CustomerService } from './Services/customer.service';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-
     RandrLibModule,
     MatLibModule,
-
     SecureRoutingModule,
-    HttpClientModule
   ],
   providers: [
     CustomerService

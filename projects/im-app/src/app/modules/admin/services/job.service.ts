@@ -1,22 +1,24 @@
-import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, map, finalize } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { environment } from 'projects/im-app/src/environments/environment';
+import { AlertService, BusyService } from 'randr-lib';
+import { Observable, throwError } from 'rxjs';
+import { catchError, finalize } from 'rxjs/operators';
+import { Page, PageRequest } from '../../../models';
+import { JobList } from '../models/job-list.model';
+import { JobDetail } from '../models/jog-detail.model';
 
-import { environment } from '../../../environments/environment';
-import { Page, Customer, PageRequest } from '../Models';
-import { AlertService } from 'randr-lib';
-import { BusyService } from 'randr-lib';
 
-
-export interface CustomerQuery {
-  lastname: string;
+export interface JobListQuery {
+  lastname?: string;
+  clientid?: number;
+  status?: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerService {
+export class JobService {
 
   constructor(
     private _httpClient: HttpClient,
@@ -24,30 +26,52 @@ export class CustomerService {
     private busyService: BusyService,
   ) { }
 
-  customerPage(request: PageRequest<Customer>, query: CustomerQuery): Observable<Page<Customer>> {
-    // fake pagination, do your server request here instead
-    //  let { search, registration } = query;
+  getPage(request: PageRequest<JobList>, query: JobListQuery): Observable<Page<JobList>> {
 
-    this.busyService.AddBusy();
-    const href = environment.msalConfig.resources.imApi.endpoint + 'customer';
+    console.log(query);
+
+      this.busyService.AddBusy();
+    const href = environment.msalConfig.resources.imApi.endpoint + 'job';
     let requestUrl = `${href}?pageSize=${request.size}&page=${request.page + 1}`;
     //`${href}?filter=${filter}&sortColumn=${sort}&sortDirection=${order}&pageSize=${request.size}&page=${request.page + 1}`;
     
-    if (query?.lastname) {
+    if (query?.lastname && query?.lastname != '') {
       requestUrl += `&filter=lastname=${query.lastname}`;
+    }
+    
+    if (query?.clientid) {
+      requestUrl += `&filter=clientid=${query.clientid}`;
+    }
+    
+    if (query?.status) {
+      requestUrl += `&filter=status=${query.status}`;
     }
 
     if (request.sort) {
       requestUrl += `&sortColumn=${request.sort.property}&sortDirection=${request.sort.order}`;
     }
 
-    return this._httpClient.get<Page<Customer>>(requestUrl)
+    return this._httpClient.get<Page<JobList>>(requestUrl)
       .pipe(
         catchError(err => this.handleError(err)), 
         finalize(() => this.busyService.RemoveBusy())
       );
 
   }
+
+  getDetail(id: number): Observable<JobDetail> {
+    this.busyService.AddBusy();
+    const href = environment.msalConfig.resources.imApi.endpoint + 'job';
+    let requestUrl = `${href}/${id}`;
+
+    return this._httpClient.get<JobDetail>(requestUrl)
+      .pipe(
+        catchError(err => this.handleError(err)), 
+        finalize(() => this.busyService.RemoveBusy())
+      );
+
+  }
+
 
   private handleError(error: HttpErrorResponse) {
     //    this.busyService.RemoveBusy();
@@ -64,5 +88,4 @@ export class CustomerService {
     // return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');
-  }
-}
+  }}

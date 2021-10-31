@@ -76,8 +76,6 @@ export const loginRequest = {
  */
 
 export function MSALInstanceFactory(msalConfig: Configuration ): IPublicClientApplication {
-  console.log(msalConfig);
-  console.log(environment);
   return new PublicClientApplication(environment.msalConfig);
 }
 
@@ -87,9 +85,12 @@ export function MSALInstanceFactory(msalConfig: Configuration ): IPublicClientAp
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/docs/v2-docs/initialization.md#get-tokens-for-web-api-calls
  */
 export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
+  console.log('MSALInterceptorConfigFactory');
   const protectedResourceMap = new Map<string, Array<string>>();
+  
+  console.log(environment.msalConfig.resources);
 
-  protectedResourceMap.set(protectedResources.imApi.endpoint, protectedResources.imApi.scopes);
+  protectedResourceMap.set(environment.msalConfig.resources.imApi.endpoint, environment.msalConfig.resources.imApi.scopes);
 
   return {
     interactionType: InteractionType.Redirect,
@@ -128,11 +129,6 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     MsalLibModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: MsalInterceptor,
-      multi: true
-    },
     {
       provide: MSAL_INSTANCE,
       useFactory: MSALInstanceFactory

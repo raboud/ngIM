@@ -1,11 +1,11 @@
 /* Structure */
-.example-container {
+.container {
     position: relative;
     min-height: 200px;
     margin: 20px;
   }
   
-  .example-table-container {
+  .table-container {
     position: relative;
     max-height: 600px;
     overflow: auto;
@@ -19,8 +19,8 @@
   .mat-column-name {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 50% !important;
-    width: 50% !important;
+    flex: 0 0 20% !important;
+    width: 20% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
@@ -32,7 +32,7 @@
     hyphens: auto;
   }
   
-  .mat-column-city {
+  .mat-column-line1 {
     word-wrap: break-word !important;
     white-space: unset !important;
     flex: 0 0 30% !important;
@@ -48,8 +48,40 @@
     hyphens: auto;
   }
 
+  .mat-column-city {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 15% !important;
+    width: 15% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
   
   .mat-column-state {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 5% !important;
+    width: 5% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  .mat-column-zip {
     word-wrap: break-word !important;
     white-space: unset !important;
     flex: 0 0 10% !important;
@@ -65,7 +97,23 @@
     hyphens: auto;
   }
 
-  .mat-column-zip {
+  .mat-column-status {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  .mat-column-date {
     word-wrap: break-word !important;
     white-space: unset !important;
     flex: 0 0 10% !important;

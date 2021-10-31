@@ -4,18 +4,15 @@ import { AuthGuard } from 'msal-lib';
 import { HomeComponent } from './Components/home/home.component';
 
 const routes: Routes = [
-  { path: '',  canLoad: [AuthGuard], children: [
-    { path: 'secure', canActivate: [AuthGuard] , canLoad: [AuthGuard],  loadChildren: () => import('./Secure/secure.module').then(m => m.SecureModule) },
-    // { path: 'messages', loadChildren: () => import('./Modules/Messages/messages.module').then(m => m.MessagesModule) },
-    // { path: 'patients', loadChildren: () => import('./Modules/Patients/patients.module').then(m => m.PatientsModule) },
-    // { path: 'providers', loadChildren: () => import('./Modules/Providers/providers.module').then(m => m.ProvidersModule) },
-    // { path: 'reports', loadChildren: () => import('./Modules/Reports/reports.module').then(m => m.ReportsModule) },
-    // { path: 'settings', loadChildren: () => import('./Modules/Settings/settings.module').then(m => m.SettingsModule) },
-    // { path: 'dashboard', component: DashboardComponent },
-  ]},
+  { path: 'secure', canActivate: [AuthGuard], canLoad: [AuthGuard], loadChildren: () => import('./modules/secure/secure.module').then(m => m.SecureModule) },
+  { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) },
+  { path: 'manager', loadChildren: () => import('./modules/manager/manager.module').then(m => m.ManagerModule) },
+  { path: 'installer', loadChildren: () => import('./modules/installer/installer.module').then(m => m.InstallerModule) },
+  { path: 'measurer', loadChildren: () => import('./modules/measurer/measurer.module').then(m => m.MeasurerModule) },
+  { path: 'staff', loadChildren: () => import('./staff/staff.module').then(m => m.StaffModule) },
 
-//  { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent},
+  //  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];

@@ -1,7 +1,7 @@
 import { CollectionViewer, DataSource} from "@angular/cdk/collections";
 import { Observable, BehaviorSubject, of, Subject, combineLatest} from "rxjs";
 import { switchMap, startWith, share, map} from "rxjs/operators";
-import { Page, PageRequest, Sort } from '../Models';
+import { Page, PageRequest, Sort } from '../models';
 
 export type PaginatedEndpoint<T, Q> = (pageable: PageRequest<T>, query: Q) => Observable<Page<T>>
 
