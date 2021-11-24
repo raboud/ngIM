@@ -1,6 +1,5 @@
-export interface JobDetail {
+export interface JobEdit {
     id: number;
-    name: string;
     address: {
       address1: string;
       address2: string;
@@ -8,7 +7,4 @@ export interface JobDetail {
       state: string;
       zipCode: string;
     }
-    projectEndDate: Date;
-    ourTotal: number;
-    status: string;
   }

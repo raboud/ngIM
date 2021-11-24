@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'msal-lib';
+import { AddressFormComponent } from './Components/address-form/address-form.component';
 import { HomeComponent } from './Components/home/home.component';
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'staff', loadChildren: () => import('./staff/staff.module').then(m => m.StaffModule) },
 
   //  { path: 'login', component: LoginComponent },
+  { path: 'address', component: AddressFormComponent },
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },

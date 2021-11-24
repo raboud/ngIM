@@ -11,13 +11,15 @@ import { JobListComponent } from './components/job-list/job-list.component';
 import { JobDetailComponent } from './components/job-detail/job-detail.component';
 import { JobEditComponent } from './components/job-edit/job-edit.component';
 import { JobService } from './services/job.service';
+import { UppercaseDirective } from '../../directives/uppercase.directive';
 
 
 @NgModule({
   declarations: [
     JobListComponent,
     JobDetailComponent,
-    JobEditComponent
+    JobEditComponent,
+    UppercaseDirective
   ],
   imports: [
     CommonModule,

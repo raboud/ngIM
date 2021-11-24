@@ -1,1 +1,17 @@
-<p>job-detail works!</p>
+<div class="container mat-elevation-z8" style="padding: 10pt;">
+    <H1>Job Details</H1>
+
+    <mat-card *ngIf="data" class="example-card">
+        <mat-card-title>{{data.name}}</mat-card-title>
+        <mat-card-subtitle>Project Manager</mat-card-subtitle>
+        <mat-card-content>
+          <p><strong>Address</strong></p>
+          <p>{{data.address.address1}}</p>
+          <p *ngIf="data.address.address2" >{{data.address.address2}}</p>
+          <p>{{data.address.city}}, {{data.address.state}} {{data.address.zipCode}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)=onEdit()>Edit</button>
+        </mat-card-actions>
+      </mat-card>
+</div>

@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -20,6 +22,13 @@ import { MsalLibModule, AuthService } from 'msal-lib';
 import { LogLevel, Configuration, BrowserCacheLocation, IPublicClientApplication, PublicClientApplication, InteractionType } from '@azure/msal-browser';
 import { MsalGuard, MsalInterceptor, MsalBroadcastService, MsalInterceptorConfiguration, MsalModule, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG, MsalGuardConfiguration, MsalRedirectComponent } from '@azure/msal-angular';
 import { environment } from '../environments/environment';
+import { UppercaseDirective } from './directives/uppercase.directive';
+import { AddressFormComponent } from './Components/address-form/address-form.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
 
 
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
@@ -117,16 +126,19 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     HeaderComponent,
     NavigationComponent,
     HomeComponent,
+    AddressFormComponent,
+//    UppercaseDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule, 
     ImLibModule,
+    FormsModule,
 
     RandrLibModule,
     MatLibModule, 
-    MsalLibModule
+    MsalLibModule, MatInputModule, MatButtonModule, MatSelectModule, MatRadioModule, MatCardModule, ReactiveFormsModule
   ],
   providers: [
     {
