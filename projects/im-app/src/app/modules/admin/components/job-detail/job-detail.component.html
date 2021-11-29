@@ -5,10 +5,44 @@
         <mat-card-title>{{data.name}}</mat-card-title>
         <mat-card-subtitle>Project Manager</mat-card-subtitle>
         <mat-card-content>
-          <p><strong>Address</strong></p>
-          <p>{{data.address.address1}}</p>
-          <p *ngIf="data.address.address2" >{{data.address.address2}}</p>
-          <p>{{data.address.city}}, {{data.address.state}} {{data.address.zipCode}}</p>
+          <div class="container">
+            <div class="row">
+              <div class="col m-1">
+                <h2>Address</h2>
+                <div>{{data.address.address1}}<br></div>
+                <div *ngIf="data.address.address2" >{{data.address.address2}}<br></div>
+                <div>{{data.address.city}}, {{data.address.state}} {{data.address.zipCode}}</div> 
+              </div>
+              <div class="col m-1">
+                <h2>Codes</h2>
+                <p><strong>Lock Box: </strong>{{data.lockBox}}</p>
+                <p><strong>Gate Code: </strong>{{data.gateCode}}</p>
+                <p><strong>Garage Code: </strong>{{data.garageCode}}</p>
+              </div>
+              <div class="col m-1">
+                <h2>Project</h2>
+                <p><strong>End Date: </strong> {{data.projectEndDate}}</p>
+                <p><strong>Status: </strong>{{data.status}}</p>
+                <p><strong>Reno Budget: </strong>{{data.renovationBudget}}</p>
+                <p><strong>Our Budget: </strong>{{data.ourToal}}</p>
+              </div>
+              <div class="col m-1">
+                <h2>Building</h2>
+                <div class="row">
+                  <div class="col m1"><strong>Year:</strong></div>
+                  <div class="col m1">{{data.year}}</div>
+                </div>
+                <div class="row">
+                  <div class="col m1"><strong>Square Foot:</strong></div>
+                  <div class="col m1">{{data.squareFoot}}</div>
+                </div>
+                <div class="row">
+                  <div class="col m1"><strong>Bed/Bath: </strong></div>
+                  <div class="col m1">{{data.bedBath}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </mat-card-content>
         <mat-card-actions>
           <button mat-raised-button color="primary" (click)=onEdit()>Edit</button>

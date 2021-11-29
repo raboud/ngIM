@@ -36,8 +36,27 @@ export class JobDetailComponent implements OnInit {
 
   onEdit(): void {
     const dialogRef = this.dialog.open(JobEditComponent, {
-      width: '700px',
-      data: {address: this.data.address},
+//      width: '700px',
+      data: {
+        id: this.data.id,
+        propertyCode: this.data.propertyCode,
+        address: {
+          address1: this.data.address.address1,
+          address2: this.data.address.address2,
+          city: this.data.address.city,
+          state: this.data.address.state,
+          zipCode: this.data.address.zipCode,
+        },
+        date: this.data.date,
+        squareFoot: this.data.squareFoot,
+        bedBath: this.data.bedBath,
+        lockBox: this.data.lockBox,
+        gateCode: this.data.gateCode,
+        garageCode: this.data.garageCode,
+        year: this.data.year,
+        renovationBudget: this.data.renovationBudget,
+        projectEndDate: this.data.projectEndDate,
+      },
     });
 
     dialogRef.afterClosed().subscribe(result => {

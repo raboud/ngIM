@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'projects/im-app/src/environments/environment';
 import { AlertService, BusyService } from 'randr-lib';
@@ -7,7 +7,7 @@ import { catchError, finalize } from 'rxjs/operators';
 import { Page, PageRequest } from '../../../models';
 import { JobList } from '../models/job-list.model';
 import { JobDetail } from '../models/jog-detail.model';
-
+import { JobEdit } from '../models/job-edit.model';
 
 export interface JobListQuery {
   lastname?: string;
@@ -15,10 +15,18 @@ export interface JobListQuery {
   status?: string;
 }
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+  })
+};
+
 @Injectable({
   providedIn: 'root'
 })
 export class JobService {
+
+  
 
   constructor(
     private _httpClient: HttpClient,
@@ -69,6 +77,19 @@ export class JobService {
         catchError(err => this.handleError(err)), 
         finalize(() => this.busyService.RemoveBusy())
       );
+
+  }
+
+  put(id: number, item: JobEdit): Observable<JobEdit> {
+    this.busyService.AddBusy();
+    const href = environment.msalConfig.resources.imApi.endpoint + 'job';
+    let requestUrl = `${href}/${id}`;
+
+    return this._httpClient.put<JobDetail>(requestUrl, item, httpOptions)
+    .pipe(
+      catchError(err => this.handleError(err)), 
+      finalize(() => this.busyService.RemoveBusy())
+    );
 
   }
 
