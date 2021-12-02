@@ -5,11 +5,14 @@ import { BusyComponent } from './components/busy/busy.component';
 import { CommonModule } from '@angular/common';
 import { MatLibModule } from 'mat-lib';
 import { UppercaseDirective } from './directives/uppercase.directive';
+import { DisplayDataComponent } from './components/display-data/display-data.component';
 
 @NgModule({
   declarations: [
     AlertComponent,
     BusyComponent,
+    DisplayDataComponent,
+    UppercaseDirective
   ],
   imports: [
     CommonModule,
@@ -19,6 +22,8 @@ import { UppercaseDirective } from './directives/uppercase.directive';
   exports: [
     AlertComponent, 
     BusyComponent,
+    DisplayDataComponent,
+    UppercaseDirective
   ],
   providers:[
   ]

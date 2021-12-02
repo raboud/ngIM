@@ -15,31 +15,22 @@
               </div>
               <div class="col m-1">
                 <h2>Codes</h2>
-                <p><strong>Lock Box: </strong>{{data.lockBox}}</p>
-                <p><strong>Gate Code: </strong>{{data.gateCode}}</p>
-                <p><strong>Garage Code: </strong>{{data.garageCode}}</p>
+                <lib-display-data title="Lock Box" data="{{data.year}}"></lib-display-data>
+                <lib-display-data title="Gate Code" data="{{data.gateCode}}"></lib-display-data>
+                <lib-display-data title="Garage Code" data="{{data.garageCode}}"></lib-display-data>
               </div>
               <div class="col m-1">
                 <h2>Project</h2>
-                <p><strong>End Date: </strong> {{data.projectEndDate}}</p>
-                <p><strong>Status: </strong>{{data.status}}</p>
-                <p><strong>Reno Budget: </strong>{{data.renovationBudget}}</p>
-                <p><strong>Our Budget: </strong>{{data.ourToal}}</p>
+                <lib-display-data title="End Date" data="{{data.projectEndDate | date:mediumDate}}"></lib-display-data>
+                <lib-display-data title="Status" data="{{data.status}}"></lib-display-data>
+                <lib-display-data title="Reno Budget" data="{{data.renovationBudget}}"></lib-display-data>
+                <lib-display-data title="Our Budget" data="{{data.outTotal}}"></lib-display-data>
               </div>
               <div class="col m-1">
                 <h2>Building</h2>
-                <div class="row">
-                  <div class="col m1"><strong>Year:</strong></div>
-                  <div class="col m1">{{data.year}}</div>
-                </div>
-                <div class="row">
-                  <div class="col m1"><strong>Square Foot:</strong></div>
-                  <div class="col m1">{{data.squareFoot}}</div>
-                </div>
-                <div class="row">
-                  <div class="col m1"><strong>Bed/Bath: </strong></div>
-                  <div class="col m1">{{data.bedBath}}</div>
-                </div>
+                <lib-display-data title="Year" data="{{data.year}}"></lib-display-data>
+                <lib-display-data title="Square Foot" data="{{data.squareFoot}}"></lib-display-data>
+                <lib-display-data title="Bed/Bath" data="{{data.bedBath}}"></lib-display-data>
               </div>
             </div>
           </div>

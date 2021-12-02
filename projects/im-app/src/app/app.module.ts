@@ -22,7 +22,6 @@ import { MsalLibModule, AuthService } from 'msal-lib';
 import { LogLevel, Configuration, BrowserCacheLocation, IPublicClientApplication, PublicClientApplication, InteractionType } from '@azure/msal-browser';
 import { MsalGuard, MsalInterceptor, MsalBroadcastService, MsalInterceptorConfiguration, MsalModule, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG, MsalGuardConfiguration, MsalRedirectComponent } from '@azure/msal-angular';
 import { environment } from '../environments/environment';
-import { UppercaseDirective } from './directives/uppercase.directive';
 import { AddressFormComponent } from './Components/address-form/address-form.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
