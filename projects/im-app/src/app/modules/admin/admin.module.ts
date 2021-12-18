@@ -11,6 +11,9 @@ import { JobListComponent } from './components/job-list/job-list.component';
 import { JobDetailComponent } from './components/job-detail/job-detail.component';
 import { JobEditComponent } from './components/job-edit/job-edit.component';
 import { JobService } from './services/job.service';
+import { BidSheetComponent } from './components/bid-sheet/bid-sheet.component';
+import { MeasureComponent } from './components/measure/measure.component';
+import { WorkOrderComponent } from './components/work-order/work-order.component';
 
 
 @NgModule({
@@ -18,6 +21,9 @@ import { JobService } from './services/job.service';
     JobListComponent,
     JobDetailComponent,
     JobEditComponent,
+    BidSheetComponent,
+    MeasureComponent,
+    WorkOrderComponent,
   ],
   imports: [
     CommonModule,

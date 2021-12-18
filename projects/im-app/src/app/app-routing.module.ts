@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'manager', loadChildren: () => import('./modules/manager/manager.module').then(m => m.ManagerModule) },
   { path: 'installer', loadChildren: () => import('./modules/installer/installer.module').then(m => m.InstallerModule) },
   { path: 'measurer', loadChildren: () => import('./modules/measurer/measurer.module').then(m => m.MeasurerModule) },
-  { path: 'staff', loadChildren: () => import('./staff/staff.module').then(m => m.StaffModule) },
+  { path: 'staff', loadChildren: () => import('./modules/staff/staff.module').then(m => m.StaffModule) },
 
   //  { path: 'login', component: LoginComponent },
   { path: 'address', component: AddressFormComponent },
