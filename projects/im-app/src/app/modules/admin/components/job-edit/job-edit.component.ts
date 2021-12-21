@@ -9,16 +9,13 @@ import { JobService } from '../../services/job.service';
   styleUrls: ['./job-edit.component.scss']
 })
 export class JobEditComponent implements OnInit {
-//  public _data : JobEdit = <JobEdit> {}; 
 
   constructor(
     public dialogRef: MatDialogRef<JobEditComponent>,
     private service: JobService,
     @Inject(MAT_DIALOG_DATA) public data: JobEdit,
   ) {
-//    Object.assign(this._data, this.data);
-//    this._data.address = <Address> {};
-//    Object.assign(this._data.address, this.data.address);
+
    }
 
   ngOnInit(): void {
@@ -26,9 +23,7 @@ export class JobEditComponent implements OnInit {
 
   onClick(): void {
     this.service.put(this.data.id, this.data).subscribe(item => {
-      this.data = item;
-      this.dialogRef.close();
-      console.log(this.data);
+      this.dialogRef.close(this.data);
     });
   }
 

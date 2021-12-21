@@ -14,6 +14,9 @@ import { JobService } from './services/job.service';
 import { BidSheetComponent } from './components/bid-sheet/bid-sheet.component';
 import { MeasureComponent } from './components/measure/measure.component';
 import { WorkOrderComponent } from './components/work-order/work-order.component';
+import { BidSheetService } from './services/bid-sheet.service';
+import { MeasureService } from './services/measure.service';
+import { WorkOderService } from './services/work-oder.service';
 
 
 @NgModule({
@@ -29,14 +32,17 @@ import { WorkOrderComponent } from './components/work-order/work-order.component
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    
+
     RandrLibModule,
     MatLibModule,
 
     AdminRoutingModule
   ],
   providers:[
-    JobService
+    JobService,
+    BidSheetService,
+    MeasureService,
+    WorkOderService
   ]
 })
 export class AdminModule { }

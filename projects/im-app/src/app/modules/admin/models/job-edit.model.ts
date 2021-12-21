@@ -2,8 +2,11 @@ export interface JobEdit {
   id: number;
 //  name: string;
   propertyCode: string;
-  address: Address
-  date: Date;
+  address1: string;
+  address2: string;
+  city: string;
+  state: string;
+  zipCode: string;
   squareFoot: string;
   bedBath: string;
 

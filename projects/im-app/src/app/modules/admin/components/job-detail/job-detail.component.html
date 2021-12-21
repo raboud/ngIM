@@ -9,13 +9,13 @@
         <div class="row">
           <div class="col m-1">
             <h2>Address</h2>
-            <div>{{ data.address.address1 }}<br /></div>
-            <div *ngIf="data.address.address2">
-              {{ data.address.address2 }}<br />
+            <div>{{ data?.address1 }}<br /></div>
+            <div *ngIf="data.address2">
+              {{ data?.address2 }}<br />
             </div>
             <div>
-              {{ data.address.city }}, {{ data.address.state }}
-              {{ data.address.zipCode }}
+              {{ data?.city }}, {{ data?.state }}
+              {{ data?.zipCode }}
             </div>
           </div>
           <div class="col m-1">
