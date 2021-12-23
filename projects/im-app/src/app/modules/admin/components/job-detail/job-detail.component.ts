@@ -36,7 +36,7 @@ export class JobDetailComponent implements OnInit {
 
   onEdit(): void {
     const dialogRef = this.dialog.open(JobEditComponent, {
-      //      width: '700px',
+            width: '700px',
       data: JSON.parse(JSON.stringify(this.data))
     });
 

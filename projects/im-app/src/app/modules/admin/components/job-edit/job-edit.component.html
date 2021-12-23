@@ -1,75 +1,75 @@
-<div class="container mat-elevation-z8" style="padding: 10pt;">
-    <h1 mat-dialog-title>Job Edit</h1>
-    <div mat-dialog-content class="container">
-                <p>
-                    <mat-form-field class="full-width" appearance="fill">
-                        <mat-label>Address</mat-label>
-                        <input matInput type="text" placeholder="Ex. 100 Main St" [(ngModel)]="data.address1"
-                            uppercase>
-                    </mat-form-field>
-                    <mat-form-field class="full-width" appearance="fill">
-                        <mat-label>Address 2</mat-label>
-                        <input matInput input="text" placeholder="Ex. Suite S" [(ngModel)]="data.address2"
-                            uppercase>
-                    </mat-form-field>
-                </p>
-                <table cellspacing="0">
-                    <tr>
-                        <td>
-                            <mat-form-field class="full-width" appearance="fill">
-                                <mat-label>City</mat-label>
-                                <input matInput type="text" placeholder="Ex. Suwanee" #city
-                                    [(ngModel)]="data.city" uppercase>
-                            </mat-form-field>
-                        </td>
-                        <td>
-                            <mat-form-field class="full-width" appearance="fill">
-                                <mat-label>State</mat-label>
-                                <input matInput type="text" placeholder="Ex. GA" #state maxlength="2"
-                                    [(ngModel)]="data.state" uppercase>
-                            </mat-form-field>
-                        </td>
-                        <td>
-                            <mat-form-field class="full-width" appearance="fill">
-                                <mat-label>Zip Code</mat-label>
-                                <input matInput type="text" pattern="\d{5}-?(\d{4})?" #postalCode maxlength="10"
-                                    placeholder="Ex. 30024" [(ngModel)]="data.zipCode" uppercase>
-
-                            </mat-form-field>
-                        </td>
-                    </tr>
-                </table>
-                <mat-form-field class="full-width" appearance="fill">
-                    <mat-label>Lock Box</mat-label>
-                    <input matInput type="text" #lockbox
-                        [(ngModel)]="data.lockBox" uppercase>
-                </mat-form-field>
-                <mat-form-field class="full-width" appearance="fill">
-                    <mat-label>Gate Code</mat-label>
-                    <input matInput type="text" #gatecode
-                        [(ngModel)]="data.gateCode" uppercase>
-                </mat-form-field>
-                <mat-form-field class="full-width" appearance="fill">
-                    <mat-label>Garage Code</mat-label>
-                    <input matInput type="text" #garageCode
-                        [(ngModel)]="data.garageCode" uppercase>
-                </mat-form-field>
-                <mat-form-field class="full-width" appearance="fill">
-                    <mat-label>End Date</mat-label>
-                    <input matInput type="date" #projectEndDate
-                        [ngModel]="data.projectEndDate | date:'yyyy-MM-dd'" (ngModelChange)="data.projectEndDate=$event" >
-                </mat-form-field>
-                <mat-form-field class="full-width" appearance="fill">
-                    <mat-label>Renovation Budget</mat-label>
-                    <input matInput type="number" #renovationBudget
-                        [(ngModel)]="data.renovationBudget" uppercase>
-                </mat-form-field>
-
-
-
-    </div>
-    <div mat-dialog-actions>
-        <button mat-button (click)="onNoClick()">Cancel</button>
-        <button mat-raised-button (click)="onClick()" color="primary" cdkFocusInitial>Save</button>
-    </div>
+<div class="container mat-elevation-z8" style="padding: 10pt">
+  <h1 mat-dialog-title>Job Edit</h1>
+  <div mat-dialog-content class="container" [formGroup]="form">
+      <p>
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Address</mat-label>
+          <input matInput type="text" placeholder="Ex. 100 Main St" uppercase maxlength="255" formControlName="address1" />
+          <mat-error *ngIf="displayMessage['']">{{displayMessage['']}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Address 2</mat-label>
+          <input matInput input="text" placeholder="Ex. Suite S"  uppercase maxlength="255" formControlName="address2"  />
+          <mat-error *ngIf="displayMessage['']">{{displayMessage['']}}</mat-error>
+        </mat-form-field>
+      </p>
+      <table cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>City</mat-label>
+              <input matInput type="text" placeholder="Ex. Suwanee" uppercase maxlength="50" formControlName="city" />
+              <mat-error *ngIf="displayMessage['city']">{{displayMessage['city']}}</mat-error>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>State</mat-label>
+              <input matInput type="text" placeholder="Ex. GA" #state maxlength="2" uppercase formControlName="state"  />
+              <mat-error *ngIf="displayMessage['']">{{displayMessage['']}}</mat-error>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Zip Code</mat-label>
+              <input matInput type="text" pattern="\d{5}-?(\d{4})?" #postalCode maxlength="10" placeholder="Ex. 30024"
+                uppercase formControlName="zipCode"  />
+                <mat-error *ngIf="displayMessage['']">{{displayMessage['']}}</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Lock Box</mat-label>
+        <input matInput type="text" #lockbox formControlName="lockBox" uppercase />
+        <mat-error *ngIf="displayMessage['']">{{displayMessage['']}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Gate Code</mat-label>
+        <input matInput type="text" #gatecode formControlName="gateCode" uppercase />
+        <mat-error *ngIf="displayMessage['']">{{displayMessage['']}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Garage Code</mat-label>
+        <input matInput type="text" #garageCode formControlName="garageCode" uppercase />
+        <mat-error *ngIf="displayMessage['']">{{displayMessage['']}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>End Date</mat-label>
+        <input matInput type="date" #projectEndDate formControlName="projectEndDate"
+          (ngModelChange)="data.projectEndDate = $event" />
+          <mat-error *ngIf="displayMessage['']">{{displayMessage['']}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Renovation Budget</mat-label>
+        <input matInput type="number" #renovationBudget formControlName="renovationBudget" uppercase />
+        <mat-error *ngIf="displayMessage['']">{{displayMessage['']}}</mat-error>
+      </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button (click)="onSave()" color="primary" [disabled]="!form.valid || form.pristine">
+      Save
+    </button>
+  </div>
 </div>
