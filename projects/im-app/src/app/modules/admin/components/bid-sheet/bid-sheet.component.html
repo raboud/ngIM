@@ -1,1 +1,21 @@
-<p>bid-sheet works! {{jobId}}</p>
+
+<div class="example-action-buttons">
+  <button mat-button (click)="accordion.openAll()">Expand All</button>
+  <button mat-button (click)="accordion.closeAll()">Collapse All</button>
+</div>
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel *ngFor="let area of data?.areas">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{area?.name}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{area?.description}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-action-row>
+      {{area?.notes}}
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>

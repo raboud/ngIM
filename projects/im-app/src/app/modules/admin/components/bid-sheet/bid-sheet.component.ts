@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatAccordion } from '@angular/material/expansion';
 import { BidSheet } from '../../models/bidsheet.model';
 import { BidSheetService } from '../../services/bid-sheet.service';
 
@@ -8,12 +9,15 @@ import { BidSheetService } from '../../services/bid-sheet.service';
   styleUrls: ['./bid-sheet.component.scss'],
 })
 export class BidSheetComponent implements OnInit {
+  @ViewChild(MatAccordion) accordion: MatAccordion;
   @Input() jobId: number;
   data: BidSheet;
 
   constructor(private service: BidSheetService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getItem();
+  }
 
   getItem() {
     this.service.get(this.jobId).subscribe((item) => {

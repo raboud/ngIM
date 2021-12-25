@@ -29,7 +29,7 @@ export class BidSheetService {
 
   get(id: number): Observable<BidSheet> {
     this.busyService.AddBusy();
-    const href = environment.msalConfig.resources.imApi.endpoint + 'bidsheet';
+    const href = environment.msalConfig.resources.imApi.endpoint + 'bid';
     let requestUrl = `${href}/${id}`;
 
     return this._httpClient.get<BidSheet>(requestUrl)
