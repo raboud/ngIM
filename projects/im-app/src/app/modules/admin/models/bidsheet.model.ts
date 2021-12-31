@@ -15,4 +15,13 @@ export interface BidArea{
 
 export interface BidItem{
 
+    id: number,
+    category: string,
+    subCategory: string,
+    description: string,
+    quantity: number,
+    unitCost: number,
+    ours: boolean,
+    deleted: boolean,
+    row: number
 }

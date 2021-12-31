@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
-import { BidSheet } from '../../models/bidsheet.model';
+import { BidArea, BidItem, BidSheet } from '../../models/bidsheet.model';
 import { BidSheetService } from '../../services/bid-sheet.service';
 
 @Component({
@@ -11,9 +11,13 @@ import { BidSheetService } from '../../services/bid-sheet.service';
 export class BidSheetComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;
   @Input() jobId: number;
-  data: BidSheet;
 
-  constructor(private service: BidSheetService) {}
+  data: BidSheet;
+  showAll: boolean = false;
+  showDeleted: boolean = false;
+  showRow: boolean = false;
+
+  constructor(private service: BidSheetService) { }
 
   ngOnInit(): void {
     this.getItem();
@@ -24,5 +28,29 @@ export class BidSheetComponent implements OnInit {
       this.data = item;
       console.log(this.data);
     });
+  }
+
+  hide(item: BidItem): boolean {
+    return (item.deleted && !this.showDeleted) || (!item.ours && !this.showAll);
+  }
+
+  hideArea(area: BidArea): boolean {
+    let anyNotDeleted: boolean = area.items.some(function (x) { return !x.deleted; });
+    let anyOurs: boolean = area.items.some(function (x) { return x.ours });
+
+    return (!anyNotDeleted && !this.showDeleted) || (!anyOurs && !this.showAll);
+
+  }
+
+  editItem(item: BidItem){
+
+  }
+
+  deleteItem(item: BidItem){
+    item.deleted = true;
+  }
+
+  restoreItem(item: BidItem){
+    item.deleted = false;
   }
 }

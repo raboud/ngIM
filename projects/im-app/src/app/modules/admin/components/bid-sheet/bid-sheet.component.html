@@ -1,10 +1,13 @@
-
-<div class="example-action-buttons">
-  <button mat-button (click)="accordion.openAll()">Expand All</button>
-  <button mat-button (click)="accordion.closeAll()">Collapse All</button>
+<div class="example-action-buttons" style="margin-right: 20pt;">
+  <button style="margin-right: 20pt;" mat-button (click)="accordion.openAll()">Expand All</button>
+  <button style="margin-right: 20pt;" mat-button (click)="accordion.closeAll()">Collapse All</button>
+  <mat-checkbox style="margin-right: 20pt;" [(ngModel)]="showAll">Show All</mat-checkbox>
+  <mat-checkbox style="margin-right: 20pt;" [(ngModel)]="showDeleted">Show Deleted</mat-checkbox>
+  <mat-checkbox style="margin-right: 20pt;" [(ngModel)]="showRow">Show Row</mat-checkbox>
 </div>
-<mat-accordion class="example-headers-align" multi>
-  <mat-expansion-panel *ngFor="let area of data?.areas">
+<mat-accordion class="example-headers-align" multi >
+  <div  *ngFor="let area of data?.areas">
+  <mat-expansion-panel *ngIf="!hideArea(area)">
     <mat-expansion-panel-header>
       <mat-panel-title>
         {{area?.name}}
@@ -13,9 +16,41 @@
         {{area?.description}}
       </mat-panel-description>
     </mat-expansion-panel-header>
+    <table class="table table-bordered">
+      <thead>
+        <tr style="font-weight: bold;">
+          <td class="col-1" style="text-align: center;">Category</td>
+          <td class="col-1" style="text-align: center;">Sub Category</td>
+          <td class="col-3">Description</td>
+          <td class="col-1" style="text-align: center;">Quantity</td>
+          <td class="col-1" style="text-align: center;">Unit Cost</td>
+          <td class="col-1" style="text-align: center;">Ext. Cost</td>
+          <td *ngIf="showRow" class="col-1" style="text-align: center;">Row</td>
+          <td>Actions</td>
+        </tr>
+      </thead>
+      <tbody  *ngFor="let item of area.items">
+        <tr *ngIf="!hide(item)" [ngClass]="{'oursdeleted': (item.deleted && item.ours), 'othersdelete': (item.deleted && !item.ours), 'others': (!item.delete && !item.ours) }" >
+          <td style="text-align: center;">{{item.category}}</td>
+          <td style="text-align: center;">{{item.subCategory}}</td>
+          <td>{{item.description}}</td>
+          <td style="text-align: center;">{{item.quantity}}</td>
+          <td style="text-align: right;">{{item.unitCost | currency:'USD'}}</td>
+          <td style="text-align: right;">{{item.unitCost * item.quantity | currency:'USD'}}</td>
+          <td *ngIf="showRow" style="text-align: center;">{{item.row}}</td>
+          <td>
+            <mat-icon  (click)="editItem(item)" aria-hidden="false" aria-label="Example home icon" matTooltip="Edit Item">edit</mat-icon>
+            <mat-icon (click)="deleteItem(item)" *ngIf="!item.deleted" aria-hidden="false" aria-label="Example home icon" matTooltip="Delete Item">delete</mat-icon>
+            <mat-icon (click)="restoreItem(item)" *ngIf="item.deleted" aria-hidden="false" aria-label="Example home icon" matTooltip="Undelete Item">restore</mat-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     <mat-action-row>
       {{area?.notes}}
     </mat-action-row>
   </mat-expansion-panel>
+</div>
 </mat-accordion>
+
