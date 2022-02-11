@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -7,9 +7,9 @@ import { RandrLibModule } from 'randr-lib';
 import { MatLibModule } from 'mat-lib';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { JobListComponent } from './components/job-list/job-list.component';
-import { JobDetailComponent } from './components/job-detail/job-detail.component';
-import { JobEditComponent } from './components/job-edit/job-edit.component';
+import { JobListComponent } from './components/job/job-list/job-list.component';
+import { JobDetailComponent } from './components/job/job-detail/job-detail.component';
+import { JobEditComponent } from './components/job/job-edit/job-edit.component';
 import { JobService } from './services/job.service';
 import { BidSheetComponent } from './components/bid-sheet/bid-sheet.component';
 import { MeasureComponent } from './components/measure/measure.component';
@@ -42,7 +42,8 @@ import { WorkOderService } from './services/work-oder.service';
     JobService,
     BidSheetService,
     MeasureService,
-    WorkOderService
+    WorkOderService,
+    CurrencyPipe
   ]
 })
 export class AdminModule { }

@@ -10,3 +10,40 @@
 .others {
     color: blue;
 }
+
+.mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: left;
+    width: 75%;
+}
+
+.mat-expansion-panel-header-title {
+    justify-content: space-between;
+    align-items: left;
+    width: 25%;
+}
+
+.notes {
+    justify-content: start;
+}
+
+.action-buttons {
+    margin-right: 20pt;
+}
+
+
+mat-checkbox, button {
+    margin-right: 10pt;
+}
+
+.center {
+    text-align: center;
+}
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}

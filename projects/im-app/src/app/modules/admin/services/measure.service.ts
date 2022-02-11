@@ -5,7 +5,8 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 import { environment } from 'projects/im-app/src/environments/environment';
 import { JobEdit } from '../models/job-edit.model';
-import { Measure, MeasureEdit } from '../models/measure.model';
+import { Measure, MeasureEdit, MeasureList } from '../models/measure.model';
+import { Page, PageRequest } from '../../../models';
 
 export interface JobListQuery {
   lastname?: string;
@@ -30,6 +31,42 @@ export class MeasureService {
     private alertService: AlertService,
     private busyService: BusyService,
   ) { }
+
+  getPage(
+    request: PageRequest<MeasureList>,
+    query: JobListQuery
+  ): Observable<Page<MeasureList>> {
+    console.log(query);
+
+    this.busyService.AddBusy();
+    const href = environment.msalConfig.resources.imApi.endpoint + 'measure';
+    let requestUrl = `${href}?pageSize=${request.size}&page=${
+      request.page + 1
+    }`;
+    //`${href}?filter=${filter}&sortColumn=${sort}&sortDirection=${order}&pageSize=${request.size}&page=${request.page + 1}`;
+
+    if (query?.lastname && query?.lastname != '') {
+      requestUrl += `&filter=lastname=${query.lastname}`;
+    }
+
+    if (query?.clientid) {
+      requestUrl += `&filter=clientid=${query.clientid}`;
+    }
+
+    if (query?.status) {
+      requestUrl += `&filter=status=${query.status}`;
+    }
+
+    if (request.sort) {
+      requestUrl += `&sortColumn=${request.sort.property}&sortDirection=${request.sort.order}`;
+    }
+
+    return this._httpClient.get<Page<MeasureList>>(requestUrl).pipe(
+      catchError((err) => this.handleError(err)),
+      finalize(() => this.busyService.RemoveBusy())
+    );
+  }
+
 
   get(id: number): Observable<Measure> {
     this.busyService.AddBusy();

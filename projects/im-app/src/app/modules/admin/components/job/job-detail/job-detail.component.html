@@ -1,0 +1,71 @@
+<div class="container mat-elevation-z8" style="padding: 10pt">
+  <H1>Job Details</H1>
+
+  <mat-card *ngIf="data" class="example-card">
+    <mat-card-title>{{ data.name }}</mat-card-title>
+    <mat-card-subtitle>Project Manager</mat-card-subtitle>
+    <mat-card-content>
+      <div class="container">
+        <div class="row">
+          <div class="col m-1">
+            <h2>Address</h2>
+            <div>{{ data?.address1 }}<br /></div>
+            <div *ngIf="data.address2">
+              {{ data?.address2 }}<br />
+            </div>
+            <div>
+              {{ data?.city }}, {{ data?.state }}
+              {{ data?.zipCode }}
+            </div>
+          </div>
+          <div class="col m-1">
+            <h2>Codes</h2>
+            <lib-display-data title="Lock Box" data="{{ data.year }}"></lib-display-data>
+            <lib-display-data title="Gate Code" data="{{ data.gateCode }}"></lib-display-data>
+            <lib-display-data title="Garage Code" data="{{ data.garageCode }}"></lib-display-data>
+          </div>
+          <div class="col m-1">
+            <h2>Project</h2>
+            <lib-display-data title="End Date" data="{{ data.projectEndDate | date: mediumDate }}"></lib-display-data>
+            <lib-display-data title="Status" data="{{ data.status }}"></lib-display-data>
+            <lib-display-data title="Reno Budget" data="{{ data.renovationBudget | currency:'USD' }}">
+            </lib-display-data>
+            <lib-display-data title="Our Budget" data="{{ data.ourTotal | currency:'USD' }}"></lib-display-data>
+          </div>
+          <div class="col m-1">
+            <h2>Building</h2>
+            <lib-display-data title="Year" data="{{ data.year }}"></lib-display-data>
+            <lib-display-data title="Square Foot" data="{{ data.squareFoot }}"></lib-display-data>
+            <lib-display-data title="Bed/Bath" data="{{ data.bedBath }}"></lib-display-data>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="onEdit()">Edit</button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-tab-group>
+    <mat-tab label="Bid Sheet">
+      <ng-template matTabContent>
+        <div style="margin-top: 10px;">
+          <app-bid-sheet jobId="{{id}}"></app-bid-sheet>
+        </div>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Measure">
+      <ng-template matTabContent>
+        <div style="margin-top: 10px;">
+          <app-measure jobId="{{id}}"></app-measure>
+        </div>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Work Orders">
+      <ng-template matTabContent>
+        <div style="margin-top: 10px;">
+          <app-work-order jobId="{{id}}"></app-work-order>
+        </div>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</div>

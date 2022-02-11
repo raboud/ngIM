@@ -77,6 +77,12 @@
           <td mat-cell *matCellDef="let row">{{row.projectEndDate | date:'MM-dd-yyyy'}}</td>
         </ng-container>
 
+        <!-- Status Column -->
+        <ng-container matColumnDef="ourTotal">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Our Total</th>
+          <td mat-cell *matCellDef="let row">{{row.ourTotal | currency:'USD'}}</td>
+        </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row routerLink="/admin/jobs/{{row.id}}" (dblclick)="select(row.id)" *matRowDef="let row; columns: displayedColumns;"></tr>
       </mat-table>

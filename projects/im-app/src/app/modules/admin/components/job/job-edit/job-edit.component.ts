@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewChildren,
 } from '@angular/core';
-import { formatDate } from '@angular/common';
+import { formatDate,CurrencyPipe } from '@angular/common';
 import {
   FormBuilder,
   FormControlName,
@@ -19,8 +19,8 @@ import { debounceTime } from 'rxjs/operators';
 
 import { GenericValidator } from 'randr-lib';
 
-import { JobEdit, Address } from '../../models/job-edit.model';
-import { JobService } from '../../services/job.service';
+import { JobEdit, Address } from '../../../models/job-edit.model';
+import { JobService } from '../../../services/job.service';
 
 @Component({
   selector: 'app-job-edit',
@@ -40,6 +40,7 @@ export class JobEditComponent implements OnInit, AfterViewInit {
     public dialogRef: MatDialogRef<JobEditComponent>,
     private service: JobService,
     private fb: FormBuilder,
+    private currencyPipe: CurrencyPipe,
 
     @Inject(MAT_DIALOG_DATA) public data: JobEdit
   ) {
@@ -54,6 +55,7 @@ export class JobEditComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    const currency = this.currencyPipe.transform(this.data.renovationBudget)
     this.form = this.fb.group({
       address1: [
         this.data.address1,

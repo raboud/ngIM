@@ -4,6 +4,17 @@ export interface Measure
     items: MeasureItem[]
 }
 
+export interface MeasureList {
+  JobId: number;
+  address1: string;
+  address2: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  scheduleDate: Date;
+  status: string;
+}
+
 export interface MeasureItem
 {
     id: number;

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { JobDetail } from '../../models/jog-detail.model';
-import { JobService } from '../../services/job.service';
+import { JobDetail } from '../../../models/jog-detail.model';
+import { JobService } from '../../../services/job.service';
 import { JobEditComponent } from '../job-edit/job-edit.component';
 
 @Component({

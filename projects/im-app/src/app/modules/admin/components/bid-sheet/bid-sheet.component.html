@@ -1,43 +1,41 @@
-<div class="example-action-buttons" style="margin-right: 20pt;">
-  <button style="margin-right: 20pt;" mat-button (click)="accordion.openAll()">Expand All</button>
-  <button style="margin-right: 20pt;" mat-button (click)="accordion.closeAll()">Collapse All</button>
-  <mat-checkbox style="margin-right: 20pt;" [(ngModel)]="showAll">Show All</mat-checkbox>
-  <mat-checkbox style="margin-right: 20pt;" [(ngModel)]="showDeleted">Show Deleted</mat-checkbox>
-  <mat-checkbox style="margin-right: 20pt;" [(ngModel)]="showRow">Show Row</mat-checkbox>
+<div class="action-buttons" >
+  <button mat-button (click)="accordion.openAll()">Expand All</button>
+  <button mat-button (click)="accordion.closeAll()">Collapse All</button>
+  <mat-checkbox [(ngModel)]="showAll">Show All</mat-checkbox>
+  <mat-checkbox [(ngModel)]="showDeleted">Show Deleted</mat-checkbox>
+  <mat-checkbox [(ngModel)]="showRow">Show Row</mat-checkbox>
 </div>
 <mat-accordion class="example-headers-align" multi >
   <div  *ngFor="let area of data?.areas">
-  <mat-expansion-panel *ngIf="!hideArea(area)">
-    <mat-expansion-panel-header>
+  <mat-expansion-panel [expanded]="true" *ngIf="!hideArea(area)" style="margin: 0;">
+    <mat-expansion-panel-header style="padding: 0;height: 32px;">  
       <mat-panel-title>
         {{area?.name}}
       </mat-panel-title>
-      <mat-panel-description>
+      <mat-panel-description style="text-align: right;">
         {{area?.description}}
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <table class="table table-bordered">
+    <table class="table">
       <thead>
         <tr style="font-weight: bold;">
-          <td class="col-1" style="text-align: center;">Category</td>
-          <td class="col-1" style="text-align: center;">Sub Category</td>
-          <td class="col-3">Description</td>
-          <td class="col-1" style="text-align: center;">Quantity</td>
-          <td class="col-1" style="text-align: center;">Unit Cost</td>
-          <td class="col-1" style="text-align: center;">Ext. Cost</td>
-          <td *ngIf="showRow" class="col-1" style="text-align: center;">Row</td>
+          <td class="col-2 center">Category</td>
+          <td class="col-5 left">Description</td>
+          <td class="col-1 center">Quantity</td>
+          <td class="col-1 center">Unit Cost</td>
+          <td class="col-1 center">Ext. Cost</td>
+          <td *ngIf="showRow" class="col-1 center">Row</td>
           <td>Actions</td>
         </tr>
       </thead>
       <tbody  *ngFor="let item of area.items">
         <tr *ngIf="!hide(item)" [ngClass]="{'oursdeleted': (item.deleted && item.ours), 'othersdelete': (item.deleted && !item.ours), 'others': (!item.delete && !item.ours) }" >
-          <td style="text-align: center;">{{item.category}}</td>
-          <td style="text-align: center;">{{item.subCategory}}</td>
+          <td class="center">{{item.category}}</td>
           <td>{{item.description}}</td>
-          <td style="text-align: center;">{{item.quantity}}</td>
-          <td style="text-align: right;">{{item.unitCost | currency:'USD'}}</td>
-          <td style="text-align: right;">{{item.unitCost * item.quantity | currency:'USD'}}</td>
-          <td *ngIf="showRow" style="text-align: center;">{{item.row}}</td>
+          <td class="center">{{item.quantity}}</td>
+          <td class="right">{{item.unitCost | currency:'USD'}}</td>
+          <td class="right">{{item.unitCost * item.quantity | currency:'USD'}}</td>
+          <td *ngIf="showRow" class="center">{{item.row}}</td>
           <td>
             <mat-icon  (click)="editItem(item)" aria-hidden="false" aria-label="Example home icon" matTooltip="Edit Item">edit</mat-icon>
             <mat-icon (click)="deleteItem(item)" *ngIf="!item.deleted" aria-hidden="false" aria-label="Example home icon" matTooltip="Delete Item">delete</mat-icon>
@@ -47,9 +45,9 @@
       </tbody>
     </table>
 
-    <mat-action-row>
-      {{area?.notes}}
-    </mat-action-row>
+    <div *ngIf="area?.notes" class="notes">
+      NOTES: {{area?.notes}}
+    </div>
   </mat-expansion-panel>
 </div>
 </mat-accordion>

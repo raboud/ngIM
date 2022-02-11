@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { PaginatedDataSource } from 'projects/im-app/src/app/models/paginated.datasource';
-import { JobList } from '../../models/job-list.model';
-import { JobListQuery, JobService } from '../../services/job.service';
+import { JobList } from '../../../models/job-list.model';
+import { JobListQuery, JobService } from '../../../services/job.service';
 
 @Component({
   selector: 'app-job-list',
@@ -11,12 +11,12 @@ import { JobListQuery, JobService } from '../../services/job.service';
   styleUrls: ['./job-list.component.scss']
 })
 export class JobListComponent {
-  dataSource: PaginatedDataSource<JobList, JobListQuery> 
-    = new PaginatedDataSource<JobList, JobListQuery>( 
+  dataSource: PaginatedDataSource<JobList, JobListQuery>
+    = new PaginatedDataSource<JobList, JobListQuery>(
       (request, query) => this.exampleDatabase.getPage(request, query),
-      null, 
+      null,
       {lastname: ''});
-  displayedColumns: string[] = ['name', 'line1', 'city', 'state', 'zip', 'status', 'date'];
+  displayedColumns: string[] = ['name', 'line1', 'city', 'state', 'zip', 'status', 'date', 'ourTotal'];
 
   resultsLength = 0;
   pageSize = 20;

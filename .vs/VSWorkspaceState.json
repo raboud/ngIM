@@ -2,15 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\projects",
-    "\\projects\\im-lib",
-    "\\projects\\mat-lib",
+    "\\projects\\im-app",
+    "\\projects\\im-app\\src",
+    "\\projects\\im-app\\src\\styles",
     "\\projects\\mat-lib\\src",
     "\\projects\\mat-lib\\src\\lib",
-    "\\projects\\msal-lib",
-    "\\projects\\randr-lib",
     "\\projects\\randr-lib\\src",
     "\\projects\\randr-lib\\src\\lib"
   ],
-  "SelectedNode": "\\projects\\im-lib\\tsconfig.lib.json",
+  "SelectedNode": "\\projects\\im-app\\src\\styles.scss",
   "PreviewInSolutionExplorer": false
 }
