@@ -41,28 +41,28 @@
       </table>
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Lock Box</mat-label>
-        <input matInput type="text" #lockbox formControlName="lockBox" uppercase />
-        <mat-error *ngIf="displayMessage['']">{{displayMessage['']}}</mat-error>
+        <input matInput type="text" #lockbox formControlName="lockBox" placeholder="1234" uppercase />
+        <mat-error *ngIf="displayMessage['lockBox']">{{displayMessage['lockBox']}}</mat-error>
       </mat-form-field>
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Gate Code</mat-label>
-        <input matInput type="text" #gatecode formControlName="gateCode" uppercase />
+        <input matInput type="text" #gatecode formControlName="gateCode" placeholder="1234" uppercase />
         <mat-error *ngIf="displayMessage['']">{{displayMessage['']}}</mat-error>
       </mat-form-field>
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Garage Code</mat-label>
-        <input matInput type="text" #garageCode formControlName="garageCode" uppercase />
+        <input matInput type="text" #garageCode formControlName="garageCode" placeholder="1234"  uppercase />
         <mat-error *ngIf="displayMessage['']">{{displayMessage['']}}</mat-error>
       </mat-form-field>
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>End Date</mat-label>
-        <input matInput type="date" #projectEndDate formControlName="projectEndDate"
+        <input matInput type="date" #projectEndDate placeholder="12/31/2020" formControlName="projectEndDate"
           (ngModelChange)="data.projectEndDate = $event" />
           <mat-error *ngIf="displayMessage['']">{{displayMessage['']}}</mat-error>
       </mat-form-field>
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Renovation Budget</mat-label>
-        <input matInput #renovationBudget formControlName="renovationBudget" [value]="form.get('renovationBudget').value | currency" />
+        <input matInput #renovationBudget formControlName="renovationBudget" placeholder="1000.00" [value]="form.get('renovationBudget').value | currency" />
         <mat-error *ngIf="displayMessage['']">{{displayMessage['']}}</mat-error>
       </mat-form-field>
   </div>

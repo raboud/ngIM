@@ -10,8 +10,8 @@ export const environment = {
       clientId: 'fd88cd5a-c00c-45c3-b2fa-f0f1b4e7aba9',
       authority: 'https://login.microsoftonline.com/e3d53bb7-38c6-4c96-8a81-94089d81b8ff',
       validateAuthority: true,
-      redirectUri: 'http://localhost:4200',
-      postLogoutRedirectUri: "http://localhost:4200",
+      redirectUri: 'https://localhost:4200',
+      postLogoutRedirectUri: "https://localhost:4200",
       navigateToLoginRequestUrl: true
     },
     cache: {

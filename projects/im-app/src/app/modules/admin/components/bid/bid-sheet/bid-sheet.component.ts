@@ -1,7 +1,11 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+
 import { MatAccordion } from '@angular/material/expansion';
-import { BidArea, BidItem, BidSheet } from '../../models/bidsheet.model';
-import { BidSheetService } from '../../services/bid-sheet.service';
+import { MatDialog } from '@angular/material/dialog';
+
+import { BidArea, BidItem, BidSheet } from '../../../models/bidsheet.model';
+import { BidSheetService } from '../../../services/bid-sheet.service';
+import { BidItemEditComponent } from '../bid-item-edit/bid-item-edit.component';
 
 @Component({
   selector: 'app-bid-sheet',
@@ -17,7 +21,9 @@ export class BidSheetComponent implements OnInit {
   showDeleted: boolean = false;
   showRow: boolean = false;
 
-  constructor(private service: BidSheetService) { }
+  constructor(
+    public dialog: MatDialog,
+    private service: BidSheetService) { }
 
   ngOnInit(): void {
     this.getItem();
@@ -43,6 +49,19 @@ export class BidSheetComponent implements OnInit {
   }
 
   editItem(item: BidItem){
+    const dialogRef = this.dialog.open(BidItemEditComponent, {
+      width: '700px',
+data: JSON.parse(JSON.stringify(item))
+});
+
+dialogRef.afterClosed().subscribe((result) => {
+console.log('The dialog was closed');
+console.log(result);
+if (result != undefined)
+{
+  this.getItem();
+}
+});
 
   }
 
@@ -53,4 +72,6 @@ export class BidSheetComponent implements OnInit {
   restoreItem(item: BidItem){
     item.deleted = false;
   }
+
+
 }

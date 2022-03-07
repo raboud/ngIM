@@ -5,7 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 import { environment } from 'projects/im-app/src/environments/environment';
 import { JobEdit } from '../models/job-edit.model';
-import { Measure, MeasureEdit, MeasureList } from '../models/measure.model';
+import { Measure, MeasureCreate, MeasureEdit, MeasureList } from '../models/measure.model';
 import { Page, PageRequest } from '../../../models';
 
 export interface JobListQuery {
@@ -81,12 +81,28 @@ export class MeasureService {
 
   }
 
-  put(id: number, item: JobEdit): Observable<MeasureEdit> {
+  put(id: number, item: MeasureEdit): Observable<MeasureEdit> {
     this.busyService.AddBusy();
     const href = environment.msalConfig.resources.imApi.endpoint + 'measure';
     let requestUrl = `${href}/${id}`;
 
     return this._httpClient.put<Measure>(requestUrl, item, httpOptions)
+    .pipe(
+      catchError(err => this.handleError(err)),
+      finalize(() => this.busyService.RemoveBusy())
+    );
+
+  }
+
+  create(id: number): Observable<Measure> {
+    this.busyService.AddBusy();
+    const href = environment.msalConfig.resources.imApi.endpoint + 'measure';
+
+    let item: MeasureCreate = {
+      jobId: id
+    };
+
+    return this._httpClient.post<Measure>(href, item, httpOptions)
     .pipe(
       catchError(err => this.handleError(err)),
       finalize(() => this.busyService.RemoveBusy())

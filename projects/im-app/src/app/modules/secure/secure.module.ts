@@ -4,14 +4,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+import { RandrLibModule } from 'randr-lib';
+import { MatLibModule } from 'mat-lib';
 
 import { CustomerComponent } from './Components/customer/customer.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 
 import { SecureRoutingModule } from './secure-routing.module';
 
-import { RandrLibModule } from 'randr-lib';
-import { MatLibModule } from 'mat-lib';
 import { CustomerService } from './Services/customer.service';
 
 @NgModule({

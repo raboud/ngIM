@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from 'msal-lib';
+import { AuthGuard, RoleGuard } from 'msal-lib';
 import { AddressFormComponent } from './Components/address-form/address-form.component';
 import { HomeComponent } from './Components/home/home.component';
 
 const routes: Routes = [
-  { path: 'secure', canActivate: [AuthGuard], canLoad: [AuthGuard], loadChildren: () => import('./modules/secure/secure.module').then(m => m.SecureModule) },
-  { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) },
+  {
+    path: 'secure',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+    loadChildren: () => import('./modules/secure/secure.module').then(m => m.SecureModule)
+  },
+
   { path: 'manager', loadChildren: () => import('./modules/manager/manager.module').then(m => m.ManagerModule) },
   { path: 'installer', loadChildren: () => import('./modules/installer/installer.module').then(m => m.InstallerModule) },
   { path: 'measurer', loadChildren: () => import('./modules/measurer/measurer.module').then(m => m.MeasurerModule) },

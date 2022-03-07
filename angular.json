@@ -114,7 +114,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "im-app:build"
+            "browserTarget": "im-app:build",
+            "ssl": true,
+            "sslCert": "./localhost.crt",
+            "sslKey": "./localhost.key"
           },
           "configurations": {
             "production": {

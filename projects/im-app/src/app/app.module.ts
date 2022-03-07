@@ -15,7 +15,6 @@ import { ImLibModule } from 'im-lib';
 import { AppRoutingModule } from './app-routing.module';
 
 import { RandrLibModule, AlertService } from 'randr-lib';
-import { MatLibModule } from 'mat-lib';
 import { MsalLibModule, AuthService } from 'msal-lib';
 
 
@@ -28,6 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
+import { MatLibModule } from 'mat-lib';
 
 
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
@@ -62,15 +62,15 @@ export const msalConfig: Configuration = {
  */
 export const protectedResources = {
   imApi: {
-    endpoint: 'https://localhost:5001/api/',
-    scopes: ['api://8b16e065-1a59-4f1c-a619-a50f918b9984/api']
+    endpoint: environment.msalConfig.resources.imApi.endpoint,
+    scopes: environment.msalConfig.resources.imApi.scopes
   }
 }
 
 /**
  * Scopes you add here will be prompted for user consent during sign-in.
  * By default, MSAL.js will add OIDC scopes (openid, profile, email) to any login request.
- * For more information about OIDC scopes, visit: 
+ * For more information about OIDC scopes, visit:
  * https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
 export const loginRequest = {
@@ -88,14 +88,14 @@ export function MSALInstanceFactory(msalConfig: Configuration ): IPublicClientAp
 }
 
 /**
- * MSAL Angular will automatically retrieve tokens for resources 
- * added to protectedResourceMap. For more info, visit: 
+ * MSAL Angular will automatically retrieve tokens for resources
+ * added to protectedResourceMap. For more info, visit:
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/docs/v2-docs/initialization.md#get-tokens-for-web-api-calls
  */
 export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
   console.log('MSALInterceptorConfigFactory');
   const protectedResourceMap = new Map<string, Array<string>>();
-  
+
   console.log(environment.msalConfig.resources);
 
   protectedResourceMap.set(environment.msalConfig.resources.imApi.endpoint, environment.msalConfig.resources.imApi.scopes);
@@ -131,12 +131,12 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     ImLibModule,
     FormsModule,
 
     RandrLibModule,
-    MatLibModule, 
+    MatLibModule,
     MsalLibModule, MatInputModule, MatButtonModule, MatSelectModule, MatRadioModule, MatCardModule, ReactiveFormsModule
   ],
   providers: [

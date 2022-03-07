@@ -1,0 +1,7 @@
+<span>
+  <button *ngIf='isAdmin()' mat-button [matMenuTriggerFor]="adminMenu">Admin</button>
+  <mat-menu #adminMenu="matMenu">
+    <button mat-button *ngIf='authenticated' routerLink='secure/customer'>Customers</button>
+    <button mat-button *ngIf='authenticated' routerLink='secure/dashboard'>Dashboard</button>
+</mat-menu>
+</span>

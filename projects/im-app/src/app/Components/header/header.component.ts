@@ -19,11 +19,11 @@ export class HeaderComponent implements OnInit {
   isIframe = false;
 
   @Input() product: string;
-  
+
   constructor(
     private router: Router,
     private authService: AuthService,
-    ) { 
+    ) {
     }
 
     ngOnInit() {
@@ -36,9 +36,13 @@ export class HeaderComponent implements OnInit {
         this.authenticated = result;
       });
     }
-  
+
     menu() {
       this.isActive = !this.isActive;
+    }
+
+    isAdmin() : boolean {
+      return this.authService.inRole('Admin')
     }
 
 }

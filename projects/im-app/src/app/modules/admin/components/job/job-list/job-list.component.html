@@ -84,7 +84,7 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row routerLink="/admin/jobs/{{row.id}}" (dblclick)="select(row.id)" *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row routerLink="/secure/admin/jobs/{{row.id}}" (dblclick)="select(row.id)" *matRowDef="let row; columns: displayedColumns;"></tr>
       </mat-table>
     </div>
 

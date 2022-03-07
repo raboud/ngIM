@@ -1,10 +1,16 @@
 import { Inject, Injectable, OnDestroy, OnInit } from '@angular/core';
-import { MsalBroadcastService, MsalGuardConfiguration, MsalService, MSAL_GUARD_CONFIG } from '@azure/msal-angular';
-import { AuthenticationResult, EventMessage, EventType, InteractionStatus, InteractionType, Logger, LogLevel, PopupRequest, RedirectRequest } from '@azure/msal-browser';
-//import { AlertService } from 'randr-lib';
 import { ReplaySubject, Subject} from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+import { MsalBroadcastService, MsalGuardConfiguration, MsalService, MSAL_GUARD_CONFIG } from '@azure/msal-angular';
+import { AccountInfo, AuthenticationResult, EventMessage, EventType, InteractionStatus, InteractionType, Logger, LogLevel, PopupRequest, RedirectRequest } from '@azure/msal-browser';
 
+import { AlertService } from 'randr-lib';
+
+interface Account extends AccountInfo {
+  idTokenClaims?: {
+    roles?: string[]
+  }
+}
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +24,8 @@ export class AuthService implements OnDestroy {
         //        private alertService: AlertService,
         @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
         private broadcastService: MsalBroadcastService,
-        private msalService: MsalService
+        private msalService: MsalService,
+        private alertService: AlertService
     ) {
         console.log('AuthService');
         this.msalService.setLogger(new Logger({
@@ -135,6 +142,23 @@ export class AuthService implements OnDestroy {
     ngOnDestroy(): void {
         this._destroying$.next(undefined);
         this._destroying$.complete();
+    }
+
+    inRole(role: string) : boolean {
+      let account: Account = this.msalService.instance.getActiveAccount();
+      if (!account) {
+        return false;
+      }
+
+      if (!account.idTokenClaims.roles) {
+        this.alertService.AddDebugMessage('Token does not have roles claim. Please ensure that your account is assigned to an app role and then sign-out and sign-in again.');
+        return false;
+      } else if (!account.idTokenClaims.roles.includes(role)) {
+        this.alertService.AddDebugMessage('You do not have access as expected role is missing. Please ensure that your account is assigned to an app role and then sign-out and sign-in again.');
+        return false;
+      }
+
+      return true;
     }
 
 }

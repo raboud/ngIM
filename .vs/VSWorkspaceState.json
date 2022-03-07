@@ -4,12 +4,7 @@
     "\\projects",
     "\\projects\\im-app",
     "\\projects\\im-app\\src",
-    "\\projects\\im-app\\src\\styles",
-    "\\projects\\mat-lib\\src",
-    "\\projects\\mat-lib\\src\\lib",
-    "\\projects\\randr-lib\\src",
-    "\\projects\\randr-lib\\src\\lib"
+    "\\projects\\im-app\\src\\styles"
   ],
-  "SelectedNode": "\\projects\\im-app\\src\\styles.scss",
   "PreviewInSolutionExplorer": false
 }

@@ -1,14 +1,21 @@
 <mat-toolbar color="primary">
-    <span>
-        <button mat-button routerLink='home'>{{product}}</button>
-    </span>
+  <span>
+    <button mat-button routerLink='home'>{{product}}</button>
+  </span>
 
-    <!-- This fills the remaining space of the current row -->
-    <span class="example-fill-remaining-space"></span>
+  <span>
+    <button *ngIf='isAdmin()' mat-button [matMenuTriggerFor]="adminMenu">Admin</button>
+    <mat-menu #adminMenu="matMenu" yPosition="below">
+      <button mat-menu-item *ngIf='authenticated' routerLink='secure/customer'>Customers</button>
+      <button mat-menu-item *ngIf='authenticated' routerLink='secure/dashboard'>Dashboard</button>
+      <button mat-menu-item *ngIf='isAdmin()' routerLink='secure/admin/jobs'>Jobs</button>
+    </mat-menu>
+  </span>
 
-    <span>
-        <button mat-button *ngIf='authenticated' routerLink='secure/customer'>Customers</button>
-        <button mat-button *ngIf='authenticated' routerLink='secure/dashboard'>Dashboard</button>
-        <lib-msal-sub-menu></lib-msal-sub-menu>
-    </span>
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+
+  <span>
+    <lib-msal-sub-menu></lib-msal-sub-menu>
+  </span>
 </mat-toolbar>

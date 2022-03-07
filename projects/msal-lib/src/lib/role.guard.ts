@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Route, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
+
 import { MsalService } from '@azure/msal-angular';
 import { AccountInfo } from '@azure/msal-browser';
+
 import { AlertService } from 'randr-lib';
-import { Observable } from 'rxjs';
+
+import { AuthService } from "./auth.service"
 
 interface Account extends AccountInfo {
   idTokenClaims?: {
@@ -17,7 +21,7 @@ interface Account extends AccountInfo {
 export class RoleGuard implements CanActivate, CanActivateChild, CanLoad {
 
   constructor(
-    private authService: MsalService,
+    private authService: AuthService,
     private alertService: AlertService) { }
 
   canActivate(
@@ -25,20 +29,7 @@ export class RoleGuard implements CanActivate, CanActivateChild, CanLoad {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const expectedRole = route.data.expectedRole;
 
-    let account: Account = this.authService.instance.getActiveAccount();
-    if (!account) {
-      return false;
-    }
-
-    if (!account.idTokenClaims.roles) {
-      this.alertService.AddDebugMessage('Token does not have roles claim. Please ensure that your account is assigned to an app role and then sign-out and sign-in again.');
-      return false;
-    } else if (!account.idTokenClaims.roles.includes(expectedRole)) {
-      this.alertService.AddDebugMessage('You do not have access as expected role is missing. Please ensure that your account is assigned to an app role and then sign-out and sign-in again.');
-      return false;
-    }
-
-    return true;
+    return this.authService.inRole(expectedRole);
   }
 
   canActivateChild(
@@ -46,20 +37,7 @@ export class RoleGuard implements CanActivate, CanActivateChild, CanLoad {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const expectedRole = childRoute.data.expectedRole;
 
-    let account: Account = this.authService.instance.getActiveAccount();
-    if (!account) {
-      return false;
-    }
-
-    if (!account.idTokenClaims.roles) {
-      this.alertService.AddDebugMessage('Token does not have roles claim. Please ensure that your account is assigned to an app role and then sign-out and sign-in again.');
-      return false;
-    } else if (!account.idTokenClaims.roles.includes(expectedRole)) {
-      this.alertService.AddDebugMessage('You do not have access as expected role is missing. Please ensure that your account is assigned to an app role and then sign-out and sign-in again.');
-      return false;
-    }
-
-    return true;
+    return this.authService.inRole(expectedRole);
   }
 
   canLoad(
@@ -67,19 +45,6 @@ export class RoleGuard implements CanActivate, CanActivateChild, CanLoad {
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const expectedRole = route.data.expectedRole;
 
-    let account: Account = this.authService.instance.getActiveAccount();
-    if (!account) {
-      return false;
-    }
-
-    if (!account.idTokenClaims.roles) {
-      this.alertService.AddDebugMessage('Token does not have roles claim. Please ensure that your account is assigned to an app role and then sign-out and sign-in again.');
-      return false;
-    } else if (!account.idTokenClaims.roles.includes(expectedRole)) {
-      this.alertService.AddDebugMessage('You do not have access as expected role is missing. Please ensure that your account is assigned to an app role and then sign-out and sign-in again.');
-      return false;
-    }
-
-    return true;
+    return this.authService.inRole(expectedRole);
   }
 }

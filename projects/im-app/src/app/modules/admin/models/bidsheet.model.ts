@@ -1,10 +1,9 @@
-export interface BidSheet
-{
+export interface BidSheet {
     jobId: number,
     areas: BidArea[],
 }
 
-export interface BidArea{
+export interface BidArea {
   id: number,
   name: string,
   desscription: string,
@@ -13,8 +12,7 @@ export interface BidArea{
   items: BidItem[]
 }
 
-export interface BidItem{
-
+export interface BidItem {
     id: number,
     category: string,
     subCategory: string,
@@ -24,4 +22,16 @@ export interface BidItem{
     ours: boolean,
     deleted: boolean,
     row: number
+}
+
+export interface BidItemEdit {
+  id: number,
+  category: string,
+  subCategory: string,
+  description: string,
+  quantity: number,
+  unitCost: number,
+  ours: boolean,
+  deleted: boolean,
+  row: number
 }
