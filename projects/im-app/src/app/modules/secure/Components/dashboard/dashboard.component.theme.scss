@@ -1,6 +1,6 @@
 // Import library functions for theme creation.
-@use '~@angular/material' as mat;
-@import '~@angular/material/theming';
+@use '@angular/material' as mat;
+@import '@angular/material/theming';
 
 // Define a mixin that accepts a theme and outputs the theme-specific styles.
 @mixin dashboard-theme($theme) {

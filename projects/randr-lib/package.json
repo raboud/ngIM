@@ -2,11 +2,11 @@
   "name": "randr-lib",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/animations": "~10.0.6",
-    "@angular/cdk": "^10.1.2",
-    "@angular/common": "^10.0.6",
-    "@angular/core": "^10.0.6",
-    "@angular/material": "^10.1.2"
+    "@angular/common": "^13.2.0",
+    "@angular/core": "^13.2.0",
+    "@angular/animations": "~13.2.0",
+    "@angular/cdk": "^13.2.0",
+    "@angular/material": "^13.2.0"
   },
 
   "dependencies": {
