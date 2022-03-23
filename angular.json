@@ -225,7 +225,7 @@
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/msal-lib/tsconfig.lib.json",
-            "project": "projects/msal-lib/ng-package.json"
+            "project": "projects/msal-lib/ng-package.json",
           },
           "configurations": {
             "production": {

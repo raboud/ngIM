@@ -9,6 +9,8 @@
       <button mat-menu-item *ngIf='authenticated' routerLink='secure/customer'>Customers</button>
       <button mat-menu-item *ngIf='authenticated' routerLink='secure/dashboard'>Dashboard</button>
       <button mat-menu-item *ngIf='isAdmin()' routerLink='secure/admin/jobs'>Jobs</button>
+      <button mat-menu-item *ngIf='isAdmin()' routerLink='secure/admin/measures'>Measure</button>
+      <button mat-menu-item *ngIf='isAdmin()' routerLink='secure/admin/users'>Users</button>
     </mat-menu>
   </span>
 

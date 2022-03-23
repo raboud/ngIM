@@ -1,6 +1,13 @@
 export interface Measure
 {
     jobId: number
+    address1: string;
+    address2: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    scheduleDate: Date;
+    notes: String;
     items: MeasureItem[]
 }
 
@@ -22,10 +29,15 @@ export interface MeasureList {
 export interface MeasureItem
 {
     id: number;
+    material: string;
+    rooms: MeasureRoom[];
+}
+
+export interface MeasureRoom
+{
+    id: number;
     room: string;
     description: string;
-    category: string;
-    subCategory: string
     cuts: Cut[];
 }
 

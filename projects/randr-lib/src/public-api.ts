@@ -16,4 +16,9 @@ export * from './lib/directives/uppercase.directive';
 
 export * from './lib/randr-lib.module';
 
+export * from './lib/models'
 
+export * from './lib/models/page.model';
+export * from './lib/models/page-request.model';
+export * from './lib/models/sort.model';
+export * from './lib/models/paginated.datasource';

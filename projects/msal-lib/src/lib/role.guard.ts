@@ -27,24 +27,24 @@ export class RoleGuard implements CanActivate, CanActivateChild, CanLoad {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const expectedRole = route.data.expectedRole;
+    const expectedRoles = route.data.expectedRoles;
 
-    return this.authService.inRole(expectedRole);
+    return this.authService.hasCommomRole(expectedRoles);
   }
 
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const expectedRole = childRoute.data.expectedRole;
+    const expectedRoles = childRoute.data.expectedRoles;
 
-    return this.authService.inRole(expectedRole);
+    return this.authService.hasCommomRole(expectedRoles);
   }
 
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const expectedRole = route.data.expectedRole;
+    const expectedRoles = route.data.expectedRoles;
 
-    return this.authService.inRole(expectedRole);
+    return this.authService.hasCommomRole(expectedRoles);
   }
 }

@@ -2,10 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { PaginatedDataSource } from 'randr-lib';
 
 import { Customer } from '../../Models';
 import { CustomerQuery, CustomerService } from '../../Services/customer.service';
-import { PaginatedDataSource } from '../../../../models/paginated.datasource';
 
 
 @Component({
@@ -15,10 +15,10 @@ import { PaginatedDataSource } from '../../../../models/paginated.datasource';
 //  , changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomerComponent {
-  dataSource: PaginatedDataSource<Customer, CustomerQuery> 
-    = new PaginatedDataSource<Customer, CustomerQuery>( 
+  dataSource: PaginatedDataSource<Customer, CustomerQuery>
+    = new PaginatedDataSource<Customer, CustomerQuery>(
       (request, query) => this.exampleDatabase.customerPage(request, query),
-      null, 
+      null,
       {lastname: ''});
   displayedColumns: string[] = ['name', 'city', 'state', 'zip'];
 

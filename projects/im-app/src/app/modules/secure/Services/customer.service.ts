@@ -7,7 +7,7 @@ import { environment } from '../../../../environments/environment';
 import { Customer } from '../Models';
 import { AlertService } from 'randr-lib';
 import { BusyService } from 'randr-lib';
-import { Page, PageRequest } from '../../../models';
+import { Page, PageRequest } from '../../../../../../randr-lib/src/lib/models';
 
 
 export interface CustomerQuery {
@@ -30,7 +30,7 @@ export class CustomerService {
     const href = environment.msalConfig.resources.imApi.endpoint + 'customer';
     let requestUrl = `${href}?pageSize=${request.size}&page=${request.page + 1}`;
     //`${href}?filter=${filter}&sortColumn=${sort}&sortDirection=${order}&pageSize=${request.size}&page=${request.page + 1}`;
-    
+
     if (query?.lastname) {
       requestUrl += `&filter=lastname=${query.lastname}`;
     }
@@ -41,7 +41,7 @@ export class CustomerService {
 
     return this._httpClient.get<Page<Customer>>(requestUrl)
       .pipe(
-        catchError(err => this.handleError(err)), 
+        catchError(err => this.handleError(err)),
         finalize(() => this.busyService.RemoveBusy())
       );
 

@@ -2,17 +2,17 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { PaginatedDataSource } from 'randr-lib';
-import { JobList } from '../../../models/job-list.model';
-import { JobListQuery, JobService } from '../../../services/job.service';
+import { MeasureList } from '../../models/measure.model';
+import { MeasureListQuery, MeasureService } from '../../services/measure.service';
 
 @Component({
-  selector: 'app-job-list',
-  templateUrl: './job-list.component.html',
-  styleUrls: ['./job-list.component.scss']
+  selector: 'app-measure-list',
+  templateUrl: './measure-list.component.html',
+  styleUrls: ['./measure-list.component.scss']
 })
-export class JobListComponent {
-  dataSource: PaginatedDataSource<JobList, JobListQuery>
-    = new PaginatedDataSource<JobList, JobListQuery>(
+export class MeasureListComponent {
+  dataSource: PaginatedDataSource<MeasureList, MeasureListQuery>
+    = new PaginatedDataSource<MeasureList, MeasureListQuery>(
       (request, query) => this.dataService.getPage(request, query),
       null,
       {lastname: ''});
@@ -24,7 +24,7 @@ export class JobListComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private dataService: JobService) { }
+  constructor(private dataService: MeasureService) { }
 
   select(id: number){
     console.log(id);

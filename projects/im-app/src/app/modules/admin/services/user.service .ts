@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { AlertService, BusyService } from 'randr-lib';
 import { Observable, throwError } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
-import { environment } from 'projects/im-app/src/environments/environment';
-import { JobEdit } from '../models/job-edit.model';
-import { Measure, MeasureCreate, MeasureEdit, MeasureList } from '../models/measure.model';
-import { Page, PageRequest } from '../../../models';
 
-export interface JobListQuery {
-  lastname?: string;
-  clientid?: number;
-  status?: string;
+import { AlertService, BusyService, Page, PageRequest } from 'randr-lib';
+
+import { environment } from 'projects/im-app/src/environments/environment';
+import { Measure, MeasureCreate, MeasureEdit, MeasureList } from '../models/measure.model';
+import { User } from '../models/user.model';
+
+
+export interface UserListQuery {
+  role?: string;
+  active?: boolean;
 }
 
 const httpOptions = {
@@ -24,7 +25,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 
-export class MeasureService {
+export class UserService {
 
   constructor(
     private _httpClient: HttpClient,
@@ -32,48 +33,48 @@ export class MeasureService {
     private busyService: BusyService,
   ) { }
 
-  getPage(
-    request: PageRequest<MeasureList>,
-    query: JobListQuery
-  ): Observable<Page<MeasureList>> {
+  getList(
+    //request: PageRequest<MeasureList>,
+    query: UserListQuery
+  ): Observable<User[]> {
     console.log(query);
 
     this.busyService.AddBusy();
-    const href = environment.msalConfig.resources.imApi.endpoint + 'measure';
-    let requestUrl = `${href}?pageSize=${request.size}&page=${
-      request.page + 1
-    }`;
+    const href = environment.msalConfig.resources.imApi.endpoint + 'user';
+
     //`${href}?filter=${filter}&sortColumn=${sort}&sortDirection=${order}&pageSize=${request.size}&page=${request.page + 1}`;
 
-    if (query?.lastname && query?.lastname != '') {
-      requestUrl += `&filter=lastname=${query.lastname}`;
+    let requestUrl = href;
+    let params = "";
+
+    if (query?.role && query?.role != '') {
+      params += `role=${query.role}`;
     }
 
-    if (query?.clientid) {
-      requestUrl += `&filter=clientid=${query.clientid}`;
+    if (query?.active) {
+      if (params != "") {
+        params += "&";
+      }
+      params += `active=${query.active}`;
     }
 
-    if (query?.status) {
-      requestUrl += `&filter=status=${query.status}`;
+    if (params != ""){
+      requestUrl += `?${params}`;
     }
 
-    if (request.sort) {
-      requestUrl += `&sortColumn=${request.sort.property}&sortDirection=${request.sort.order}`;
-    }
-
-    return this._httpClient.get<Page<MeasureList>>(requestUrl).pipe(
+    return this._httpClient.get<User[]>(requestUrl).pipe(
       catchError((err) => this.handleError(err)),
       finalize(() => this.busyService.RemoveBusy())
     );
   }
 
 
-  get(id: number): Observable<Measure> {
+  get(id: number): Observable<User> {
     this.busyService.AddBusy();
-    const href = environment.msalConfig.resources.imApi.endpoint + 'measure';
+    const href = environment.msalConfig.resources.imApi.endpoint + 'user';
     let requestUrl = `${href}/${id}`;
 
-    return this._httpClient.get<Measure>(requestUrl)
+    return this._httpClient.get<User>(requestUrl)
       .pipe(
         catchError(err => this.handleError(err)),
         finalize(() => this.busyService.RemoveBusy())
@@ -83,7 +84,7 @@ export class MeasureService {
 
   put(id: number, item: MeasureEdit): Observable<MeasureEdit> {
     this.busyService.AddBusy();
-    const href = environment.msalConfig.resources.imApi.endpoint + 'measure';
+    const href = environment.msalConfig.resources.imApi.endpoint + 'user';
     let requestUrl = `${href}/${id}`;
 
     return this._httpClient.put<Measure>(requestUrl, item, httpOptions)
@@ -94,15 +95,11 @@ export class MeasureService {
 
   }
 
-  create(id: number): Observable<Measure> {
+  sync(): Observable<any> {
     this.busyService.AddBusy();
-    const href = environment.msalConfig.resources.imApi.endpoint + 'measure';
+    const href = environment.msalConfig.resources.imApi.endpoint + 'user/sync';
 
-    let item: MeasureCreate = {
-      jobId: id
-    };
-
-    return this._httpClient.post<Measure>(href, item, httpOptions)
+    return this._httpClient.get(href)
     .pipe(
       catchError(err => this.handleError(err)),
       finalize(() => this.busyService.RemoveBusy())

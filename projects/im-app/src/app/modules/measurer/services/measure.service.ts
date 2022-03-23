@@ -1,20 +1,15 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 
 import { AlertService, BusyService, Page, PageRequest } from 'randr-lib';
 
 import { environment } from 'projects/im-app/src/environments/environment';
-import { JobList } from '../models/job-list.model';
-import { JobDetail } from '../models/jog-detail.model';
-import { JobEdit } from '../models/job-edit.model';
+import { Measure, MeasureCreate, MeasureEdit, MeasureList } from '../models/measure.model';
 
-export interface JobListQuery {
+
+export interface MeasureListQuery {
   lastname?: string;
   clientid?: number;
   status?: string;
@@ -22,28 +17,30 @@ export interface JobListQuery {
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  }),
+    'Content-Type':  'application/json',
+  })
 };
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class JobService {
+
+export class MeasureService {
+
   constructor(
     private _httpClient: HttpClient,
     private alertService: AlertService,
-    private busyService: BusyService
-  ) {}
+    private busyService: BusyService,
+  ) { }
 
   getPage(
-    request: PageRequest<JobList>,
-    query: JobListQuery
-  ): Observable<Page<JobList>> {
+    request: PageRequest<MeasureList>,
+    query: MeasureListQuery
+  ): Observable<Page<MeasureList>> {
     console.log(query);
 
     this.busyService.AddBusy();
-    const href = environment.msalConfig.resources.imApi.endpoint + 'job';
+    const href = environment.msalConfig.resources.imApi.endpoint + 'measure';
     let requestUrl = `${href}?pageSize=${request.size}&page=${
       request.page + 1
     }`;
@@ -65,49 +62,69 @@ export class JobService {
       requestUrl += `&sortColumn=${request.sort.property}&sortDirection=${request.sort.order}`;
     }
 
-    return this._httpClient.get<Page<JobList>>(requestUrl).pipe(
+    return this._httpClient.get<Page<MeasureList>>(requestUrl).pipe(
       catchError((err) => this.handleError(err)),
       finalize(() => this.busyService.RemoveBusy())
     );
   }
 
-  getDetail(id: number): Observable<JobDetail> {
+
+  get(id: number): Observable<Measure> {
     this.busyService.AddBusy();
-    const href = environment.msalConfig.resources.imApi.endpoint + 'job';
+    const href = environment.msalConfig.resources.imApi.endpoint + 'measure';
     let requestUrl = `${href}/${id}`;
 
-    return this._httpClient.get<JobDetail>(requestUrl).pipe(
-      catchError((err) => this.handleError(err)),
-      finalize(() => this.busyService.RemoveBusy())
-    );
+    return this._httpClient.get<Measure>(requestUrl)
+      .pipe(
+        catchError(err => this.handleError(err)),
+        finalize(() => this.busyService.RemoveBusy())
+      );
+
   }
 
-  put(id: number, item: JobEdit): Observable<JobEdit> {
+  put(id: number, item: MeasureEdit): Observable<MeasureEdit> {
     this.busyService.AddBusy();
-    const href = environment.msalConfig.resources.imApi.endpoint + 'job';
+    const href = environment.msalConfig.resources.imApi.endpoint + 'measure';
     let requestUrl = `${href}/${id}`;
 
-    return this._httpClient.put<JobDetail>(requestUrl, item, httpOptions).pipe(
-      catchError((err) => this.handleError(err)),
+    return this._httpClient.put<Measure>(requestUrl, item, httpOptions)
+    .pipe(
+      catchError(err => this.handleError(err)),
       finalize(() => this.busyService.RemoveBusy())
     );
+
   }
+
+  create(id: number): Observable<Measure> {
+    this.busyService.AddBusy();
+    const href = environment.msalConfig.resources.imApi.endpoint + 'measure';
+
+    let item: MeasureCreate = {
+      jobId: id
+    };
+
+    return this._httpClient.post<Measure>(href, item, httpOptions)
+    .pipe(
+      catchError(err => this.handleError(err)),
+      finalize(() => this.busyService.RemoveBusy())
+    );
+
+  }
+
 
   private handleError(error: HttpErrorResponse) {
     //    this.busyService.RemoveBusy();
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
-      this.alertService.AddErrorMessage(
-        `An error occurred:, ${error.error.message}`
-      );
+      this.alertService.AddErrorMessage(`An error occurred:, ${error.error.message}`);
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
       this.alertService.AddErrorMessage(
-        `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-      );
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
     }
     // return an observable with a user-facing error message
-    return throwError('Something bad happened; please try again later.');
-  }
-}
+    return throwError(
+      'Something bad happened; please try again later.');
+  }}

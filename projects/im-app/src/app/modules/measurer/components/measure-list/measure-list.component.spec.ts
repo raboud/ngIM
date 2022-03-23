@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MeasureComponent } from './measure.component';
+import { MeasureListComponent } from './measure-list.component';
 
-describe('MeasureComponent', () => {
-  let component: MeasureComponent;
-  let fixture: ComponentFixture<MeasureComponent>;
+describe('JobListComponent', () => {
+  let component: MeasureListComponent;
+  let fixture: ComponentFixture<MeasureListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MeasureComponent ]
+      declarations: [ MeasureListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MeasureComponent);
+    fixture = TestBed.createComponent(MeasureListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -144,6 +144,23 @@ export class AuthService implements OnDestroy {
         this._destroying$.complete();
     }
 
+    hasCommomRole(roles: string[]) : boolean {
+      let account: Account = this.msalService.instance.getActiveAccount();
+      if (!account) {
+        return false;
+      }
+
+      if (!account.idTokenClaims.roles) {
+        this.alertService.AddDebugMessage('Token does not have roles claim. Please ensure that your account is assigned to an app role and then sign-out and sign-in again.');
+        return false;
+      } else if (!account.idTokenClaims.roles.filter(x => roles.includes(x))) {
+        this.alertService.AddDebugMessage('You do not have access as expected role is missing. Please ensure that your account is assigned to an app role and then sign-out and sign-in again.');
+        return false;
+      }
+
+      return true;
+    }
+
     inRole(role: string) : boolean {
       let account: Account = this.msalService.instance.getActiveAccount();
       if (!account) {
