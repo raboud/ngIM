@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./display-data.component.css']
 })
 export class DisplayDataComponent implements OnInit {
-  @Input() title: string;
+  @Input() title!: string;
   @Input() data: any;
 
   constructor() { }

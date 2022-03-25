@@ -33,7 +33,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
     console.log('AuthGuard.canActivate');
 
-    let account: Account = this.authService.instance.getActiveAccount();
+    let account: Account | null = this.authService.instance.getActiveAccount();
     if (!account) {
       //      this.alertService.AddDebugMessage("Not logged in")
       console.log('AuthGuard.canActivate:false');
@@ -49,7 +49,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
     console.log('AuthGuard.canActivateChild');
 
-    let account: Account = this.authService.instance.getActiveAccount();
+    let account: Account | null = this.authService.instance.getActiveAccount();
     if (!account) {
       console.log('AuthGuard.canActivateChild:false');
       //      this.alertService.AddDebugMessage("Not logged in")
@@ -65,7 +65,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
     console.log('AuthGuard.canLoad');
 
-    let account: Account = this.authService.instance.getActiveAccount();
+    let account: Account | null = this.authService.instance.getActiveAccount();
     if (!account) {
       //      this.alertService.AddDebugMessage("Not logged in")
       console.log('AuthGuard.canLoad:false');

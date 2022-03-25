@@ -13,10 +13,10 @@ import { BidItemEditComponent } from '../bid-item-edit/bid-item-edit.component';
   styleUrls: ['./bid-sheet.component.scss'],
 })
 export class BidSheetComponent implements OnInit {
-  @ViewChild(MatAccordion) accordion: MatAccordion;
-  @Input() jobId: number;
+  @ViewChild(MatAccordion) accordion?: MatAccordion;
+  @Input() jobId?: number;
 
-  data: BidSheet;
+  data?: BidSheet;
   showAll: boolean = false;
   showDeleted: boolean = false;
   showRow: boolean = false;
@@ -30,10 +30,12 @@ export class BidSheetComponent implements OnInit {
   }
 
   getItem() {
-    this.service.get(this.jobId).subscribe((item) => {
-      this.data = item;
-      console.log(this.data);
-    });
+    if (this.jobId){
+        this.service.get(this.jobId).subscribe((item) => {
+        this.data = item;
+        console.log(this.data);
+      });
+    }
   }
 
   hide(item: BidItem): boolean {

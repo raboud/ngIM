@@ -5,11 +5,11 @@
       <input #in (input)="dataSource.queryBy({lastname: in.value})" type="text" matInput placeholder="Search">
     </mat-form-field>
 
-    <mat-table 
-      [dataSource]="dataSource" 
-      matSort 
-      matSortDisableClear 
-      (matSortChange)="dataSource.sortBy({property: $event.active, order: $event.direction})" 
+    <mat-table
+      [dataSource]="dataSource"
+      matSort
+      matSortDisableClear
+      (matSortChange)="dataSource.sortBy({property: $event.active, order: $event.direction})"
     >
       <!-- Number Column -->
       <ng-container matColumnDef="id">

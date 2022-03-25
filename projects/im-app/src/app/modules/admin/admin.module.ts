@@ -23,6 +23,7 @@ import { BidSheetService } from './services/bid-sheet.service';
 import { WorkOderService } from './services/work-oder.service';
 import { JobService } from './services/job.service';
 import { UserService } from './services/user.service ';
+import { MeasureModule } from '../measure/measure.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { UserService } from './services/user.service ';
 
     RandrLibModule,
     MatLibModule,
+    MeasureModule,
 
     AdminRoutingModule
   ],

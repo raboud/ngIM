@@ -21,13 +21,12 @@ interface Account extends AccountInfo {
 export class RoleGuard implements CanActivate, CanActivateChild, CanLoad {
 
   constructor(
-    private authService: AuthService,
-    private alertService: AlertService) { }
+    private authService: AuthService) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const expectedRoles = route.data.expectedRoles;
+    const expectedRoles = route.data['expectedRoles'];
 
     return this.authService.hasCommomRole(expectedRoles);
   }
@@ -35,7 +34,7 @@ export class RoleGuard implements CanActivate, CanActivateChild, CanLoad {
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const expectedRoles = childRoute.data.expectedRoles;
+    const expectedRoles = childRoute.data['expectedRoles'];
 
     return this.authService.hasCommomRole(expectedRoles);
   }
@@ -43,7 +42,12 @@ export class RoleGuard implements CanActivate, CanActivateChild, CanLoad {
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const expectedRoles = route.data.expectedRoles;
+
+    if (route.data == undefined)
+    {
+      return false;
+    }
+    const expectedRoles = route.data['expectedRoles'];
 
     return this.authService.hasCommomRole(expectedRoles);
   }

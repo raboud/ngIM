@@ -11,7 +11,7 @@ import { UserListQuery, UserService } from '../../../services/user.service ';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  data: User[];
+  data: User[] = [];
   listQuery: UserListQuery = {
     role: "Measurer",
     active: true

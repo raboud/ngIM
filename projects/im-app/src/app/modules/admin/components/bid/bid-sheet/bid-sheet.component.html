@@ -1,6 +1,6 @@
 <div class="action-buttons" >
-  <button mat-button (click)="accordion.openAll()">Expand All</button>
-  <button mat-button (click)="accordion.closeAll()">Collapse All</button>
+  <button mat-button (click)="accordion?.openAll()">Expand All</button>
+  <button mat-button (click)="accordion?.closeAll()">Collapse All</button>
   <mat-checkbox [(ngModel)]="showAll">Show All</mat-checkbox>
   <mat-checkbox [(ngModel)]="showDeleted">Show Deleted</mat-checkbox>
   <mat-checkbox [(ngModel)]="showRow">Show Row</mat-checkbox>
@@ -8,7 +8,7 @@
 <mat-accordion class="example-headers-align" multi >
   <div  *ngFor="let area of data?.areas">
   <mat-expansion-panel [expanded]="true" *ngIf="!hideArea(area)" style="margin: 0;">
-    <mat-expansion-panel-header style="padding: 0;height: 32px;">  
+    <mat-expansion-panel-header style="padding: 0;height: 32px;">
       <mat-panel-title>
         {{area?.name}}
       </mat-panel-title>
@@ -29,7 +29,7 @@
         </tr>
       </thead>
       <tbody  *ngFor="let item of area.items">
-        <tr *ngIf="!hide(item)" [ngClass]="{'oursdeleted': (item.deleted && item.ours), 'othersdelete': (item.deleted && !item.ours), 'others': (!item.delete && !item.ours) }" >
+        <tr *ngIf="!hide(item)" [ngClass]="{'oursdeleted': (item.deleted && item.ours), 'othersdelete': (item.deleted && !item.ours), 'others': (!item.deleted && !item.ours) }" >
           <td class="center">{{item.category}}</td>
           <td>{{item.description}}</td>
           <td class="center">{{item.quantity}}</td>

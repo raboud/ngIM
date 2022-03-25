@@ -6,7 +6,7 @@ export interface BidSheet {
 export interface BidArea {
   id: number,
   name: string,
-  desscription: string,
+  description: string,
   notes: string,
   row: number
   items: BidItem[]

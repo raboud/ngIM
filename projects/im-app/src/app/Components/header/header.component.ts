@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
 
   isIframe = false;
 
-  @Input() product: string;
+  @Input() product!: string;
 
   constructor(
     private router: Router,

@@ -9,7 +9,7 @@ export class PaginatedDataSource<T, Q> implements DataSource<T> {
     private pageNumber = new Subject<number>();
     private sort: BehaviorSubject<Sort<T>>;
     private query: BehaviorSubject<Q>;
-  
+
     public page$: Observable<Page<T>>;
 
     constructor(
@@ -29,27 +29,27 @@ export class PaginatedDataSource<T, Q> implements DataSource<T> {
             share()
           )
       }
-    
+
       sortBy(sort: Partial<Sort<T>>): void {
         const lastSort = this.sort.getValue();
         const nextSort = {...lastSort, ...sort};
         this.sort.next(nextSort);
       }
-    
+
       queryBy(query: Partial<Q>): void {
         const lastQuery = this.query.getValue();
         const nextQuery = {...lastQuery, ...query};
         this.query.next(nextQuery);
       }
-    
+
       fetch(page: number): void {
         this.pageNumber.next(page);
       }
-    
+
       connect(collectionViewer: CollectionViewer): Observable<T[]> {
         return this.page$.pipe(map(page => page.results));
       }
-    
+
       disconnect(collectionViewer: CollectionViewer): void {
 
       }

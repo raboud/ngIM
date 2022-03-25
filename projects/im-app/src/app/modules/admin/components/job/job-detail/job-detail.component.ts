@@ -11,8 +11,8 @@ import { JobEditComponent } from '../job-edit/job-edit.component';
   styleUrls: ['./job-detail.component.scss'],
 })
 export class JobDetailComponent implements OnInit {
-  data: JobDetail;
-  id: number;
+  data?: JobDetail;
+  id: number = 0;
 
   constructor(
     public dialog: MatDialog,
@@ -22,7 +22,7 @@ export class JobDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.id = +params.id; // (+) converts string 'id' to a number
+      this.id = +params['id']; // (+) converts string 'id' to a number
       this.getItem();
     });
   }

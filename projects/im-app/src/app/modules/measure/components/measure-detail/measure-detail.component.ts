@@ -9,10 +9,10 @@ import { MeasureService } from '../../services/measure.service';
   styleUrls: ['./measure-detail.component.scss']
 })
 export class MeasureDetailComponent implements OnInit {
-  @ViewChild(MatAccordion) accordion: MatAccordion;
-  @Input() jobId: number;
+  @ViewChild(MatAccordion) accordion?: MatAccordion;
+  @Input() jobId: number = 0;
 
-  data: Measure;
+  data: Measure | null = null;
 
   constructor(private service: MeasureService) { }
 
@@ -43,6 +43,18 @@ export class MeasureDetailComponent implements OnInit {
 //    let anyOurs: boolean = area.items.some(function (x) { return x.ours });
 
     return false; //(!anyNotDeleted && !this.showDeleted) || (!anyOurs && !this.showAll);
+
+  }
+
+  deleteItem(item: MeasureItem) {
+    item.deleted = true;
+  }
+
+  restoreItem(item: MeasureItem) {
+    item.deleted = false;
+  }
+
+  editItem(item: MeasureItem){
 
   }
 

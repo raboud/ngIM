@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ValidationErrors } from '@angular/forms';
 
 // Generic validator for Reactive forms
 // Implemented as a class, not a service, so it can retain state for multiple forms.
@@ -24,7 +24,7 @@ export class GenericValidator {
   // controlName1: 'Validation Message.',
   // controlName2: 'Validation Message.'
   processMessages(container: FormGroup): { [key: string]: string } {
-    const messages = {};
+    const messages: { [key: string]: string } = {};
     for (const controlKey in container.controls) {
       if (container.controls.hasOwnProperty(controlKey)) {
         const c = container.controls[controlKey];
@@ -55,7 +55,10 @@ export class GenericValidator {
     for (const controlKey in container.controls) {
       if (container.controls.hasOwnProperty(controlKey)) {
         if (container.controls[controlKey].errors) {
-          errorCount += Object.keys(container.controls[controlKey].errors).length;
+          if (container.controls[controlKey].errors != null) {
+            let ve: any = container.controls[controlKey].errors;
+            errorCount += Object.keys(ve).length;
+          }
         }
       }
     }

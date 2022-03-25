@@ -1,4 +1,4 @@
 export interface Sort<T> {
-    property: keyof T;
+    property: string;
     order: 'asc' | 'desc' | '';
   }

@@ -6,7 +6,6 @@ import { catchError, finalize } from 'rxjs/operators';
 import { AlertService, BusyService, Page, PageRequest } from 'randr-lib';
 
 import { environment } from 'projects/im-app/src/environments/environment';
-import { Measure, MeasureCreate, MeasureEdit, MeasureList } from '../models/measure.model';
 import { User } from '../models/user.model';
 
 
@@ -82,18 +81,6 @@ export class UserService {
 
   }
 
-  put(id: number, item: MeasureEdit): Observable<MeasureEdit> {
-    this.busyService.AddBusy();
-    const href = environment.msalConfig.resources.imApi.endpoint + 'user';
-    let requestUrl = `${href}/${id}`;
-
-    return this._httpClient.put<Measure>(requestUrl, item, httpOptions)
-    .pipe(
-      catchError(err => this.handleError(err)),
-      finalize(() => this.busyService.RemoveBusy())
-    );
-
-  }
 
   sync(): Observable<any> {
     this.busyService.AddBusy();

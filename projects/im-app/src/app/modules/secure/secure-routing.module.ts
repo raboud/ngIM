@@ -14,7 +14,7 @@ const routes: Routes = [
     canActivate: [RoleGuard],
     canLoad: [RoleGuard],
     data: {
-      expectedRole: "Admin"
+      expectedRoles: ["Admin"]
     } ,
     loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule)
   },

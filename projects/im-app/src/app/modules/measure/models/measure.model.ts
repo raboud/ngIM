@@ -31,6 +31,7 @@ export interface MeasureItem
     id: number;
     material: string;
     rooms: MeasureRoom[];
+    deleted: boolean;
 }
 
 export interface MeasureRoom

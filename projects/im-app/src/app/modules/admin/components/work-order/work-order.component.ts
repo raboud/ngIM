@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./work-order.component.scss']
 })
 export class WorkOrderComponent implements OnInit {
-  @Input() jobId: number;
+  @Input() jobId: number = 0;
 
   constructor() { }
 

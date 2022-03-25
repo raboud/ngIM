@@ -29,12 +29,25 @@ import { BidSheetService } from '../../../services/bid-sheet.service';
 
 export class BidItemEditComponent implements OnInit, AfterViewInit {
   @ViewChildren(FormControlName, { read: ElementRef })
-  formInputElements: ElementRef[];
+  formInputElements: ElementRef[] = [];
 
   displayMessage: { [key: string]: string } = {};
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
-  form: FormGroup;
+  form: FormGroup = this.fb.group({
+    category: [
+      this.data.category,
+      [Validators.required, Validators.maxLength(255)],
+    ],
+    description: [this.data.description, [Validators.maxLength(255)]],
+    ours: [this.data.ours],
+    quantity: [
+      this.data.quantity
+//        , [Validators.minLength(2), Validators.maxLength(2)],
+    ],
+    subCategory: [this.data.subCategory, Validators.maxLength(10)],
+    unitCost: [this.data.unitCost],
+  });
 
   constructor(    public dialogRef: MatDialogRef<BidItemEditComponent>,
     private service: BidSheetService,
@@ -54,20 +67,7 @@ export class BidItemEditComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      category: [
-        this.data.category,
-        [Validators.required, Validators.maxLength(255)],
-      ],
-      description: [this.data.description, [Validators.maxLength(255)]],
-      ours: [this.data.ours],
-      quantity: [
-        this.data.quantity
-//        , [Validators.minLength(2), Validators.maxLength(2)],
-      ],
-      subCategory: [this.data.subCategory, Validators.maxLength(10)],
-      unitCost: [this.data.unitCost],
-    });}
+    }
 
     ngAfterViewInit(): void {
       // Watch for the blur event from any input element on the form.

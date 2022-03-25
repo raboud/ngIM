@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProgressBarMode } from '@angular/material/progress-bar';
 import { BusyService } from '../../services/busy.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { BusyService } from '../../services/busy.service';
   styleUrls: ['./busy.component.scss']
 })
 export class BusyComponent implements OnInit {
-  mode: string;
+  mode: ProgressBarMode = 'determinate';
   value = 100;
 
   constructor(private busy: BusyService) { }

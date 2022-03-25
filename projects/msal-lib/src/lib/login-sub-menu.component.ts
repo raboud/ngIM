@@ -50,10 +50,10 @@ export class LoginSubMenuComponent implements OnInit {
       .subscribe((result) => {
         console.log(result);
         this.authenticated = result;
-        this.userName = this.authService.userName;
+        this.userName = this.authService.userName != undefined ? this.authService.userName : "";
       });
   }
-  
+
   login() {
     this.authService.login();
   }

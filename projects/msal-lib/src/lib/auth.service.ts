@@ -53,7 +53,7 @@ export class AuthService implements OnDestroy {
                     const payload = result.payload as AuthenticationResult;
                     this.msalService.instance.setActiveAccount(payload.account);
 //                    this.msalService.instance.getActiveAccount().idTokenClaims.
-                    console.log(payload.account.idTokenClaims);
+                    console.log(payload.account?.idTokenClaims);
                     this.Authenticated$.next(true);
                 }
                 else if (result.eventType === EventType.LOGOUT_SUCCESS) {
@@ -145,15 +145,16 @@ export class AuthService implements OnDestroy {
     }
 
     hasCommomRole(roles: string[]) : boolean {
-      let account: Account = this.msalService.instance.getActiveAccount();
+      console.log(roles);
+      let account: Account | null = this.msalService.instance.getActiveAccount();
       if (!account) {
         return false;
       }
 
-      if (!account.idTokenClaims.roles) {
+      if (!account?.idTokenClaims?.roles) {
         this.alertService.AddDebugMessage('Token does not have roles claim. Please ensure that your account is assigned to an app role and then sign-out and sign-in again.');
         return false;
-      } else if (!account.idTokenClaims.roles.filter(x => roles.includes(x))) {
+      } else if (!account?.idTokenClaims.roles.filter(x => roles.includes(x))) {
         this.alertService.AddDebugMessage('You do not have access as expected role is missing. Please ensure that your account is assigned to an app role and then sign-out and sign-in again.');
         return false;
       }
@@ -162,12 +163,12 @@ export class AuthService implements OnDestroy {
     }
 
     inRole(role: string) : boolean {
-      let account: Account = this.msalService.instance.getActiveAccount();
+      let account: Account | null = this.msalService.instance.getActiveAccount();
       if (!account) {
         return false;
       }
 
-      if (!account.idTokenClaims.roles) {
+      if (!account?.idTokenClaims?.roles) {
         this.alertService.AddDebugMessage('Token does not have roles claim. Please ensure that your account is assigned to an app role and then sign-out and sign-in again.');
         return false;
       } else if (!account.idTokenClaims.roles.includes(role)) {

@@ -7,12 +7,12 @@
     NOTES: {{data?.notes}}
   </div>
   <div class="action-buttons" >
-    <button mat-button (click)="accordion.openAll()">Expand All</button>
-    <button mat-button (click)="accordion.closeAll()">Collapse All</button>
+    <button mat-button (click)="accordion?.openAll()">Expand All</button>
+    <button mat-button (click)="accordion?.closeAll()">Collapse All</button>
   </div>
   <mat-accordion class="example-headers-align" multi >
     <div  *ngFor="let item of data?.items">
-    <mat-expansion-panel [expanded]="true" *ngIf="!hideArea(area)" style="margin: 0;">
+    <mat-expansion-panel [expanded]="true" *ngIf="!hideArea(item)" style="margin: 0;">
       <mat-expansion-panel-header style="padding: 0;height: 32px;">
         <mat-panel-title>
           {{item?.material}}

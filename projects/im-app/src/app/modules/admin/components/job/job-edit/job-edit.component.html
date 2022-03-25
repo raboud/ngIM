@@ -62,7 +62,7 @@
       </mat-form-field>
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Renovation Budget</mat-label>
-        <input matInput #renovationBudget formControlName="renovationBudget" placeholder="1000.00" [value]="form.get('renovationBudget').value | currency" />
+        <input matInput #renovationBudget formControlName="renovationBudget" placeholder="1000.00" [value]="form.get('renovationBudget')?.value | currency" />
         <mat-error *ngIf="displayMessage['']">{{displayMessage['']}}</mat-error>
       </mat-form-field>
   </div>
