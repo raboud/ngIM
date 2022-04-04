@@ -24,6 +24,7 @@ import { WorkOderService } from './services/work-oder.service';
 import { JobService } from './services/job.service';
 import { UserService } from './services/user.service ';
 import { MeasureModule } from '../measure/measure.module';
+import { BidAreaEditComponent } from './components/bid/bid-area-edit/bid-area-edit.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MeasureModule } from '../measure/measure.module';
     BidItemEditComponent,
 
     AdminMenuComponent,
-    UserListComponent
+    UserListComponent,
+    BidAreaEditComponent
   ],
   imports: [
     CommonModule,

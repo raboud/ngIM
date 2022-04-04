@@ -12,15 +12,22 @@
   </div>
   <mat-accordion class="example-headers-align" multi >
     <div  *ngFor="let item of data?.items">
-    <mat-expansion-panel [expanded]="true" *ngIf="!hideArea(item)" style="margin: 0;">
-      <mat-expansion-panel-header style="padding: 0;height: 32px;">
+    <mat-expansion-panel [expanded]="true" *ngIf="!hideArea(item)">
+      <mat-expansion-panel-header>
         <mat-panel-title>
           {{item?.material}}
         </mat-panel-title>
+        <mat-action-row>
+          <mat-icon color="primary" aria-hidden="false" (click)="editMaterial($event, item)" aria-label="Edit Area icon" matTooltip="Edit Area">edit</mat-icon>
+          <mat-icon color="primary" aria-hidden="false" (click)="deleteMaterial($event, item)" *ngIf="!item.deleted" aria-label="Delete Material icon" matTooltip="Delete Materiual">delete</mat-icon>
+          <mat-icon color="primary" aria-hidden="false" (click)="restoreMaterial($event, item)" *ngIf="item.deleted" aria-label="Undelete Material icon" matTooltip="Undelete Material">restore</mat-icon>
+          <mat-icon color="primary" aria-hidden="false" (click)="addRoom($event, item)" aria-label="Add Material icon" matTooltip="Add Material">
+            add_box</mat-icon>
+        </mat-action-row>
       </mat-expansion-panel-header>
       <table class="table">
         <thead>
-          <tr style="font-weight: bold;">
+          <tr >
             <td class="col-2 center">Room</td>
             <td class="col-5 left">Description</td>
             <td>Actions</td>
@@ -31,9 +38,9 @@
             <td class="center">{{room.room}}</td>
             <td>{{room.description}}</td>
             <td>
-              <mat-icon  (click)="editItem(item)" aria-hidden="false" aria-label="Example home icon" matTooltip="Edit Item">edit</mat-icon>
-              <mat-icon (click)="deleteItem(item)" *ngIf="!item.deleted" aria-hidden="false" aria-label="Example home icon" matTooltip="Delete Item">delete</mat-icon>
-              <mat-icon (click)="restoreItem(item)" *ngIf="item.deleted" aria-hidden="false" aria-label="Example home icon" matTooltip="Undelete Item">restore</mat-icon>
+              <mat-icon color="primary" aria-hidden="false" (click)="editRoom(room)" aria-label="Edit Room icon" matTooltip="Edit Room">edit</mat-icon>
+              <mat-icon color="primary" aria-hidden="false" (click)="deleteRoom(room)" *ngIf="!item.deleted" aria-label="Delete Room icon" matTooltip="Delete Room">delete</mat-icon>
+              <mat-icon color="primary" aria-hidden="false" (click)="restoreRoom(room)" *ngIf="item.deleted" aria-label="Undelete Room icon" matTooltip="Undelete Room">restore</mat-icon>
             </td>
           </tr>
         </tbody>

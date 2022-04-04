@@ -11,6 +11,7 @@ import { MeasureItemEditComponent } from './components/measure-item-edit/measure
 import { MeasureListComponent } from './components/measure-list/measure-list.component';
 import { MeasureService } from './services/measure.service';
 import { RouterModule } from '@angular/router';
+import { MeasureRoomEditComponent } from './components/measure-room-edit/measure-room-edit.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { RouterModule } from '@angular/router';
     MeasureDetailComponent,
     MeasureItemEditComponent,
     MeasureListComponent,
+    MeasureRoomEditComponent,
   ],
   imports: [
     CommonModule,

@@ -22,3 +22,6 @@ export * from './lib/models/page.model';
 export * from './lib/models/page-request.model';
 export * from './lib/models/sort.model';
 export * from './lib/models/paginated.datasource';
+
+export * from './lib/interfaces/is-dirty';
+export * from './lib/guards/dirty-check.guard';

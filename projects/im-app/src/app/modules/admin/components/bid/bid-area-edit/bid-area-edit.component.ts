@@ -5,15 +5,15 @@ import { fromEvent, merge, Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 import { GenericValidator } from 'randr-lib';
-import { MeasureItemEdit } from '../../models/measure.model';
-import { MeasureService } from '../../services/measure.service';
+import { BidSheetService } from '../../../services/bid-sheet.service';
+import { BidAreaEdit } from '../../../models/bidsheet.model';
 
 @Component({
-  selector: 'app-measure-item-edit',
-  templateUrl: './measure-item-edit.component.html',
-  styleUrls: ['./measure-item-edit.component.scss']
+  selector: 'app-bid-area-edit',
+  templateUrl: './bid-area-edit.component.html',
+  styleUrls: ['./bid-area-edit.component.scss']
 })
-export class MeasureItemEditComponent implements OnInit, AfterViewInit {
+export class BidAreaEditComponent implements OnInit, AfterViewInit {
   @ViewChildren(FormControlName, { read: ElementRef })
   formInputElements: ElementRef[] = [];
 
@@ -37,12 +37,11 @@ export class MeasureItemEditComponent implements OnInit, AfterViewInit {
 */
   });
 
-  constructor(public dialogRef: MatDialogRef<MeasureItemEditComponent>,
-    private service: MeasureService,
+  constructor(public dialogRef: MatDialogRef<BidAreaEditComponent>,
     private fb: FormBuilder,
-    //    private currencyPipe: CurrencyPipe,
 
-    @Inject(MAT_DIALOG_DATA) public data: MeasureItemEdit
+
+    @Inject(MAT_DIALOG_DATA) public data: BidAreaEdit
   ) {
     this.validationMessages = {
       city: {

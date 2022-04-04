@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { AuthService } from 'msal-lib';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ import { AuthService } from 'msal-lib';
 })
 export class HeaderComponent implements OnInit {
   private readonly _destroying$ = new Subject<void>();
-
+  isDark = this.styleManager.isDarkMode();
   public isActive = true;
   public authenticated = false;
   badge = 0;
@@ -24,10 +25,13 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
+    private styleManager: ThemeService
     ) {
     }
 
     ngOnInit() {
+      this.styleManager.initTheme();
+      this.isDark = this.styleManager.isDarkMode();
       this.authService.Authenticated$
       .pipe(
         takeUntil(this._destroying$)
@@ -46,4 +50,17 @@ export class HeaderComponent implements OnInit {
       return this.authService.inRole('Admin')
     }
 
+    toggleDarkTheme() {
+      if (this.isDark)
+      {
+        console.log("light mode")
+        this.styleManager.setLightMode();
+      }
+      else{
+        console.log('Dark Mode')
+        this.styleManager.setDarkMode();
+      }
+//      this.styleManager.toggleDarkTheme();
+//      this.isDark = !this.isDark;
+    }
 }

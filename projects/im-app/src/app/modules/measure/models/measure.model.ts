@@ -30,8 +30,20 @@ export interface MeasureItem
 {
     id: number;
     material: string;
-    rooms: MeasureRoom[];
     deleted: boolean;
+    rolledGood: boolean;
+    width: number;
+
+    rooms: MeasureRoom[];
+}
+
+export interface MeasureItemEdit
+{
+    id: number;
+    material: string;
+    deleted: boolean;
+    rolledGood: boolean;
+    width: number;
 }
 
 export interface MeasureRoom
@@ -39,6 +51,20 @@ export interface MeasureRoom
     id: number;
     room: string;
     description: string;
+    deleted: boolean;
+    disconnected: boolean;
+    leftToRight: boolean;
+    cuts: Cut[];
+}
+
+export interface MeasureRoomEdit
+{
+    id: number;
+    room: string;
+    description: string;
+    deleted: boolean;
+    disconnected: boolean;
+    leftToRight: boolean;
     cuts: Cut[];
 }
 

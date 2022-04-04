@@ -8,8 +8,18 @@ export interface BidArea {
   name: string,
   description: string,
   notes: string,
-  row: number
+  row: number,
+  deleted: boolean,
   items: BidItem[]
+}
+
+export interface BidAreaEdit {
+  id: number,
+  name: string,
+  description: string,
+  notes: string,
+  row: number,
+  deleted: boolean
 }
 
 export interface BidItem {

@@ -28,6 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { MatLibModule } from 'mat-lib';
+import { DialogeComponent } from './Components/dialog/dialog.component';
 
 
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
@@ -126,6 +127,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     NavigationComponent,
     HomeComponent,
     AddressFormComponent,
+    DialogeComponent,
 //    UppercaseDirective,
   ],
   imports: [
@@ -137,7 +139,11 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
 
     RandrLibModule,
     MatLibModule,
-    MsalLibModule, MatInputModule, MatButtonModule, MatSelectModule, MatRadioModule, MatCardModule, ReactiveFormsModule
+    MsalLibModule,
+
+//    MatInputModule, MatButtonModule, MatSelectModule, MatRadioModule, MatCardModule,
+
+    ReactiveFormsModule
   ],
   providers: [
     {

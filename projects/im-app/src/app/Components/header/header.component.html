@@ -20,4 +20,12 @@
   <span>
     <lib-msal-sub-menu></lib-msal-sub-menu>
   </span>
+  <mat-slide-toggle
+    (click)="toggleDarkTheme()"
+    [(ngModel)]="isDark"
+    class="theme-toggle"
+    aria-label="Toggle Dark Theme"
+  >
+    <mat-icon>{{ isDark ? "dark_mode" : "light_mode" }}</mat-icon>
+  </mat-slide-toggle>
 </mat-toolbar>

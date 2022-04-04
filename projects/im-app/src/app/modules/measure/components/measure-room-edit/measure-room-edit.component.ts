@@ -5,15 +5,15 @@ import { fromEvent, merge, Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 import { GenericValidator } from 'randr-lib';
-import { MeasureItemEdit } from '../../models/measure.model';
+import { MeasureRoomEdit } from '../../models/measure.model';
 import { MeasureService } from '../../services/measure.service';
 
 @Component({
-  selector: 'app-measure-item-edit',
-  templateUrl: './measure-item-edit.component.html',
-  styleUrls: ['./measure-item-edit.component.scss']
+  selector: 'app-measure-room-edit',
+  templateUrl: './measure-room-edit.component.html',
+  styleUrls: ['./measure-room-edit.component.scss']
 })
-export class MeasureItemEditComponent implements OnInit, AfterViewInit {
+export class MeasureRoomEditComponent implements OnInit, AfterViewInit {
   @ViewChildren(FormControlName, { read: ElementRef })
   formInputElements: ElementRef[] = [];
 
@@ -21,7 +21,7 @@ export class MeasureItemEditComponent implements OnInit, AfterViewInit {
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
   form: FormGroup = this.fb.group({
-/*
+    /*
     category: [
       this.data?.category,
       [Validators.required, Validators.maxLength(255)],
@@ -34,15 +34,15 @@ export class MeasureItemEditComponent implements OnInit, AfterViewInit {
     ],
     subCategory: [this.data?.subCategory, Validators.maxLength(10)],
     unitCost: [this.data?.unitCost],
-*/
+    */
   });
 
-  constructor(public dialogRef: MatDialogRef<MeasureItemEditComponent>,
+  constructor(public dialogRef: MatDialogRef<MeasureRoomEditComponent>,
     private service: MeasureService,
     private fb: FormBuilder,
     //    private currencyPipe: CurrencyPipe,
 
-    @Inject(MAT_DIALOG_DATA) public data: MeasureItemEdit
+    @Inject(MAT_DIALOG_DATA) public data: MeasureRoomEdit
   ) {
     this.validationMessages = {
       city: {

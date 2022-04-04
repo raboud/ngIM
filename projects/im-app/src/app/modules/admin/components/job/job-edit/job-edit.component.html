@@ -68,7 +68,7 @@
   </div>
   <div mat-dialog-actions>
     <button mat-button (click)="onCancel()">Cancel</button>
-    <button mat-raised-button (click)="onSave()" color="primary" [disabled]="!form.valid || form.pristine">
+    <button mat-raised-button (click)="onSave()" color="primary" [disabled]="(!form.valid || form.pristine) || !isDirty()">
       Save
     </button>
   </div>

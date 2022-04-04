@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService, BusyService } from 'randr-lib';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +14,14 @@ export class AppComponent implements OnInit {
   authenticated = false;
   product = 'Test'
 
-  constructor(private alert: AlertService, private busy: BusyService) {
-  } 
+  constructor(
+    private alert: AlertService,
+    private busy: BusyService) {
+  }
 
   ngOnInit() {
     this.isIframe = window !== window.parent && !window.opener;
+
   }
 
 }

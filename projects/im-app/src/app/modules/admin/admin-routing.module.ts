@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DirtyCheckGuard } from 'randr-lib';
 import { MeasureDetailComponent } from '../measure/components/measure-detail/measure-detail.component';
 import { MeasureListComponent } from '../measure/components/measure-list/measure-list.component';
 import { JobDetailComponent } from './components/job/job-detail/job-detail.component';
@@ -10,7 +11,7 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
 const routes: Routes = [
   { path: 'jobs', component: JobListComponent },
   { path: 'jobs/:id', component: JobDetailComponent },
-  { path: 'jobs/edit/:id', component: JobEditComponent },
+  { path: 'jobs/edit/:id', component: JobEditComponent, canDeactivate: [DirtyCheckGuard] },
   { path: 'users', component: UserListComponent },
 
   { path: 'measures', component: MeasureListComponent},

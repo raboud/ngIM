@@ -17,7 +17,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { fromEvent, merge, Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
-import { GenericValidator } from 'randr-lib';
+import { GenericValidator, IsDirty } from 'randr-lib';
 
 import { JobEdit, Address } from '../../../models/job-edit.model';
 import { JobService } from '../../../services/job.service';
@@ -27,13 +27,15 @@ import { JobService } from '../../../services/job.service';
   templateUrl: './job-edit.component.html',
   styleUrls: ['./job-edit.component.scss'],
 })
-export class JobEditComponent implements OnInit, AfterViewInit {
+export class JobEditComponent implements OnInit, AfterViewInit, IsDirty {
   @ViewChildren(FormControlName, { read: ElementRef })
   formInputElements: ElementRef[] = [];
 
   displayMessage: { [key: string]: string } = {};
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
+  private originalData: string = "";
+
   form: FormGroup = this.fb.group({
     address1: [
       this.data.address1,
@@ -74,6 +76,7 @@ export class JobEditComponent implements OnInit, AfterViewInit {
       },
     };
     this.genericValidator = new GenericValidator(this.validationMessages);
+    this.originalData = JSON.stringify(this.data);
   }
 
   ngOnInit(): void {
@@ -98,12 +101,18 @@ export class JobEditComponent implements OnInit, AfterViewInit {
     let a = this.form.value;
     a.id = this.data.id;
     console.log(this.form.value);
-    //    this.service.put(this.data.id, this.data).subscribe(item => {
-    //      this.dialogRef.close(this.data);
-    //    });
+    this.service.put(a.id, a).subscribe(item => {
+      this.dialogRef.close(a);
+    });
   }
 
   onCancel(): void {
     this.dialogRef.close();
+  }
+
+  isDirty(): boolean | Observable<boolean> {
+    let a = this.form.value;
+    a.id = this.data.id;
+      return (this.originalData != JSON.stringify(a));
   }
 }

@@ -1,0 +1,106 @@
+.oursdeleted {
+  color: red;
+}
+
+.othersdelete {
+  color: white;
+  background-color: red;
+}
+
+.others {
+  color: blue;
+}
+
+.mat-expansion-panel-header.mat-expanded {
+height: 32px;
+}
+
+mat-expansion-panel-header {
+padding: 0;
+height: 32px;
+}
+
+mat-panel-description {
+text-align: right;
+}
+
+.mat-expansion-panel {
+border-color: blue;
+border-top-style: solid;
+border-top-width: 1px;
+border-top-left-radius: 0 !important;
+border-top-right-radius: 0 !important;
+
+padding-top: 5px;
+padding-bottom: 5px;
+box-shadow : none;
+margin: 0;
+
+}
+
+.mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: left;
+  width: 75%;
+  box-shadow : none;
+}
+
+.mat-expansion-panel-header-title {
+  justify-content: space-between;
+  align-items: left;
+  width: 25%;
+  box-shadow : none;
+  font-weight: bold;
+}
+
+.mat-action-row {
+padding-top: 0;
+padding-bottom: 0;
+box-shadow : none;
+border-top-style: none;
+}
+
+::ng-deep .mat-expansion-panel-body {
+padding-bottom: 0 !important;
+box-shadow : none;
+}
+
+.table {
+margin-bottom: 0;
+box-shadow : none;
+}
+
+.td {
+padding-top: 0;
+padding-bottom: 0;
+vertical-align: middle;
+}
+
+thead {
+font-weight: bolder;
+}
+
+.notes {
+  justify-content: start;
+}
+
+.action-buttons {
+  margin-right: 20pt;
+}
+
+
+mat-checkbox, button {
+  margin-right: 10pt;
+}
+
+.center {
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
