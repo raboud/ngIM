@@ -71,11 +71,6 @@
             ],
             "styles": [
               "projects/im-app/src/styles.scss",
-              {
-                "input": "projects/im-app/src/styles/themes/dark.scss",
-                "bundleName": "dark-theme",
-                "inject": false
-              }
             ],
             "scripts": [],
             "vendorChunk": true,

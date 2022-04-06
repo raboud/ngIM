@@ -1,4 +1,7 @@
 /* Structure */
+@import "~@angular/material/theming";
+@include mat-core();
+
 .container {
     position: relative;
     min-height: 200px;
@@ -130,15 +133,10 @@
   }
 
   .mat-footer-row, .mat-header-row, .mat-row {
-//    display: inline-flex;
-//    display: flex;
-//    border-width: 0;
-//    border-bottom-width: 1px;
-//    border-style: none;
     align-items: center;
     height: 1.5em;
     line-height: 1.5em;
-//    box-sizing: border-box;
+
 }
 
 /*
@@ -147,3 +145,4 @@
   color:  mat-color($_background, background);
   }
 */
+
