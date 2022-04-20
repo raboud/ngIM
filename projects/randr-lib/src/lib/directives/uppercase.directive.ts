@@ -5,10 +5,10 @@ import { Event } from '@angular/router';
   selector: '[uppercase]'
 })
 export class UppercaseDirective {
-  @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
+  @Output() ngModelChange: EventEmitter<string> = new EventEmitter();
 
-  @HostListener('input', ['$event']) onInputChange($event: any) {
-    $event.target.value  = $event.target.value.toUpperCase();
-    this.ngModelChange.emit($event.target.value );
+  @HostListener('input', ['$event'])
+  onKeyDown(event: KeyboardEvent) {
+    return event.key.toUpperCase();
   }
 }

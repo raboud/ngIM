@@ -27,13 +27,10 @@ export class BidItemEditComponent implements OnInit, AfterViewInit {
       this.data?.category,
       [Validators.required, Validators.maxLength(255)],
     ],
-    description: [this.data?.description, [Validators.maxLength(255)]],
+    description: [this.data?.description, [Validators.maxLength(1000)]],
     ours: [this.data?.ours],
-    quantity: [
-      this.data?.quantity
-      //        , [Validators.minLength(2), Validators.maxLength(2)],
-    ],
-    subCategory: [this.data?.subCategory, Validators.maxLength(10)],
+    quantity: [this.data?.quantity],
+    subCategory: [this.data?.subCategory, Validators.maxLength(1000)],
     unitCost: [this.data?.unitCost],
   });
 
@@ -45,10 +42,8 @@ export class BidItemEditComponent implements OnInit, AfterViewInit {
     @Inject(MAT_DIALOG_DATA) public data: BidItemEdit
   ) {
     this.validationMessages = {
-      city: {
-        required: 'Username is required.',
-        minlength: 'Username must be at least three characters.',
-        maxlength: 'Username cannot exceed 50 characters.',
+      description: {
+        maxlength: 'Description cannot exceed 1000 characters.',
       },
     };
     this.genericValidator = new GenericValidator(this.validationMessages);
@@ -59,6 +54,7 @@ export class BidItemEditComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     // Watch for the blur event from any input element on the form.
+    console.log("Desription length " + this.data?.description.length);
     const controlBlurs: Observable<any>[] = this.formInputElements.map(
       (formControl: ElementRef) => fromEvent(formControl.nativeElement, 'blur')
     );

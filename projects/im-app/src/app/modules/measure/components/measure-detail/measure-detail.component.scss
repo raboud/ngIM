@@ -25,7 +25,7 @@ text-align: right;
 }
 
 .mat-expansion-panel {
-border-color: blue;
+
 border-top-style: solid;
 border-top-width: 1px;
 border-top-left-radius: 0 !important;
@@ -68,6 +68,16 @@ box-shadow : none;
 .table {
 margin-bottom: 0;
 box-shadow : none;
+}
+
+table
+{
+    table-layout: fixed;
+    width: 100%;
+}
+
+tr {
+  height: 24;
 }
 
 .td {

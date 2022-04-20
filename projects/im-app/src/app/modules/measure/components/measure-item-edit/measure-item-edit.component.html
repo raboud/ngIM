@@ -1,1 +1,26 @@
-<p>measure-item-edit works!</p>
+<div class="measure-edit container mat-elevation-z8" >
+  <h1 mat-dialog-title>Measure Material Edit</h1>
+  <div mat-dialog-content class="container" [formGroup]="form">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Material</mat-label>
+      <input matInput type="text" placeholder="Flooring" uppercase maxlength="255" formControlName="material" />
+      <mat-error *ngIf="displayMessage['material']">{{displayMessage['material']}}</mat-error>
+    </mat-form-field>
+    <mat-slide-toggle formControlName="rolledGoods">Rolled Goods</mat-slide-toggle>
+    <div [hidden]="hideWidth()">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Width</mat-label>
+      <input matInput type="number" step=".25" placeholder="12.34" formControlName="width" />
+      <mat-error *ngIf="displayMessage['width']">{{displayMessage['width']}}</mat-error>
+    </mat-form-field>
+  </div>
+    <input [hidden]="true" type="checkbox" formControlName="deleted" placeholder="deleted"/>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button (click)="onSave()" color="primary" [disabled]="!form.valid || !isDirty()" >
+      Save
+    </button>
+  </div>
+</div>
+

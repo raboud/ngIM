@@ -56,6 +56,7 @@
       </mat-form-field>
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>End Date</mat-label>
+        <span matPrefix>$ &nbsp;</span>
         <input matInput type="date" #projectEndDate placeholder="12/31/2020" formControlName="projectEndDate"
           (ngModelChange)="data.projectEndDate = $event" />
           <mat-error *ngIf="displayMessage['']">{{displayMessage['']}}</mat-error>

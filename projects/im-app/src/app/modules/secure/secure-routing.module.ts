@@ -9,15 +9,13 @@ import { CustomerComponent } from './Components/customer/customer.component';
 const routes: Routes = [
   { path: 'dashboard', canActivate: [], component: DashboardComponent },
   { path: 'customer', canActivate: [AuthGuard], component: CustomerComponent },
-  {
-    path: 'admin',
-    canActivate: [RoleGuard],
-    canLoad: [RoleGuard],
-    data: {
-      expectedRoles: ["Admin"]
-    } ,
-    loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule)
-  },
+
+
+//  { path: 'manager', loadChildren: () => import('./modules/manager/manager.module').then(m => m.ManagerModule) },
+//  { path: 'installer', loadChildren: () => import('./modules/installer/installer.module').then(m => m.InstallerModule) },
+//  { path: 'measurer', loadChildren: () => import('./modules/measurer/measurer.module').then(m => m.MeasurerModule) },
+//  { path: 'staff', loadChildren: () => import('./modules/staff/staff.module').then(m => m.StaffModule) },
+
 ];
 
 @NgModule({

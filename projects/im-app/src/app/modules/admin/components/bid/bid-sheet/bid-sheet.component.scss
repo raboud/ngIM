@@ -12,12 +12,12 @@
 }
 
 .mat-expansion-panel-header.mat-expanded {
-  height: 32px;
+  height: 24px;
 }
 
 mat-expansion-panel-header {
   padding: 0;
-  height: 32px;
+  height: 24px;
 }
 
 mat-panel-description {
@@ -31,8 +31,8 @@ mat-panel-description {
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
 
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   box-shadow : none;
   margin: 0;
 
@@ -68,6 +68,12 @@ mat-panel-description {
 .table {
   margin-bottom: 0;
   box-shadow : none;
+}
+
+table
+{
+    table-layout: fixed;
+    width: 100%;
 }
 
 .td {

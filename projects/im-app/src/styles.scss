@@ -1,7 +1,11 @@
 // Custom Theming for Angular Material
 @use "@angular/material" as mat;
-@use './app/modules//admin//components//job/job-list/job-list.theme.scss' as joblist;
+@use './app/modules/admin/components/bid/bid-sheet/bid-sheet.theme.scss' as bidsheet;
+@use './app/modules/admin/components/job/job-list/job-list.theme.scss' as joblist;
 
+@use './app/modules/measure/components/measure-list/measure-list.theme.scss' as measurelist;
+@use './app/modules/measure/components/measure-detail/measure-detail.theme.scss' as measureDetail;
+@use './app/modules/measure/components/measure-room-edit/measure-room-edit.theme.scss' as measureRoomEdit;
 // For more information: https://material.angular.io/guide/theming
 // Plus imports for other components in your app.
 
@@ -46,13 +50,21 @@ $app-light-theme: mat-light-theme($mat-primary-palette, $mat-accent-palette);
 
 .light-mode {
   @include angular-material-theme($app-light-theme);
+  @include bidsheet.theme($app-light-theme);
   @include joblist.theme($app-light-theme);
+  @include measurelist.theme($app-light-theme);
+  @include measureDetail.theme($app-light-theme);
+  @include measureRoomEdit.theme($app-light-theme);
 }
 
 $app-dark-theme: mat-dark-theme($mat-primary-palette, $mat-accent-palette);
 .dark-mode {
   @include angular-material-theme($app-dark-theme);
+  @include bidsheet.theme($app-dark-theme);
   @include joblist.theme($app-dark-theme);
+  @include measurelist.theme($app-dark-theme);
+  @include measureDetail.theme($app-dark-theme);
+  @include measureRoomEdit.theme($app-dark-theme);
 
   background-color: #333;
   color: whitesmoke;
@@ -140,11 +152,6 @@ nav a.active {
 hr {
   margin: 1.5rem 0;
 }
-input[type="text"] {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 0.5rem;
-}
 
 .ng-valid[required],
 .ng-valid.required {
@@ -161,3 +168,6 @@ input[type="text"] {
 
 
 
+.PageContainer {
+  padding: 10pt
+}

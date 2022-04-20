@@ -1,1 +1,110 @@
-<p>measure-room-edit works!</p>
+<div class="measure-edit MeasureRoomEdit container mat-elevation-z8">
+  <h1 mat-dialog-title>Measure Room</h1>
+  <mat-slide-toggle [(ngModel)]="showDeleted">Show Deleted</mat-slide-toggle>
+  <div mat-dialog-content class="container" [formGroup]="form">
+    <input [hidden]="true" type="number" formControlName="id" placeholder="id">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Room</mat-label>
+      <input matInput type="text" placeholder="Flooring" uppercase maxlength="255" formControlName="room" />
+      <mat-error *ngIf="displayMessage['room']">{{displayMessage['room']}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Description</mat-label>
+      <input matInput input="text" placeholder="Description" uppercase maxlength="255" formControlName="description" />
+      <mat-error *ngIf="displayMessage['description']">{{displayMessage['description']}}</mat-error>
+    </mat-form-field>
+    <input [hidden]="true" type="checkbox" formControlName="deleted" placeholder="deleted">
+
+    <mat-slide-toggle formControlName="disconnected">Disconnected</mat-slide-toggle>
+    <mat-slide-toggle formControlName="leftToRight">Left to Right</mat-slide-toggle>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Floor</mat-label>
+      <input matInput type="number" min="-1" step=".5" placeholder="1" formControlName="floor" />
+      <mat-error *ngIf="displayMessage['floor']">{{displayMessage['floor']}}</mat-error>
+    </mat-form-field>
+
+    <mat-card>
+      <mat-card-title>Cuts</mat-card-title>
+      <mat-card-content>
+
+        <ng-container formArrayName="cuts">
+          <ng-container *ngFor="let cutFrom of cuts.controls; let i = index">
+            <div [hidden]="hideCut(i)" class="cut-form-row" [formGroupName]="i">
+              <input [hidden]="true" type="number" formControlName="id" placeholder="id">
+              <input [hidden]="true" type="checkbox" formControlName="deleted" placeholder="deleted">
+              <mat-form-field class="col-2" appearance="fill">
+                <mat-label>Width</mat-label>
+                <input type="number" matInput formControlName="width" placeholder="width">
+              </mat-form-field>
+
+              <mat-form-field class="col-2" appearance="fill">
+                <mat-label>Length</mat-label>
+                <input type="number" matInput formControlName="length" placeholder="length">
+              </mat-form-field>
+              <mat-form-field class="col-7" appearance="fill">
+                <mat-label>Notes</mat-label>
+                <input type="text" matInput formControlName="notes" placeholder="Notes" uppercase>
+              </mat-form-field>
+              <mat-icon *ngIf="!isCutDeleted(i)" (click)="deleteCut(i)">delete</mat-icon>
+              <mat-icon *ngIf="isCutDeleted(i)" (click)="restoreCut(i)">restore</mat-icon>
+            </div>
+          </ng-container>
+        </ng-container>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-mini-fab (click)="addCut(null)">
+          <mat-icon class="add-course-btn">add</mat-icon>
+        </button>
+
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-title>Transitions</mat-card-title>
+      <mat-card-content>
+
+        <ng-container formArrayName="transitions">
+          <ng-container *ngFor="let transFrom of transitions.controls; let i = index">
+            <div [hidden]="hideTransition(i)" class="trans-form-row" [formGroupName]="i">
+              <input [hidden]="true" type="number" matInput formControlName="id" placeholder="id">
+              <input [hidden]="true" type="checkbox" formControlName="deleted" placeholder="deleted">
+              <mat-form-field class="col-2" appearance="fill">
+                <mat-label>Type</mat-label>
+                <select matNativeControl formControlName="type" title="type">
+                  <option value="">None</option>
+                  <option value="REDUCER">REDUCER</option>
+                  <option value="PIN METAL">PIN METAL</option>
+                  <option value="MARBLE">MARBLE</option>
+                </select>
+              </mat-form-field>
+
+              <mat-form-field class="col-2" appearance="fill">
+                <mat-label>Length</mat-label>
+                <input type="number" matInput formControlName="length" placeholder="length">
+              </mat-form-field>
+              <mat-form-field class="col-7" appearance="fill">
+                <mat-label>Notes</mat-label>
+                <input type="text" matInput formControlName="notes" placeholder="Notes" uppercase>
+              </mat-form-field>
+              <mat-icon *ngIf="!isTransationDeleted(i)" class="delete-btn" (click)="deleteTransition(i)">delete</mat-icon>
+              <mat-icon *ngIf="isTransationDeleted(i)" class="delete-btn" (click)="restoreTransition(i)">restore</mat-icon>
+            </div>
+          </ng-container>
+        </ng-container>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-mini-fab (click)="addTransition(null)">
+          <mat-icon class="add-course-btn">add</mat-icon>
+        </button>
+
+      </mat-card-actions>
+    </mat-card>
+
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button (click)="onSave()" color="primary" [disabled]="!form.valid || !isDirty()">
+      Save
+    </button>
+  </div>
+</div>

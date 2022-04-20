@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { PaginatedDataSource, Sort } from 'randr-lib';
-import { JobList } from '../../../models/job-list.model';
-import { JobListQuery, JobService } from '../../../services/job.service';
+import { JobList } from '../../../../shared/models/job-list.model';
+import { JobListQuery, JobService } from '../../../../shared/services/job.service';
 
 @Component({
   selector: 'app-job-list',

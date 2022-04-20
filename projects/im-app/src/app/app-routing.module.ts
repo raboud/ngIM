@@ -11,6 +11,25 @@ const routes: Routes = [
     canLoad: [AuthGuard],
     loadChildren: () => import('./modules/secure/secure.module').then(m => m.SecureModule)
   },
+  {
+    path: 'admin',
+    canActivate: [RoleGuard],
+    canLoad: [RoleGuard],
+    data: {
+      expectedRoles: ["Admin"]
+    } ,
+    loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)
+  },
+
+  {
+    path: 'measure',
+    canActivate: [RoleGuard],
+    canLoad: [RoleGuard],
+    data: {
+      expectedRoles: ["Admin,Measurer"]
+    } ,
+    loadChildren: () => import('./modules/measure/measure.module').then(m => m.MeasureModule)
+  },
 
   { path: 'manager', loadChildren: () => import('./modules/manager/manager.module').then(m => m.ManagerModule) },
   { path: 'installer', loadChildren: () => import('./modules/installer/installer.module').then(m => m.InstallerModule) },

@@ -10,7 +10,6 @@ import { AdminRoutingModule } from './admin-routing.module';
 
 import { JobListComponent } from './components/job/job-list/job-list.component';
 import { JobDetailComponent } from './components/job/job-detail/job-detail.component';
-import { JobEditComponent } from './components/job/job-edit/job-edit.component';
 import { WorkOrderComponent } from './components/work-order/work-order.component';
 import { BidSheetComponent } from './components/bid/bid-sheet/bid-sheet.component';
 import { BidItemEditComponent } from './components/bid/bid-item-edit/bid-item-edit.component';
@@ -21,20 +20,18 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
 
 import { BidSheetService } from './services/bid-sheet.service';
 import { WorkOderService } from './services/work-oder.service';
-import { JobService } from './services/job.service';
 import { UserService } from './services/user.service ';
 import { MeasureModule } from '../measure/measure.module';
 import { BidAreaEditComponent } from './components/bid/bid-area-edit/bid-area-edit.component';
+import { SahredModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     JobListComponent,
     JobDetailComponent,
-    JobEditComponent,
     BidSheetComponent,
     WorkOrderComponent,
     BidItemEditComponent,
-
     AdminMenuComponent,
     UserListComponent,
     BidAreaEditComponent
@@ -47,11 +44,11 @@ import { BidAreaEditComponent } from './components/bid/bid-area-edit/bid-area-ed
     RandrLibModule,
     MatLibModule,
     MeasureModule,
+    SahredModule,
 
     AdminRoutingModule
   ],
   providers:[
-    JobService,
     BidSheetService,
     WorkOderService,
     UserService,

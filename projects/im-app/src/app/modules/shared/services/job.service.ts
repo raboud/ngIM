@@ -11,7 +11,7 @@ import { AlertService, BusyService, Page, PageRequest } from 'randr-lib';
 
 import { environment } from 'projects/im-app/src/environments/environment';
 import { JobList } from '../models/job-list.model';
-import { JobDetail } from '../models/jog-detail.model';
+import { JobDetail } from '../../shared/models/jog-detail.model';
 import { JobEdit } from '../models/job-edit.model';
 
 export interface JobListQuery {

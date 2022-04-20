@@ -6,7 +6,7 @@ import { catchError, finalize } from 'rxjs/operators';
 import { AlertService, BusyService, Page, PageRequest } from 'randr-lib';
 
 import { environment } from 'projects/im-app/src/environments/environment';
-import { Measure, MeasureCreate, MeasureEdit, MeasureList } from '../models/measure.model';
+import { Measure, MeasureCreate, MeasureEdit, MeasureItem, MeasureList, MeasureRoom } from '../models/measure.model';
 
 
 export interface MeasureListQuery {
@@ -83,15 +83,50 @@ export class MeasureService {
   }
 
   put(id: number, item: MeasureEdit): Observable<MeasureEdit> {
+    console.log(item);
     this.busyService.AddBusy();
     const href = environment.msalConfig.resources.imApi.endpoint + 'measure';
     let requestUrl = `${href}/${id}`;
 
-    return this._httpClient.put<Measure>(requestUrl, item, httpOptions)
+    console.log("about to http client put");
+    return this._httpClient.put<MeasureEdit>(requestUrl, item, httpOptions)
     .pipe(
       catchError(err => this.handleError(err)),
       finalize(() => this.busyService.RemoveBusy())
     );
+    console.log("http client put complete");
+
+  }
+
+  putItem(id: number, item: MeasureItem): Observable<MeasureItem> {
+    console.log(item);
+    this.busyService.AddBusy();
+    const href = environment.msalConfig.resources.imApi.endpoint + 'measure/measureitem';
+    let requestUrl = `${href}/${id}`;
+
+    console.log("about to http client put");
+    return this._httpClient.put<MeasureItem>(requestUrl, item, httpOptions)
+    .pipe(
+      catchError(err => this.handleError(err)),
+      finalize(() => this.busyService.RemoveBusy())
+    );
+    console.log("http client put complete");
+
+  }
+
+  putRoom(id: number, item: MeasureRoom): Observable<MeasureRoom> {
+    console.log(item);
+    this.busyService.AddBusy();
+    const href = environment.msalConfig.resources.imApi.endpoint + 'measure/measureroom';
+    let requestUrl = `${href}/${id}`;
+
+    console.log("about to http client put");
+    return this._httpClient.put<MeasureRoom>(requestUrl, item, httpOptions)
+    .pipe(
+      catchError(err => this.handleError(err)),
+      finalize(() => this.busyService.RemoveBusy())
+    );
+    console.log("http client put complete");
 
   }
 

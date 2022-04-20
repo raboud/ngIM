@@ -1,7 +1,7 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
-import { Measure, MeasureItem, MeasureRoom, MeasureRoomEdit } from '../../models/measure.model';
+import { Measure, MeasureEdit, MeasureItem, MeasureItemEdit, MeasureRoom, MeasureRoomEdit } from '../../models/measure.model';
 import { MeasureService } from '../../services/measure.service';
 import { MeasureItemEditComponent } from '../measure-item-edit/measure-item-edit.component';
 import { MeasureRoomEditComponent } from '../measure-room-edit/measure-room-edit.component';
@@ -11,19 +11,21 @@ import { MeasureRoomEditComponent } from '../measure-room-edit/measure-room-edit
   templateUrl: './measure-detail.component.html',
   styleUrls: ['./measure-detail.component.scss']
 })
-export class MeasureDetailComponent implements OnInit {
+export class MeasureDetailComponent implements AfterViewInit {
   @ViewChild(MatAccordion) accordion?: MatAccordion;
   @Input() jobId: number = 0;
 
   data: Measure | null = null;
+  showDeleted = false;
 
   constructor( public dialog: MatDialog, private service: MeasureService) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.getItem();
   }
 
   getItem() {
+    console.log(this.jobId);
     this.service.get(this.jobId).subscribe((item) => {
       this.data = item;
       console.log(this.data);
@@ -37,19 +39,15 @@ export class MeasureDetailComponent implements OnInit {
     })
   }
 
-  hide(item: MeasureRoom): boolean {
-    return false; //(item.deleted && !this.showDeleted) || (!item.ours && !this.showAll);
+  hide(room: MeasureRoom): boolean {
+    return (room.deleted && !this.showDeleted) ;
   }
 
-  hideArea(area: MeasureItem): boolean {
-//    let anyNotDeleted: boolean = area.items.some(function (x) { return !x.deleted; });
-//    let anyOurs: boolean = area.items.some(function (x) { return x.ours });
-
-    return false; //(!anyNotDeleted && !this.showDeleted) || (!anyOurs && !this.showAll);
-
+  hideItem(item: MeasureItem): boolean {
+    return (item.deleted && !this.showDeleted) ;
   }
 
-  editRoom(item: MeasureRoomEdit) {
+  editRoom(item: MeasureRoom) {
     const dialogRef = this.dialog.open(MeasureRoomEditComponent, {
       width: '700px',
       data: JSON.parse(JSON.stringify(item))
@@ -58,6 +56,7 @@ export class MeasureDetailComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result != undefined) {
         item = Object.assign(item, result);
+        this.updateMeasure();
       }
     });
 
@@ -65,30 +64,43 @@ export class MeasureDetailComponent implements OnInit {
 
   addRoom($event: any, area: MeasureItem) {
     $event.stopPropagation();
-    let item: MeasureItem ;
+    const room: MeasureRoomEdit = {
+      id: 0,
+      room: "",
+      description: "",
+      disconnected: false,
+      leftToRight: false,
+      floor: 0,
+      deleted: false,
+      cuts: [],
+      transitions: []
+    }
+
     const dialogRef = this.dialog.open(MeasureRoomEditComponent, {
       width: '700px',
-      data: JSON.parse(JSON.stringify(""))
+      data: room
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result != undefined) {
         area.rooms.push(result);
-      }
+        this.updateMeasure();
+    }
     });
 
   }
 
   deleteRoom(item: MeasureRoom) {
     item.deleted = true;
+    this.updateMeasure();
   }
 
   restoreRoom(item: MeasureRoom) {
     item.deleted = false;
+    this.updateMeasure();
   }
 
   addMaterial() {
-    let area: MeasureItem ;
     const dialogRef = this.dialog.open(MeasureItemEditComponent, {
       width: '700px',
       data: JSON.parse(JSON.stringify(""))
@@ -97,21 +109,25 @@ export class MeasureDetailComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result != undefined) {
         this.data?.items.push(result);
+        this.updateMeasure();
       }
     });
   }
 
   editMaterial($event: any, material: MeasureItem) {
     $event.stopPropagation();
+    const {rooms, ...edit} = material;
+    console.log(edit);
     const dialogRef = this.dialog.open(MeasureItemEditComponent, {
       width: '700px',
-      data: JSON.parse(JSON.stringify(material))
+      data: edit
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result != undefined) {
         material = Object.assign(material, result);
-      }
+        this.updateMeasure();
+          }
     });
 
   }
@@ -119,13 +135,24 @@ export class MeasureDetailComponent implements OnInit {
   deleteMaterial($event:any, area: MeasureItem) {
     $event.stopPropagation();
     area.deleted = true;
+    this.updateMeasure();
+
     console.log(area);
   }
 
   restoreMaterial($event:any, area: MeasureItem) {
     $event.stopPropagation();
         area.deleted = false;
-  }
+        this.updateMeasure();
+    }
 
+
+    updateMeasure(){
+      const edit: MeasureEdit = JSON.parse(JSON.stringify(this.data))
+      this.service.put(edit.jobId, edit).subscribe((item) => {
+        this.getItem();
+    });
+
+    }
 
 }

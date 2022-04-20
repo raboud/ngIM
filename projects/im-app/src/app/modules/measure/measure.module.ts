@@ -12,6 +12,8 @@ import { MeasureListComponent } from './components/measure-list/measure-list.com
 import { MeasureService } from './services/measure.service';
 import { RouterModule } from '@angular/router';
 import { MeasureRoomEditComponent } from './components/measure-room-edit/measure-room-edit.component';
+import { MeasureRoutingModule } from './measure-routing.module';
+import { SahredModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,9 @@ import { MeasureRoomEditComponent } from './components/measure-room-edit/measure
 
     RandrLibModule,
     MatLibModule,
+    SahredModule,
+
+    MeasureRoutingModule
 
   ],
   exports:[

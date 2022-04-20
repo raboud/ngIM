@@ -4,18 +4,18 @@
     min-height: 200px;
     margin: 20px;
   }
-  
+
   .table-container {
     position: relative;
     max-height: 600px;
     overflow: auto;
   }
-  
+
   mat-table {
     width: 100%;
     table-layout: fixed;
   }
-  
+
   .mat-column-name {
     word-wrap: break-word !important;
     white-space: unset !important;
@@ -23,15 +23,15 @@
     width: 20% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
-  
+
     word-break: break-word;
-  
+
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
   }
-  
+
   .mat-column-line1 {
     word-wrap: break-word !important;
     white-space: unset !important;
@@ -39,9 +39,9 @@
     width: 30% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
-  
+
     word-break: break-word;
-  
+
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
@@ -55,16 +55,16 @@
     width: 15% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
-  
+
     word-break: break-word;
-  
+
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
   }
 
-  
+
   .mat-column-state {
     word-wrap: break-word !important;
     white-space: unset !important;
@@ -72,9 +72,9 @@
     width: 5% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
-  
+
     word-break: break-word;
-  
+
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
@@ -88,9 +88,9 @@
     width: 10% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
-  
+
     word-break: break-word;
-  
+
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
@@ -104,9 +104,9 @@
     width: 10% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
-  
+
     word-break: break-word;
-  
+
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
@@ -120,9 +120,9 @@
     width: 10% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
-  
+
     word-break: break-word;
-  
+
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
@@ -140,10 +140,6 @@
     line-height: 1.5em;
 //    box-sizing: border-box;
 }
-
-.mat-row:nth-child(even){
-  background-color: #f5f5f5 ;
-  }
 
 
   // https://www.nikhilwalvekar.com/ng-mat-theme-generator/&v=XIUv27nYcLE

@@ -19,8 +19,8 @@ import { debounceTime } from 'rxjs/operators';
 
 import { GenericValidator, IsDirty } from 'randr-lib';
 
-import { JobEdit, Address } from '../../../models/job-edit.model';
-import { JobService } from '../../../services/job.service';
+import { JobEdit, Address } from '../../models/job-edit.model';
+import { JobService } from '../../services/job.service';
 
 @Component({
   selector: 'app-job-edit',

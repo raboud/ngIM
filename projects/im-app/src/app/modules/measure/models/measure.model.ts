@@ -1,11 +1,8 @@
+import { JobDetail } from "../../shared/models/jog-detail.model";
+
 export interface Measure
 {
-    jobId: number
-    address1: string;
-    address2: string;
-    city: string;
-    state: string;
-    zipCode: string;
+    job: JobDetail;
     scheduleDate: Date;
     notes: String;
     items: MeasureItem[]
@@ -16,7 +13,7 @@ export interface MeasureCreate {
 }
 
 export interface MeasureList {
-  JobId: number;
+  jobId: number;
   address1: string;
   address2: string;
   city: string;
@@ -26,12 +23,12 @@ export interface MeasureList {
   status: string;
 }
 
-export interface MeasureItem
+export interface MeasureItem extends MeasureItemEdit
 {
     id: number;
     material: string;
     deleted: boolean;
-    rolledGood: boolean;
+    rolledGoods: boolean;
     width: number;
 
     rooms: MeasureRoom[];
@@ -42,7 +39,7 @@ export interface MeasureItemEdit
     id: number;
     material: string;
     deleted: boolean;
-    rolledGood: boolean;
+    rolledGoods: boolean;
     width: number;
 }
 
@@ -51,21 +48,25 @@ export interface MeasureRoom
     id: number;
     room: string;
     description: string;
-    deleted: boolean;
     disconnected: boolean;
     leftToRight: boolean;
+    floor: number;
+    deleted: boolean;
     cuts: Cut[];
-}
+    transitions: Transition[];
+  }
 
 export interface MeasureRoomEdit
 {
-    id: number;
-    room: string;
-    description: string;
-    deleted: boolean;
-    disconnected: boolean;
-    leftToRight: boolean;
-    cuts: Cut[];
+  id: number;
+  room: string;
+  description: string;
+  disconnected: boolean;
+  leftToRight: boolean;
+  floor: number;
+  deleted: boolean;
+  cuts: Cut[];
+  transitions: Transition[];
 }
 
 export interface MeasureEdit
@@ -76,7 +77,18 @@ export interface MeasureEdit
 
 export interface Cut
 {
+  id: number,
     width: number;
     length: number;
     notes: string;
+    deleted: boolean;
+}
+
+export interface Transition
+{
+  id: number;
+  type: string;
+  length: number;
+  notes: string;
+  deleted: boolean;
 }

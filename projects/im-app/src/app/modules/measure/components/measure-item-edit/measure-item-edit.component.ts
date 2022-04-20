@@ -21,31 +21,22 @@ export class MeasureItemEditComponent implements OnInit, AfterViewInit {
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
   form: FormGroup = this.fb.group({
-/*
-    category: [
-      this.data?.category,
-      [Validators.required, Validators.maxLength(255)],
-    ],
-    description: [this.data?.description, [Validators.maxLength(255)]],
-    ours: [this.data?.ours],
-    quantity: [
-      this.data?.quantity
-      //        , [Validators.minLength(2), Validators.maxLength(2)],
-    ],
-    subCategory: [this.data?.subCategory, Validators.maxLength(10)],
-    unitCost: [this.data?.unitCost],
-*/
+    id: [this.data?.id ],
+    material: [this.data?.material,  [Validators.required, Validators.maxLength(255)]],
+    deleted: [this.data?.deleted],
+    rolledGoods: [this.data?.rolledGoods],
+    width: [this.data?.width]
+
   });
 
   constructor(public dialogRef: MatDialogRef<MeasureItemEditComponent>,
-    private service: MeasureService,
     private fb: FormBuilder,
     //    private currencyPipe: CurrencyPipe,
 
     @Inject(MAT_DIALOG_DATA) public data: MeasureItemEdit
   ) {
     this.validationMessages = {
-      city: {
+      material: {
         required: 'Username is required.',
         minlength: 'Username must be at least three characters.',
         maxlength: 'Username cannot exceed 50 characters.',
@@ -85,6 +76,15 @@ export class MeasureItemEditComponent implements OnInit, AfterViewInit {
   isDirty(): boolean | Observable<boolean> {
     let a = this.form.value;
     a.id = this.data.id;
+
+ //   console.log(JSON.stringify(this.data));
+ //   console.log(JSON.stringify(a));
+
     return (JSON.stringify(this.data) != JSON.stringify(a));
+  }
+
+  hideWidth() :boolean {
+    console.log(this.form.controls["rolledGoods"].value)
+    return !this.form.value.rolledGoods ;
   }
 }
