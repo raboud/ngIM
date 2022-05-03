@@ -4,18 +4,18 @@
     min-height: 200px;
     margin: 20px;
   }
-  
+
   .table-container {
     position: relative;
     max-height: 600px;
     overflow: auto;
   }
-  
+
   mat-table {
     width: 100%;
     table-layout: fixed;
   }
-  
+
   .mat-column-name {
     word-wrap: break-word !important;
     white-space: unset !important;
@@ -23,15 +23,15 @@
     width: 50% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
-  
+
     word-break: break-word;
-  
+
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
   }
-  
+
   .mat-column-city {
     word-wrap: break-word !important;
     white-space: unset !important;
@@ -39,16 +39,16 @@
     width: 30% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
-  
+
     word-break: break-word;
-  
+
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
   }
 
-  
+
   .mat-column-state {
     word-wrap: break-word !important;
     white-space: unset !important;
@@ -56,9 +56,9 @@
     width: 10% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
-  
+
     word-break: break-word;
-  
+
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
@@ -72,9 +72,9 @@
     width: 10% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
-  
+
     word-break: break-word;
-  
+
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
@@ -97,7 +97,7 @@
   background-color: #f5f5f5 ;
   }
 
- .example-loading-shade {
+ .loading-shade {
     position: absolute;
     top: 0;
     left: 0;
@@ -109,4 +109,3 @@
     align-items: center;
     justify-content: center;
   }
-  

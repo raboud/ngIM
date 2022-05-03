@@ -20,7 +20,7 @@ export interface JobEdit {
 
   projectEndDate: Date;
 //  renoTotal: number;
-//  ourTotal: number;
+  ourTotal: number;
 //  status: string;
 }
 

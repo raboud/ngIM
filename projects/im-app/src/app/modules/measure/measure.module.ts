@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { MeasureRoomEditComponent } from './components/measure-room-edit/measure-room-edit.component';
 import { MeasureRoutingModule } from './measure-routing.module';
 import { SahredModule } from '../shared/shared.module';
+import { MsalLibModule } from 'msal-lib';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SahredModule } from '../shared/shared.module';
     RandrLibModule,
     MatLibModule,
     SahredModule,
+//    MsalLibModule,
 
     MeasureRoutingModule
 

@@ -1,11 +1,15 @@
-<div class="BidSheet action-buttons">
-  <button mat-button (click)="accordion?.openAll()">Expand All</button>
-  <button mat-button (click)="accordion?.closeAll()">Collapse All</button>
+<div class="BidSheet">
+  <h2 class="Preliminary" *ngIf="data?.preliminary">
+    Preliminary
+  </h2>
+<div class="BidSheet action-buttons PageContainer">
+  <button mat-raised-button color="primary" (click)="accordion?.openAll()">Expand All</button>
+  <button mat-raised-button color="primary" (click)="accordion?.closeAll()">Collapse All</button>
   <mat-checkbox [(ngModel)]="showAll">Show All</mat-checkbox>
   <mat-checkbox [(ngModel)]="showDeleted">Show Deleted</mat-checkbox>
   <mat-checkbox [(ngModel)]="showRow">Show Row</mat-checkbox>
 </div>
-<mat-accordion class="example-headers-align BidSheet" multi>
+<mat-accordion class="BidSheet" multi>
   <div *ngFor="let area of data?.areas">
     <mat-expansion-panel [expanded]="true" *ngIf="!hideArea(area)" >
       <mat-expansion-panel-header>
@@ -66,3 +70,4 @@
     </mat-expansion-panel>
   </div>
 </mat-accordion>
+</div>

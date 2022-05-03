@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 
 import { AlertService, BusyService, Page, PageRequest } from 'randr-lib';
@@ -69,14 +69,14 @@ export class MeasureService {
   }
 
 
-  get(id: number): Observable<Measure> {
+  get(id: number): Observable<Measure | undefined> {
     this.busyService.AddBusy();
     const href = environment.msalConfig.resources.imApi.endpoint + 'measure';
     let requestUrl = `${href}/${id}`;
 
     return this._httpClient.get<Measure>(requestUrl)
       .pipe(
-        catchError(err => this.handleError(err)),
+        catchError(err => this.handleError2(err, true)),
         finalize(() => this.busyService.RemoveBusy())
       );
 
@@ -162,4 +162,26 @@ export class MeasureService {
     // return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');
-  }}
+  }
+
+  private handleError2(error: HttpErrorResponse, ignore404: boolean = false) {
+    if (ignore404 && error.status == 404)
+    {
+      return of(undefined);
+    }
+    //    this.busyService.RemoveBusy();
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      this.alertService.AddErrorMessage(`An error occurred:, ${error.error.message}`);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      this.alertService.AddErrorMessage(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  }
+}

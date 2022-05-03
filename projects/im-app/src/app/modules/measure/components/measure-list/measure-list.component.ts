@@ -18,7 +18,7 @@ export class MeasureListComponent {
       (request, query) => this.dataService.getPage(request, query),
       this.psort,
       {lastname: ''});
-  displayedColumns: string[] = ['name', 'line1', 'city', 'state', 'zip', 'status', 'date', 'ourTotal'];
+  displayedColumns: string[] = ['name', 'line1', 'city', 'state', 'zip', 'status', 'date', 'actions'];
 
   resultsLength = 0;
   pageSize = 20;
@@ -30,6 +30,10 @@ export class MeasureListComponent {
 
   select(id: number){
     console.log(id);
+  }
+
+  editMeasure($event: any, measure: MeasureList) {
+    $event.stopPropagation();
   }
 }
 

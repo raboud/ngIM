@@ -29,7 +29,6 @@ export class JobDetailComponent implements OnInit {
   getItem() {
     this.service.getDetail(this.id).subscribe((item) => {
       this.data = item;
-      console.log(this.data);
     });
   }
 }

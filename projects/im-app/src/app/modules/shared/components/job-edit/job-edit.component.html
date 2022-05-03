@@ -1,4 +1,4 @@
-<div class="container mat-elevation-z8" style="padding: 10pt">
+<div class="PageContainer container mat-elevation-z8">
   <h1 mat-dialog-title>Job Edit</h1>
   <div mat-dialog-content class="container" [formGroup]="form">
       <p>
@@ -56,15 +56,21 @@
       </mat-form-field>
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>End Date</mat-label>
-        <span matPrefix>$ &nbsp;</span>
         <input matInput type="date" #projectEndDate placeholder="12/31/2020" formControlName="projectEndDate"
           (ngModelChange)="data.projectEndDate = $event" />
           <mat-error *ngIf="displayMessage['']">{{displayMessage['']}}</mat-error>
       </mat-form-field>
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Renovation Budget</mat-label>
-        <input matInput #renovationBudget formControlName="renovationBudget" placeholder="1000.00" [value]="form.get('renovationBudget')?.value | currency" />
+        <span matPrefix>$ &nbsp;</span>
+        <input matInput #renovationBudget formControlName="renovationBudget" placeholder="1000.00"  />
         <mat-error *ngIf="displayMessage['']">{{displayMessage['']}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Our Total</mat-label>
+        <span matPrefix>$ &nbsp;</span>
+        <input matInput #ourTotal formControlName="ourTotal" placeholder="1000.00" />
+        <mat-error *ngIf="displayMessage['ourTotal']">{{displayMessage['ourTotal']}}</mat-error>
       </mat-form-field>
   </div>
   <div mat-dialog-actions>

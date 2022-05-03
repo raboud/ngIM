@@ -26,8 +26,8 @@ This code is MIT License.
 docker pull miigotu/certbot-dns-godaddy
 
 docker run --rm `
-  -v D:\Code\nginx-with-lets-encrypt-in-docker\certbot\config:/var/lib/letsencrypt `
-  -v D:\Code\nginx-with-lets-encrypt-in-docker\certbot/letsencrypt:/etc/letsencrypt `
+  -v D:\Code\GitHub\ngIM\certbot\Config:/var/lib/letsencrypt `
+  -v D:\Code\GitHub\ngIM\certbot\Letsencrypt:/etc/letsencrypt `
   --cap-drop=all `
   miigotu/certbot-dns-godaddy certbot certonly `
     --authenticator dns-godaddy `

@@ -1,18 +1,18 @@
 <div *ngIf="!data" class="MeasureDetail container">
-  <button mat-button (click)="create()" >Create </button>
+  <button mat-raised-button color="primary" (click)="create()" >Create </button>
 </div>
 
 <div *ngIf="data">
-  <app-job-header [data]="this.data.job"></app-job-header>
+
   <div class="notes">
     NOTES: {{data?.notes}}
   </div>
-  <div class="action-buttons" >
-    <button mat-button (click)="accordion?.openAll()">Expand All</button>
-    <button mat-button (click)="accordion?.closeAll()">Collapse All</button>
+  <div class="action-buttons PageContainer" >
+    <button mat-raised-button color="primary" (click)="accordion?.openAll()">Expand All</button>
+    <button mat-raised-button color="primary" (click)="accordion?.closeAll()">Collapse All</button>
     <mat-checkbox [(ngModel)]="showDeleted">Show Deleted</mat-checkbox>
   </div>
-  <mat-accordion class="example-headers-align MeasureDetail" multi >
+  <mat-accordion class="MeasureDetail" multi >
     <div  *ngFor="let item of data?.items">
     <mat-expansion-panel [expanded]="true" *ngIf="!hideItem(item)">
       <mat-expansion-panel-header>

@@ -10,7 +10,9 @@ import { JobEditComponent } from '../job-edit/job-edit.component';
   styleUrls: ['./job-header.component.scss']
 })
 export class JobHeaderComponent implements OnInit {
-@Input() data?: JobDetail
+@Input() id?: number;
+data: JobDetail | undefined;
+
 constructor(
   public dialog: MatDialog,
   private service: JobService,
@@ -18,6 +20,16 @@ constructor(
 ) {}
 
   ngOnInit(): void {
+    this.getItem();
+  }
+
+  getItem(): void {
+    if (this.id) {
+      this.service.getDetail(this.id)
+        .subscribe(item => {
+          this.data = item;
+        });
+    }
   }
 
   onEdit(): void {
@@ -27,11 +39,9 @@ constructor(
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-      console.log(result);
       if (result != undefined)
       {
-//        this.getItem();
+        this.getItem();
       }
     });
   }

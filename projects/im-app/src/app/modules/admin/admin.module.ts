@@ -8,33 +8,39 @@ import { MatLibModule } from 'mat-lib';
 
 import { AdminRoutingModule } from './admin-routing.module';
 
-import { JobListComponent } from './components/job/job-list/job-list.component';
-import { JobDetailComponent } from './components/job/job-detail/job-detail.component';
-import { WorkOrderComponent } from './components/work-order/work-order.component';
-import { BidSheetComponent } from './components/bid/bid-sheet/bid-sheet.component';
-import { BidItemEditComponent } from './components/bid/bid-item-edit/bid-item-edit.component';
 import { AdminMenuComponent } from './components/menu/admin-menu.component';
-
+import { BidAreaEditComponent } from './components/bid/bid-area-edit/bid-area-edit.component';
+import { BidItemEditComponent } from './components/bid/bid-item-edit/bid-item-edit.component';
+import { BidSheetComponent } from './components/bid/bid-sheet/bid-sheet.component';
+import { BidSheetsComponent } from './components/bid/bid-sheets/bid-sheets.component';
+import { ImagesComponent } from './components/images/images/images.component';
+import { JobDetailComponent } from './components/job/job-detail/job-detail.component';
+import { JobListComponent } from './components/job/job-list/job-list.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
+import { WorkOrderComponent } from './components/work-order/work-order.component';
 
 
 import { BidSheetService } from './services/bid-sheet.service';
-import { WorkOderService } from './services/work-oder.service';
 import { UserService } from './services/user.service ';
+import { WorkOderService } from './services/work-oder.service';
+
 import { MeasureModule } from '../measure/measure.module';
-import { BidAreaEditComponent } from './components/bid/bid-area-edit/bid-area-edit.component';
 import { SahredModule } from '../shared/shared.module';
+import { ImagesContainerComponent } from './components/images/image-container/images-container.component';
 
 @NgModule({
   declarations: [
-    JobListComponent,
-    JobDetailComponent,
-    BidSheetComponent,
-    WorkOrderComponent,
-    BidItemEditComponent,
     AdminMenuComponent,
+    BidAreaEditComponent,
+    BidItemEditComponent,
+    BidSheetComponent,
+    BidSheetsComponent,
+    ImagesComponent,
+    ImagesContainerComponent,
+    JobDetailComponent,
+    JobListComponent,
     UserListComponent,
-    BidAreaEditComponent
+    WorkOrderComponent,
   ],
   imports: [
     CommonModule,

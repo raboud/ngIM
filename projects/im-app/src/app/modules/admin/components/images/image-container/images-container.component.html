@@ -1,0 +1,29 @@
+  <mat-expansion-panel [expanded]="true"  >
+    <mat-expansion-panel-header>
+      <mat-panel-title >
+        {{type}}
+      </mat-panel-title>
+      <mat-panel-description >
+      </mat-panel-description>
+      <mat-action-row>
+        <mat-label>Upload</mat-label>
+
+        <!--  <div class="row" style="margin-bottom:15px;">     -->
+            <div class="col-md-3 dropdiv" [class.processing]="processing" (dragover)="onDragOver($event)" (drop)="onDropSuccess($event)">
+              <input type="file" #file placeholder="Choose file" (change)="onChange($event)" style="display:none;">
+      <!--        <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>> -->
+            </div>
+            <div class="col-md-4">
+              <span class="upload" *ngIf="progress > 0">
+                {{progress}}%
+                <mat-progress-bar mode="determinate" value="progress"></mat-progress-bar>
+              </span>
+              <span class="upload" *ngIf="message">
+                {{message}}
+              </span>
+            </div>
+          <!--    </div>       -->      </mat-action-row>
+
+    </mat-expansion-panel-header>
+
+  </mat-expansion-panel>

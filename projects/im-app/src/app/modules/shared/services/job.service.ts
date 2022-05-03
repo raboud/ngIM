@@ -11,7 +11,7 @@ import { AlertService, BusyService, Page, PageRequest } from 'randr-lib';
 
 import { environment } from 'projects/im-app/src/environments/environment';
 import { JobList } from '../models/job-list.model';
-import { JobDetail } from '../../shared/models/jog-detail.model';
+import { BidSheetList, JobDetail } from '../../shared/models/jog-detail.model';
 import { JobEdit } from '../models/job-edit.model';
 
 export interface JobListQuery {
@@ -82,6 +82,18 @@ export class JobService {
     );
   }
 
+  getBidList(id: number): Observable<BidSheetList[]> {
+    this.busyService.AddBusy();
+    const href = environment.msalConfig.resources.imApi.endpoint + 'job';
+    let requestUrl = `${href}/${id}/bids`;
+
+    return this._httpClient.get<BidSheetList[]>(requestUrl).pipe(
+      catchError((err) => this.handleError(err)),
+      finalize(() => this.busyService.RemoveBusy())
+    );
+
+  }
+
   put(id: number, item: JobEdit): Observable<JobEdit> {
     this.busyService.AddBusy();
     const href = environment.msalConfig.resources.imApi.endpoint + 'job';
@@ -108,6 +120,6 @@ export class JobService {
       );
     }
     // return an observable with a user-facing error message
-    return throwError('Something bad happened; please try again later.');
+    return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 }

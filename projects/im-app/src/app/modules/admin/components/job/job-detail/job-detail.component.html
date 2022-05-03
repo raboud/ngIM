@@ -1,27 +1,22 @@
-<div class="container mat-elevation-z8" style="padding: 10pt">
+<div class="PageContainer container mat-elevation-z8" >
   <H1>Job Details</H1>
-  <app-job-header [data]="data"></app-job-header>
+  <app-job-header [id]="id"></app-job-header>
 
   <mat-tab-group>
     <mat-tab label="Bid Sheet">
-      <ng-template matTabContent>
-        <div style="margin-top: 10px;">
-          <app-bid-sheet [jobId]=id></app-bid-sheet>
-        </div>
-      </ng-template>
+          <app-bid-sheets [jobId]=id></app-bid-sheets>
     </mat-tab>
     <mat-tab label="Measure">
-      <ng-template matTabContent>
-        <div style="margin-top: 10px;">
           <app-measure-detail [jobId]=id></app-measure-detail>
-        </div>
-      </ng-template>
     </mat-tab>
     <mat-tab label="Work Orders">
       <ng-template matTabContent>
-        <div style="margin-top: 10px;">
           <app-work-order [jobId]="id"></app-work-order>
-        </div>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Images">
+      <ng-template matTabContent>
+          <app-images [jobId]="id"></app-images>
       </ng-template>
     </mat-tab>
   </mat-tab-group>

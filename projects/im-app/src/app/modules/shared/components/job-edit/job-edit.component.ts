@@ -55,6 +55,7 @@ export class JobEditComponent implements OnInit, AfterViewInit, IsDirty {
     garageCode: [this.data.garageCode],
     year: [this.data.year],
     renovationBudget: [this.data.renovationBudget],
+    ourTotal: [this.data.ourTotal],
     projectEndDate: [
       formatDate(this.data.projectEndDate, 'yyyy-MM-dd', 'en'),
     ],
@@ -64,7 +65,6 @@ export class JobEditComponent implements OnInit, AfterViewInit, IsDirty {
     public dialogRef: MatDialogRef<JobEditComponent>,
     private service: JobService,
     private fb: FormBuilder,
-    private currencyPipe: CurrencyPipe,
 
     @Inject(MAT_DIALOG_DATA) public data: JobEdit
   ) {
@@ -80,7 +80,6 @@ export class JobEditComponent implements OnInit, AfterViewInit, IsDirty {
   }
 
   ngOnInit(): void {
-    const currency = this.currencyPipe.transform(this.data.renovationBudget)
   }
 
   ngAfterViewInit(): void {
@@ -100,7 +99,6 @@ export class JobEditComponent implements OnInit, AfterViewInit, IsDirty {
   onSave(): void {
     let a = this.form.value;
     a.id = this.data.id;
-    console.log(this.form.value);
     this.service.put(a.id, a).subscribe(item => {
       this.dialogRef.close(a);
     });

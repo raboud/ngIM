@@ -1,14 +1,47 @@
-import { Directive, EventEmitter, HostListener, Output } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, forwardRef, HostListener, Output, Renderer2 } from '@angular/core';
+import { DefaultValueAccessor, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Event } from '@angular/router';
 
+const UPPERCASE_INPUT_CONTROL_VALUE_ACCESSOR = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => UppercaseDirective),
+  multi: true,
+};
 @Directive({
-  selector: '[uppercase]'
+  selector: 'input[uppercase]',
+  host: {
+        // When the user updates the input
+        '(input)': 'onInput($event.target.value)',
+        '(blur)': 'onTouched()',
+  },
+  providers: [
+    UPPERCASE_INPUT_CONTROL_VALUE_ACCESSOR,
+  ],
 })
-export class UppercaseDirective {
-  @Output() ngModelChange: EventEmitter<string> = new EventEmitter();
+export class UppercaseDirective extends DefaultValueAccessor {
 
-  @HostListener('input', ['$event'])
-  onKeyDown(event: KeyboardEvent) {
-    return event.key.toUpperCase();
+  constructor(renderer: Renderer2, elementRef: ElementRef) {
+    super(renderer, elementRef, false);
+  }
+
+  override writeValue(value: any): void {
+    const transformed = this.transformValue(value);
+
+    super.writeValue(transformed);
+  }
+
+  onInput(value: any): void {
+    const transformed = this.transformValue(value);
+
+    super.writeValue(transformed);
+    this.onChange(transformed);
+  }
+
+  private transformValue(value: any): any {
+    const result = value && typeof value === 'string'
+      ? value.toUpperCase()
+      : value;
+
+    return result;
   }
 }

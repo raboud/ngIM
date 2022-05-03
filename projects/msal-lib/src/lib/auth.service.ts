@@ -34,7 +34,7 @@ export class AuthService implements OnDestroy {
                 console.log(`MSAL Logging: ${message}`);
             },
             piiLoggingEnabled: false,
-            logLevel: LogLevel.Verbose
+            logLevel: LogLevel.Warning
         }));
         this.init();
     }

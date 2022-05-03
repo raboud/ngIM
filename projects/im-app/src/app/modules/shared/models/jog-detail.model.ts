@@ -24,3 +24,17 @@ export interface JobDetail {
   ourTotal: number;
   status: string;
 }
+
+export interface BidSheetList {
+  id: number;
+
+  jobId: number;
+
+  renoTotal: number;
+
+  ourTotal: number;
+  preliminary: boolean;
+  deleted: boolean;
+  modified: Date;
+
+}

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 
 import { MatAccordion } from '@angular/material/expansion';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,9 +13,9 @@ import { BidAreaEditComponent } from '../bid-area-edit/bid-area-edit.component';
   templateUrl: './bid-sheet.component.html',
   styleUrls: ['./bid-sheet.component.scss'],
 })
-export class BidSheetComponent implements OnInit {
+export class BidSheetComponent implements OnInit, OnChanges {
   @ViewChild(MatAccordion) accordion?: MatAccordion;
-  @Input() jobId?: number;
+  @Input() bidId?: number;
 
   data?: BidSheet;
   showAll: boolean = false;
@@ -27,12 +27,16 @@ export class BidSheetComponent implements OnInit {
     private service: BidSheetService) { }
 
   ngOnInit(): void {
+//    this.getItem();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     this.getItem();
   }
 
   getItem() {
-    if (this.jobId) {
-      this.service.get(this.jobId).subscribe((item) => {
+    if (this.bidId) {
+      this.service.get(this.bidId).subscribe((item) => {
         this.data = item;
         console.log(this.data);
       });

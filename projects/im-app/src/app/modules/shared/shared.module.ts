@@ -7,6 +7,7 @@ import { MatLibModule } from 'mat-lib';
 import { JobHeaderComponent } from './components/job-header/job-header.component';
 import { JobEditComponent } from './components/job-edit/job-edit.component';
 import { JobService } from './services/job.service';
+import { MsalLibModule } from 'msal-lib';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { JobService } from './services/job.service';
     FormsModule,
     RandrLibModule,
     MatLibModule,
-
+    MsalLibModule,
    ],
   providers:[
     JobService

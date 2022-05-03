@@ -1,0 +1,25 @@
+
+.dropdiv {
+  width: 500px;
+  height: 50px;
+  background-color: coral;
+}
+.dropdiv.processing {
+    display: none;
+}
+
+.progress {
+  display: none;
+  width: 500px;
+  height: 50px;
+  background-color: gray;
+}
+.progress.processing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-file-upload > input {
+  display: none;
+}

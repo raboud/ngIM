@@ -1,5 +1,6 @@
 export interface BidSheet {
     jobId: number,
+    preliminary: boolean,
     areas: BidArea[],
 }
 
