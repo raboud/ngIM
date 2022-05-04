@@ -4,7 +4,7 @@ import { Event } from '@angular/router';
 
 const UPPERCASE_INPUT_CONTROL_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => UppercaseDirective),
+  useExisting: forwardRef(() => UppercaseInputDirective),
   multi: true,
 };
 @Directive({
@@ -18,7 +18,7 @@ const UPPERCASE_INPUT_CONTROL_VALUE_ACCESSOR = {
     UPPERCASE_INPUT_CONTROL_VALUE_ACCESSOR,
   ],
 })
-export class UppercaseDirective extends DefaultValueAccessor {
+export class UppercaseInputDirective extends DefaultValueAccessor {
 
   constructor(renderer: Renderer2, elementRef: ElementRef) {
     super(renderer, elementRef, false);
