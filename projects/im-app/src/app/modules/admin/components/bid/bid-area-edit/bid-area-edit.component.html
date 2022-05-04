@@ -1,37 +1,28 @@
 <div class="PageContainer container mat-elevation-z8" >
   <h1 mat-dialog-title>Bid Area Edit</h1>
   <div mat-dialog-content class="container" [formGroup]="form">
+    <input [hidden]="true" type="number" formControlName="id" placeholder="id">
+    <input [hidden]="true" type="checkbox" formControlName="deleted" placeholder="deleted">
+    <input [hidden]="true" type="number" formControlName="row" placeholder="row">
+
     <mat-form-field class="full-width" appearance="fill">
-      <mat-label>Category</mat-label>
-      <input matInput type="text" placeholder="Flooring" uppercase maxlength="255" formControlName="category" />
-      <mat-error *ngIf="displayMessage['category']">{{displayMessage['category']}}</mat-error>
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="fill">
-      <mat-label>Sub Cateory</mat-label>
-      <input matInput input="text" placeholder="Hardwood" uppercase maxlength="255" formControlName="subCategory" />
-      <mat-error *ngIf="displayMessage['subCategory']">{{displayMessage['subCategory']}}</mat-error>
+      <mat-label>Name</mat-label>
+      <input matInput type="text" placeholder="Bedroom" uppercase maxlength="50" required="true" formControlName="name" />
+      <mat-error *ngIf="displayMessage['name']">{{displayMessage['name']}}</mat-error>
     </mat-form-field>
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>Description</mat-label>
-      <input matInput type="text" placeholder="INSTALL AND STAIN" uppercase maxlength="50" formControlName="description" />
+      <input matInput type="text" placeholder="INSTALL AND STAIN" uppercase formControlName="description" />
       <mat-error *ngIf="displayMessage['description']">{{displayMessage['description']}}</mat-error>
     </mat-form-field>
     <mat-form-field class="full-width" appearance="fill">
-      <mat-label>Quantity</mat-label>
-      <input matInput type="number" placeholder="12"  min=".01" step=".01" formControlName="quantity" />
-      <mat-error *ngIf="displayMessage['quantity']">{{displayMessage['quantity']}}</mat-error>
+      <mat-label>Notes</mat-label>
+      <textarea matInput type="text" placeholder="INSTALL AND STAIN" uppercase autoresize formControlName="notes" ></textarea>
+      <mat-error *ngIf="displayMessage['notes']">{{displayMessage['notes']}}</mat-error>
     </mat-form-field>
-    <mat-form-field class="full-width" appearance="fill">
-      <mat-label>Unit Cost</mat-label>
-      <span matPrefix>$ &nbsp;</span>
-      <input matInput type="number" min=".01" step=".01" placeholder="12.34" formControlName="unitCost" />
-      <mat-error *ngIf="displayMessage['unitCost']">{{displayMessage['unitCost']}}</mat-error>
-    </mat-form-field>
-    <mat-slide-toggle formControlName="ours">Ours</mat-slide-toggle>
-  </div>
   <div mat-dialog-actions>
     <button mat-button (click)="onCancel()">Cancel</button>
-    <button mat-raised-button (click)="onSave()" color="primary" [disabled]="!form.valid || form.pristine">
+    <button mat-raised-button (click)="onSave()" color="primary" [disabled]="!form.valid || !isDirty()">
       Save
     </button>
   </div>

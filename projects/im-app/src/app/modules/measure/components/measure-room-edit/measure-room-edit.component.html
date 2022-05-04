@@ -43,7 +43,7 @@
               </mat-form-field>
               <mat-form-field class="col-7" appearance="fill">
                 <mat-label>Notes</mat-label>
-                <input type="text" matInput formControlName="notes" placeholder="Notes" uppercase>
+                <textarea type="text" matInput formControlName="notes" placeholder="Notes" uppercase autoresize> </textarea>
               </mat-form-field>
               <mat-icon *ngIf="!isCutDeleted(i)" (click)="deleteCut(i)">delete</mat-icon>
               <mat-icon *ngIf="isCutDeleted(i)" (click)="restoreCut(i)">restore</mat-icon>
@@ -84,7 +84,7 @@
               </mat-form-field>
               <mat-form-field class="col-7" appearance="fill">
                 <mat-label>Notes</mat-label>
-                <input type="text" matInput formControlName="notes" placeholder="Notes" uppercase>
+                <textarea matInput formControlName="notes" placeholder="Notes" uppercase auroresize></textarea>
               </mat-form-field>
               <mat-icon *ngIf="!isTransationDeleted(i)" class="delete-btn" (click)="deleteTransition(i)">delete</mat-icon>
               <mat-icon *ngIf="isTransationDeleted(i)" class="delete-btn" (click)="restoreTransition(i)">restore</mat-icon>

@@ -3,7 +3,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@
 import { MatAccordion } from '@angular/material/expansion';
 import { MatDialog } from '@angular/material/dialog';
 
-import { BidArea, BidItem, BidSheet } from '../../../models/bidsheet.model';
+import { BidArea, BidAreaEdit, BidItem, BidSheet } from '../../../models/bidsheet.model';
 import { BidSheetService } from '../../../services/bid-sheet.service';
 import { BidItemEditComponent } from '../bid-item-edit/bid-item-edit.component';
 import { BidAreaEditComponent } from '../bid-area-edit/bid-area-edit.component';
@@ -94,10 +94,17 @@ export class BidSheetComponent implements OnInit, OnChanges {
   }
 
   addArea() {
-    let area: BidArea ;
+    let area: BidAreaEdit  = {
+      id: 0,
+      name: "",
+      description: "",
+      notes: "",
+      row: 0,
+      deleted: false,
+    };
     const dialogRef = this.dialog.open(BidAreaEditComponent, {
       width: '700px',
-      data: JSON.parse(JSON.stringify(""))
+      data: area
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -109,10 +116,10 @@ export class BidSheetComponent implements OnInit, OnChanges {
 
   editArea($event: any, area: BidArea) {
     $event.stopPropagation();
+    const {items, ...edit} = area;
     const dialogRef = this.dialog.open(BidAreaEditComponent, {
       width: '700px',
-      data: JSON.parse(JSON.stringify(area))
-    });
+      data: edit });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result != undefined) {

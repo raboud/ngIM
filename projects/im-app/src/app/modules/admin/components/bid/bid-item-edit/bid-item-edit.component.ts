@@ -54,7 +54,6 @@ export class BidItemEditComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     // Watch for the blur event from any input element on the form.
-    console.log("Desription length " + this.data?.description.length);
     const controlBlurs: Observable<any>[] = this.formInputElements.map(
       (formControl: ElementRef) => fromEvent(formControl.nativeElement, 'blur')
     );

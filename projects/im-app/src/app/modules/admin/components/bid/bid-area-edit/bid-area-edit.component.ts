@@ -21,20 +21,12 @@ export class BidAreaEditComponent implements OnInit, AfterViewInit {
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
   form: FormGroup = this.fb.group({
-/*
-    category: [
-      this.data?.category,
-      [Validators.required, Validators.maxLength(255)],
-    ],
-    description: [this.data?.description, [Validators.maxLength(255)]],
-    ours: [this.data?.ours],
-    quantity: [
-      this.data?.quantity
-      //        , [Validators.minLength(2), Validators.maxLength(2)],
-    ],
-    subCategory: [this.data?.subCategory, Validators.maxLength(10)],
-    unitCost: [this.data?.unitCost],
-*/
+    id: [this.data?.id],
+    name: [this.data?.name, [Validators.required, Validators.maxLength(50)]],
+    description: [this.data?.description, [Validators.maxLength(200)]],
+    notes: [this.data?.notes, [Validators.maxLength(2000)]],
+    row: [this.data?.row],
+    deleted: [this.data?.deleted]
   });
 
   constructor(public dialogRef: MatDialogRef<BidAreaEditComponent>,
@@ -44,10 +36,8 @@ export class BidAreaEditComponent implements OnInit, AfterViewInit {
     @Inject(MAT_DIALOG_DATA) public data: BidAreaEdit
   ) {
     this.validationMessages = {
-      city: {
-        required: 'Username is required.',
-        minlength: 'Username must be at least three characters.',
-        maxlength: 'Username cannot exceed 50 characters.',
+      description: {
+        maxlength: 'Description cannot exceed 1000 characters.',
       },
     };
     this.genericValidator = new GenericValidator(this.validationMessages);
@@ -84,6 +74,8 @@ export class BidAreaEditComponent implements OnInit, AfterViewInit {
   isDirty(): boolean | Observable<boolean> {
     let a = this.form.value;
     a.id = this.data.id;
+    console.log(JSON.stringify(this.data));
+    console.log(JSON.stringify(a));
     return (JSON.stringify(this.data) != JSON.stringify(a));
   }
 }

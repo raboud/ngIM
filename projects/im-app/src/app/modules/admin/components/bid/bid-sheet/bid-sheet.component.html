@@ -8,6 +8,9 @@
   <mat-checkbox [(ngModel)]="showAll">Show All</mat-checkbox>
   <mat-checkbox [(ngModel)]="showDeleted">Show Deleted</mat-checkbox>
   <mat-checkbox [(ngModel)]="showRow">Show Row</mat-checkbox>
+
+  <mat-icon (click)="addArea()" aria-hidden="false" aria-label="add area" matTooltip="Add Area">
+    add_box</mat-icon>
 </div>
 <mat-accordion class="BidSheet" multi>
   <div *ngFor="let area of data?.areas">
