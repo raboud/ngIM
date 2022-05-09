@@ -97,7 +97,7 @@ export class MeasureService {
     console.log("http client put complete");
 
   }
-
+/*
   putItem(id: number, item: MeasureItem): Observable<MeasureItem> {
     console.log(item);
     this.busyService.AddBusy();
@@ -113,8 +113,9 @@ export class MeasureService {
     console.log("http client put complete");
 
   }
+ */
 
-  putRoom(id: number, item: MeasureRoom): Observable<MeasureRoom> {
+ /*  putRoom(id: number, item: MeasureRoom): Observable<MeasureRoom> {
     console.log(item);
     this.busyService.AddBusy();
     const href = environment.msalConfig.resources.imApi.endpoint + 'measure/measureroom';
@@ -128,7 +129,7 @@ export class MeasureService {
     );
     console.log("http client put complete");
 
-  }
+  } */
 
   create(id: number): Observable<Measure> {
     this.busyService.AddBusy();

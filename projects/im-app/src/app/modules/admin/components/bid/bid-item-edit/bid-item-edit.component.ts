@@ -23,15 +23,18 @@ export class BidItemEditComponent implements OnInit, AfterViewInit {
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
   form: FormGroup = this.fb.group({
+    id: [this.data?.id],
     category: [
       this.data?.category,
       [Validators.required, Validators.maxLength(255)],
     ],
+    categoryId: [this.data?.categoryId],
     description: [this.data?.description, [Validators.maxLength(1000)]],
-    ours: [this.data?.ours],
     quantity: [this.data?.quantity],
-    subCategory: [this.data?.subCategory, Validators.maxLength(1000)],
     unitCost: [this.data?.unitCost],
+    ours: [this.data?.ours],
+    deleted: [this.data?.deleted],
+    row: [this.data?.row]
   });
 
   constructor(public dialogRef: MatDialogRef<BidItemEditComponent>,

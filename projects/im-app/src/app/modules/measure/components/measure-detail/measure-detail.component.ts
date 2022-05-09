@@ -18,7 +18,7 @@ export class MeasureDetailComponent implements AfterViewInit {
   data: Measure | undefined = undefined;
   showDeleted = false;
 
-  constructor( public dialog: MatDialog, private service: MeasureService) { }
+  constructor(public dialog: MatDialog, private service: MeasureService) { }
 
   ngAfterViewInit(): void {
     console.log('MeasureDetail AfterViewInit');
@@ -41,26 +41,11 @@ export class MeasureDetailComponent implements AfterViewInit {
   }
 
   hide(room: MeasureRoom): boolean {
-    return (room.deleted && !this.showDeleted) ;
+    return (room.deleted && !this.showDeleted);
   }
 
   hideItem(item: MeasureItem): boolean {
-    return (item.deleted && !this.showDeleted) ;
-  }
-
-  editRoom(item: MeasureRoom) {
-    const dialogRef = this.dialog.open(MeasureRoomEditComponent, {
-      width: '700px',
-      data: JSON.parse(JSON.stringify(item))
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result != undefined) {
-        item = Object.assign(item, result);
-        this.updateMeasure();
-      }
-    });
-
+    return (item.deleted && !this.showDeleted);
   }
 
   addRoom($event: any, area: MeasureItem) {
@@ -86,7 +71,7 @@ export class MeasureDetailComponent implements AfterViewInit {
       if (result != undefined) {
         area.rooms.push(result);
         this.updateMeasure();
-    }
+      }
     });
 
   }
@@ -94,6 +79,21 @@ export class MeasureDetailComponent implements AfterViewInit {
   deleteRoom(item: MeasureRoom) {
     item.deleted = true;
     this.updateMeasure();
+  }
+
+  editRoom(item: MeasureRoom) {
+    const dialogRef = this.dialog.open(MeasureRoomEditComponent, {
+      width: '700px',
+      data: JSON.parse(JSON.stringify(item))
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result != undefined) {
+        item = Object.assign(item, result);
+        this.updateMeasure();
+      }
+    });
+
   }
 
   restoreRoom(item: MeasureRoom) {
@@ -115,9 +115,17 @@ export class MeasureDetailComponent implements AfterViewInit {
     });
   }
 
+  deleteMaterial($event: any, area: MeasureItem) {
+    $event.stopPropagation();
+    area.deleted = true;
+    this.updateMeasure();
+
+    console.log(area);
+  }
+
   editMaterial($event: any, material: MeasureItem) {
     $event.stopPropagation();
-    const {rooms, ...edit} = material;
+    const { rooms, ...edit } = material;
     console.log(edit);
     const dialogRef = this.dialog.open(MeasureItemEditComponent, {
       width: '700px',
@@ -128,32 +136,24 @@ export class MeasureDetailComponent implements AfterViewInit {
       if (result != undefined) {
         material = Object.assign(material, result);
         this.updateMeasure();
-          }
+      }
     });
 
   }
 
-  deleteMaterial($event:any, area: MeasureItem) {
+  restoreMaterial($event: any, area: MeasureItem) {
     $event.stopPropagation();
-    area.deleted = true;
+    area.deleted = false;
     this.updateMeasure();
-
-    console.log(area);
   }
 
-  restoreMaterial($event:any, area: MeasureItem) {
-    $event.stopPropagation();
-        area.deleted = false;
-        this.updateMeasure();
-    }
 
-
-    updateMeasure(){
-      const edit: MeasureEdit = JSON.parse(JSON.stringify(this.data))
-      this.service.put(edit.jobId, edit).subscribe((item) => {
-        this.getItem();
+  updateMeasure() {
+    const edit: MeasureEdit = JSON.parse(JSON.stringify(this.data))
+    this.service.put(edit.jobId, edit).subscribe((item) => {
+      this.getItem();
     });
 
-    }
+  }
 
 }

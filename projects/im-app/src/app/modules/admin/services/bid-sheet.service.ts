@@ -40,6 +40,22 @@ export class BidSheetService {
 
   }
 
+
+  put(id: number, item: BidSheet): Observable<BidSheet> {
+    console.log(item);
+    this.busyService.AddBusy();
+    const href = environment.msalConfig.resources.imApi.endpoint + 'bid';
+    let requestUrl = `${href}/${id}`;
+
+    console.log("about to http client put");
+    return this._httpClient.put<BidSheet>(requestUrl, item, httpOptions)
+    .pipe(
+      catchError(err => this.handleError(err)),
+      finalize(() => this.busyService.RemoveBusy())
+    );
+    console.log("http client put complete");
+  }
+
   private handleError(error: HttpErrorResponse) {
     //    this.busyService.RemoveBusy();
     if (error.error instanceof ErrorEvent) {

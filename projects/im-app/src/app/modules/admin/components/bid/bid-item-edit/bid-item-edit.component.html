@@ -1,15 +1,14 @@
 <div class="PageContainer container mat-elevation-z8" >
   <h1 mat-dialog-title>Bid Item Edit</h1>
   <div mat-dialog-content class="container" [formGroup]="form">
+    <input [hidden]="true" type="number" formControlName="id" placeholder="id">
+    <input [hidden]="true" type="checkbox" formControlName="deleted" placeholder="deleted">
+    <input hidden="true" type="number" formControlName="categoryId" placeholder="1">
+    <input hidden="true" type="number" formControlName="row" placeholder="1">
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>Category</mat-label>
       <input matInput type="text" placeholder="Flooring" uppercase maxlength="255" formControlName="category" />
       <mat-error *ngIf="displayMessage['category']">{{displayMessage['category']}}</mat-error>
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="fill">
-      <mat-label>Sub Cateory</mat-label>
-      <input matInput input="text" placeholder="Hardwood" uppercase maxlength="255" formControlName="subCategory" />
-      <mat-error *ngIf="displayMessage['subCategory']">{{displayMessage['subCategory']}}</mat-error>
     </mat-form-field>
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>Description</mat-label>
@@ -31,7 +30,7 @@
   </div>
   <div mat-dialog-actions>
     <button mat-button (click)="onCancel()">Cancel</button>
-    <button mat-raised-button (click)="onSave()" color="primary" [disabled]="!form.valid || form.pristine">
+    <button mat-raised-button (click)="onSave()" color="primary" [disabled]="!form.valid || !isDirty()">
       Save
     </button>
   </div>

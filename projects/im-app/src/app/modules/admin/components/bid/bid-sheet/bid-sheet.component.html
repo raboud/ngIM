@@ -3,8 +3,8 @@
     Preliminary
   </h2>
 <div class="BidSheet action-buttons PageContainer">
-  <button mat-raised-button color="primary" (click)="accordion?.openAll()">Expand All</button>
-  <button mat-raised-button color="primary" (click)="accordion?.closeAll()">Collapse All</button>
+  <button type="button" mat-raised-button color="primary" (click)="accordion?.openAll()">Expand All</button>
+  <button type="button" mat-raised-button color="primary" (click)="accordion?.closeAll()">Collapse All</button>
   <mat-checkbox [(ngModel)]="showAll">Show All</mat-checkbox>
   <mat-checkbox [(ngModel)]="showDeleted">Show Deleted</mat-checkbox>
   <mat-checkbox [(ngModel)]="showRow">Show Row</mat-checkbox>

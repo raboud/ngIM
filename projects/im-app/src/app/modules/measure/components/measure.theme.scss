@@ -9,6 +9,16 @@
   $primary-palette: map.get($color-config, 'primary');
   $accent-palette: map.get($color-config, 'accent');
 
+ .MeasureTable tr:nth-child(even) .mat-cell{
+  color: mat.get-color-from-palette($accent-palette, 500);
+  }
+
+
+ .MeasureTable tr:nth-child(even) .mat-cell{
+  color: mat.get-color-from-palette($accent-palette, 500);
+  }
+
+
  .MeasureDetail .mat-icon{
   color: mat.get-color-from-palette($accent-palette, 500);
   }
@@ -16,6 +26,7 @@
   .MeasureDetail .mat-expansion-panel {
     border-color: mat.get-color-from-palette($primary-palette, 500);
   }
+
 }
 
 @mixin typography($theme) {

@@ -64,6 +64,7 @@ export class BidSheetComponent implements OnInit, OnChanges {
     dialogRef.afterClosed().subscribe((result) => {
       if (result != undefined) {
         item = Object.assign(item, result);
+        this.update();
       }
     });
 
@@ -80,6 +81,7 @@ export class BidSheetComponent implements OnInit, OnChanges {
     dialogRef.afterClosed().subscribe((result) => {
       if (result != undefined) {
         area.items.push(result);
+        this.update();
       }
     });
 
@@ -110,6 +112,7 @@ export class BidSheetComponent implements OnInit, OnChanges {
     dialogRef.afterClosed().subscribe((result) => {
       if (result != undefined) {
         this.data?.areas.push(result);
+        this.update();
       }
     });
   }
@@ -124,6 +127,7 @@ export class BidSheetComponent implements OnInit, OnChanges {
     dialogRef.afterClosed().subscribe((result) => {
       if (result != undefined) {
         area = Object.assign(area, result);
+        this.update();
       }
     });
 
@@ -141,4 +145,11 @@ export class BidSheetComponent implements OnInit, OnChanges {
   }
 
 
+  update() {
+    const edit: BidSheet = JSON.parse(JSON.stringify(this.data))
+    this.service.put(edit.jobId, edit).subscribe((item) => {
+      this.getItem();
+    });
+
+  }
 }
