@@ -11,126 +11,25 @@
   .table-container {
     position: relative;
     max-height: 600px;
-    overflow: auto;
   }
+
+  th, td {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+
+  .mat-cell,
+.mat-header-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 
   mat-table {
     width: 100%;
     table-layout: fixed;
-  }
 
-  .mat-column-name {
-    word-wrap: break-word !important;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    word-break: break-word;
-
-    white-space: unset !important;
-    flex: 0 0 20% !important;
-    width: 20% !important;
-
-
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-  }
-
-  .mat-column-line1 {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 30% !important;
-    width: 30% !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-
-    word-break: break-word;
-
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-  }
-
-  .mat-column-city {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 15% !important;
-    width: 15% !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-
-    word-break: break-word;
-
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-  }
-
-
-  .mat-column-state {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 5% !important;
-    width: 5% !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-
-    word-break: break-word;
-
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-  }
-
-  .mat-column-zip {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 10% !important;
-    width: 10% !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-
-    word-break: break-word;
-
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-  }
-
-  .mat-column-status {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 10% !important;
-    width: 10% !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-
-    word-break: break-word;
-
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-  }
-
-  .mat-column-date {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 10% !important;
-    width: 10% !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-
-    word-break: break-word;
-
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
   }
 
   .mat-footer-row, .mat-header-row, .mat-row {
@@ -139,7 +38,11 @@
     line-height: 1.5em;
 
 }
-
+/*
+tr {
+  width: 1600px;
+}
+*/
 /*
 .mat-row:nth-child(even){
   background-color: mat-color($_foreground, text);
@@ -174,3 +77,46 @@
 .custom-file-upload > input {
   display: none;
 }
+
+@mixin mat-table-columns($columns)
+    {
+        .mat-column-
+        {
+            @each $colName, $props in $columns {
+
+                $width: map-get($props, 'width');
+
+                &#{$colName}
+                {
+//                    flex: 0 0 $width;
+                    width: $width !important;
+                    min-width: $width !important;
+                    max-width: $width !important;
+
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    visibility: visible;
+
+                    @if map-has-key($props, 'color')
+                    {
+                        color: map-get($props, 'color');
+                    }
+                }
+            }
+        }
+    }
+
+
+    @include mat-table-columns((
+
+      id: (width: 0, color: gray),
+      name: (width: 200px, color: grey),
+      line1: (width: 400px),
+
+      city: (width: 200px),
+      state: (width: 5%),
+      zip: (width: 10%),
+      status: (width: 10%),
+      date:(width: 10%),
+      ourTotal:(width: 10%)
+  ));

@@ -30,8 +30,8 @@
     @include color($theme);
   }
 
-  $typography-config: mat.get-typography-config($theme);
-  @if $typography-config != null {
-    @include typography($theme);
-  }
+  //$typography-config: mat.get-typography-config($theme);
+  //@if $typography-config != null {
+  //  @include typography($theme);
+  //}
 }
