@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChildren  } from '@angular/core';
-import { UntypedFormBuilder, FormControlName, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { fromEvent, merge, Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -22,7 +22,7 @@ export class BidItemEditComponent implements OnInit, AfterViewInit {
   displayMessage: { [key: string]: string } = {};
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
-  form: UntypedFormGroup = this.fb.group({
+  form: FormGroup = this.fb.group({
     id: [this.data?.id],
     category: [
       this.data?.category,
@@ -39,7 +39,7 @@ export class BidItemEditComponent implements OnInit, AfterViewInit {
 
   constructor(public dialogRef: MatDialogRef<BidItemEditComponent>,
     private service: BidSheetService,
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     //    private currencyPipe: CurrencyPipe,
 
     @Inject(MAT_DIALOG_DATA) public data: BidItemEdit

@@ -8,9 +8,9 @@ import {
 } from '@angular/core';
 import { formatDate,CurrencyPipe } from '@angular/common';
 import {
-  UntypedFormBuilder,
+  FormBuilder,
   FormControlName,
-  UntypedFormGroup,
+  FormGroup,
   Validators,
 } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -36,7 +36,7 @@ export class JobEditComponent implements OnInit, AfterViewInit, IsDirty {
   private genericValidator: GenericValidator;
   private originalData: string = "";
 
-  form: UntypedFormGroup = this.fb.group({
+  form: FormGroup = this.fb.group({
     address1: [
       this.data.address1,
       [Validators.required, Validators.maxLength(255)],
@@ -64,7 +64,7 @@ export class JobEditComponent implements OnInit, AfterViewInit, IsDirty {
   constructor(
     public dialogRef: MatDialogRef<JobEditComponent>,
     private service: JobService,
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
 
     @Inject(MAT_DIALOG_DATA) public data: JobEdit
   ) {
