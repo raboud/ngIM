@@ -20,8 +20,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   constructor(
     private authService: MsalService,
     private router: Router
-    //    ,
-    //    private alertService: AlertService
+
   ) {
     console.log('AuthGuard');
   }
