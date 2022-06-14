@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChildren } from '@angular/core';
-import { FormArray, FormBuilder, FormControlName, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, FormControlName, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { fromEvent, merge, Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -25,7 +25,7 @@ export class MeasureRoomEditComponent implements OnInit, AfterViewInit {
   displayMessage: { [key: string]: string } = {};
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
-  form: FormGroup = this.fb.group({
+  form: UntypedFormGroup = this.fb.group({
     id: [this.data?.id],
     room: [this.data?.room],
     description: [this.data?.description],
@@ -40,7 +40,7 @@ export class MeasureRoomEditComponent implements OnInit, AfterViewInit {
 
   constructor(public dialogRef: MatDialogRef<MeasureRoomEditComponent>,
     private service: MeasureService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     //    private currencyPipe: CurrencyPipe,
 
     @Inject(MAT_DIALOG_DATA) public data: MeasureRoomEdit
@@ -105,7 +105,7 @@ export class MeasureRoomEditComponent implements OnInit, AfterViewInit {
 
 
   get cuts() {
-    return this.form.controls["cuts"] as FormArray;
+    return this.form.controls["cuts"] as UntypedFormArray;
   }
 
   addCut(cut: Cut | null) {
@@ -136,14 +136,14 @@ export class MeasureRoomEditComponent implements OnInit, AfterViewInit {
       this.data.cuts.splice(cutIndex, 1);
     }
     else {
-      const cutForm: FormGroup = this.cuts.at(cutIndex) as FormGroup
+      const cutForm: UntypedFormGroup = this.cuts.at(cutIndex) as UntypedFormGroup
       cutForm.controls["deleted"].setValue(true);
     }
     this.form.updateValueAndValidity();
   }
 
   restoreCut(cutIndex: number) {
-    const cutForm: FormGroup = this.cuts.at(cutIndex) as FormGroup
+    const cutForm: UntypedFormGroup = this.cuts.at(cutIndex) as UntypedFormGroup
     cutForm.controls["deleted"].setValue(false);
     this.form.updateValueAndValidity();
   }
@@ -153,12 +153,12 @@ export class MeasureRoomEditComponent implements OnInit, AfterViewInit {
   }
 
   isCutDeleted(cutIndex: number): boolean{
-    const cutForm: FormGroup = this.cuts.at(cutIndex) as FormGroup
+    const cutForm: UntypedFormGroup = this.cuts.at(cutIndex) as UntypedFormGroup
     return cutForm.controls["deleted"].value;
   }
 
   get transitions() {
-    return this.form.controls["transitions"] as FormArray;
+    return this.form.controls["transitions"] as UntypedFormArray;
   }
 
 
@@ -193,7 +193,7 @@ export class MeasureRoomEditComponent implements OnInit, AfterViewInit {
       this.data.transitions.splice(transIndex, 1);
     }
     else {
-      const transForm: FormGroup = this.transitions.at(transIndex) as FormGroup
+      const transForm: UntypedFormGroup = this.transitions.at(transIndex) as UntypedFormGroup
       transForm.controls["deleted"].setValue(true);
     }
     this.form.updateValueAndValidity();
@@ -203,7 +203,7 @@ export class MeasureRoomEditComponent implements OnInit, AfterViewInit {
   }
 
   restoreTransition(transIndex: number) {
-    const transForm: FormGroup = this.transitions.at(transIndex) as FormGroup
+    const transForm: UntypedFormGroup = this.transitions.at(transIndex) as UntypedFormGroup
     transForm.controls["deleted"].setValue(false);
     this.form.updateValueAndValidity();
   }
@@ -213,7 +213,7 @@ export class MeasureRoomEditComponent implements OnInit, AfterViewInit {
   }
 
   isTransationDeleted(transIndex: number): boolean {
-    const transForm: FormGroup = this.transitions.at(transIndex) as FormGroup
+    const transForm: UntypedFormGroup = this.transitions.at(transIndex) as UntypedFormGroup
     return transForm.controls["deleted"].value;
   }
 

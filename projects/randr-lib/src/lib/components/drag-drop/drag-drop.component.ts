@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, FormArray } from "@angular/forms";
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DragdropService } from '../../services/drag-drop.service';
@@ -13,11 +13,11 @@ export class DragDropComponent implements OnInit {
   fileArr = [];
   imgArr = [];
   fileObj = [];
-  form: FormGroup;
+  form: UntypedFormGroup;
   msg: string = "";
   progress: number = 0;
   constructor(
-    public fb: FormBuilder,
+    public fb: UntypedFormBuilder,
     private sanitizer: DomSanitizer,
     public dragdropService: DragdropService
   ) {

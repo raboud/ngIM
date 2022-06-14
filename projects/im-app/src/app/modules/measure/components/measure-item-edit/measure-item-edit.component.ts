@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChildren  } from '@angular/core';
-import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, FormControlName, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { fromEvent, merge, Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -20,7 +20,7 @@ export class MeasureItemEditComponent implements OnInit, AfterViewInit {
   displayMessage: { [key: string]: string } = {};
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
-  form: FormGroup = this.fb.group({
+  form: UntypedFormGroup = this.fb.group({
     id: [this.data?.id ],
     material: [this.data?.material,  [Validators.required, Validators.maxLength(255)]],
     deleted: [this.data?.deleted],
@@ -30,7 +30,7 @@ export class MeasureItemEditComponent implements OnInit, AfterViewInit {
   });
 
   constructor(public dialogRef: MatDialogRef<MeasureItemEditComponent>,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     //    private currencyPipe: CurrencyPipe,
 
     @Inject(MAT_DIALOG_DATA) public data: MeasureItemEdit

@@ -49,7 +49,7 @@ const isIframe = window !== window.parent && !window.opener;
   imports: [RouterModule.forRoot(routes, {
     // useHash: true,
     // Don't perform initial navigation in iframes
-    initialNavigation: !isIframe ? 'enabled' : 'disabled'
+    initialNavigation: !isIframe ? 'enabledNonBlocking' : 'disabled'
   })],
   exports: [RouterModule]
 })
