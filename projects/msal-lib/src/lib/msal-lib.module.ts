@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
-import { LoginSubMenuComponent } from './login-sub-menu.component';
-
-//import { environment } from '../../../im-app/src/environments/environment';
-
-import { RandrLibModule } from 'randr-lib';
 import { CommonModule } from '@angular/common';
-import { MatLibModule } from 'mat-lib';
+import { MatMenuModule } from '@angular/material/menu';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MsalGuard, MsalInterceptor, MsalBroadcastService, MsalInterceptorConfiguration, MsalModule, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG, MsalGuardConfiguration, MsalRedirectComponent } from '@azure/msal-angular';
+
+import { RandrLibModule } from 'randr-lib';
+
+import { LoginSubMenuComponent } from './login-sub-menu.component';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { RoleGuard } from './role.guard';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -21,10 +21,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     CommonModule,
     RandrLibModule,
     MsalModule,
-    MatLibModule,
     MsalModule,
     HttpClientModule,
-
+    MatMenuModule,
+    MatButtonModule,
   ],
   exports: [
     LoginSubMenuComponent,
@@ -38,7 +38,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
       provide: HTTP_INTERCEPTORS,
       useClass: MsalInterceptor,
       multi: true
-    },    
+    },
     AuthGuard,
     AuthService,
     RoleGuard
