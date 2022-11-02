@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class StorageService {
-  private storage: any;
+  private storage: Storage;
 
   constructor() {
       this.storage = sessionStorage; // localStorage;
@@ -14,7 +14,7 @@ export class StorageService {
       const item = this.storage.getItem(key);
 
       if (item && item !== 'undefined') {
-          return JSON.parse(this.storage.getItem(key));
+          return JSON.parse(item);
       }
 
       return;
