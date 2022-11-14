@@ -38,6 +38,7 @@ export interface BidItem {
 
 export interface BidItemEdit {
   id: number,
+  areaId: number,
   category: string,
   categoryId: number,
   description: string,

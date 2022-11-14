@@ -56,7 +56,7 @@
             <td class="col-1 right td">{{item.unitCost * item.quantity | currency:'USD'}}</td>
             <td *ngIf="showRow" class="col-1 center td">{{item.row}}</td>
             <td class="td col-1 center">
-              <mat-icon (click)="editItem(item)" aria-hidden="false" aria-label="Example home icon"
+              <mat-icon (click)="editItem(item, area.id)" aria-hidden="false" aria-label="Example home icon"
                 matTooltip="Edit Item">edit</mat-icon>
               <mat-icon (click)="deleteItem(item)" *ngIf="!item.deleted" aria-hidden="false"
                 aria-label="Example home icon" matTooltip="Delete Item">delete</mat-icon>

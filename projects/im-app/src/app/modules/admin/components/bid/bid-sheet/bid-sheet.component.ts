@@ -3,7 +3,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@
 import { MatAccordion } from '@angular/material/expansion';
 import { MatDialog } from '@angular/material/dialog';
 
-import { BidArea, BidAreaEdit, BidItem, BidSheet } from '../../../models/bidsheet.model';
+import { BidArea, BidAreaEdit, BidItem, BidItemEdit, BidSheet } from '../../../models/bidsheet.model';
 import { BidSheetService } from '../../../services/bid-sheet.service';
 import { BidItemEditComponent } from '../bid-item-edit/bid-item-edit.component';
 import { BidAreaEditComponent } from '../bid-area-edit/bid-area-edit.component';
@@ -55,10 +55,13 @@ export class BidSheetComponent implements OnInit, OnChanges {
 
   }
 
-  editItem(item: BidItem) {
+  editItem(item: BidItem, areaId: number) {
+    const dataIn: BidItemEdit = JSON.parse(JSON.stringify(item));
+    dataIn.areaId = areaId;
+
     const dialogRef = this.dialog.open(BidItemEditComponent, {
       width: '700px',
-      data: JSON.parse(JSON.stringify(item))
+      data: dataIn
     });
 
     dialogRef.afterClosed().subscribe((result) => {
