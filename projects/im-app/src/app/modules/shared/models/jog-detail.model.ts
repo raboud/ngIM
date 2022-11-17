@@ -10,19 +10,16 @@ export interface JobDetail {
   date: Date;
   squareFoot: string;
   bedBath: string;
-
   lockBox: string;
   gateCode: string;
   garageCode: string;
-
   year: string;
-
   renovationBudget: number;
-
   projectEndDate: Date;
   renoTotal: number;
   ourTotal: number;
-  status: string;
+  status: number;
+  statusTitle: string;
 }
 
 export interface BidSheetList {

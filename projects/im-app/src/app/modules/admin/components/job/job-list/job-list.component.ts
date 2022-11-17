@@ -2,10 +2,13 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { ActivatedRoute } from '@angular/router';
 import { ThrottlingUtils } from '@azure/msal-common';
 import { PaginatedDataSource, Sort } from 'randr-lib';
 import { JobList } from '../../../../shared/models/job-list.model';
+import { List } from '../../../../shared/models/list.model';
 import { JobListQuery, JobService } from '../../../../shared/services/job.service';
+import { ListService } from '../../../../shared/services/list.service';
 
 @Component({
   selector: 'app-job-list',
@@ -14,6 +17,8 @@ import { JobListQuery, JobService } from '../../../../shared/services/job.servic
 })
 export class JobListComponent {
   psort: Sort<JobList> = {property: 'address1', order: '' };
+
+  statuses: List[]= [];
 
   dataSource: PaginatedDataSource<JobList, JobListQuery>
     = new PaginatedDataSource<JobList, JobListQuery>(
@@ -24,11 +29,27 @@ export class JobListComponent {
 
   resultsLength = 0;
   pageSize = 20;
+  id?: number;
 
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
 
-  constructor(private dataService: JobService, private http: HttpClient) { }
+  constructor(private dataService: JobService, private listService: ListService, private http: HttpClient, private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.listService.getJobStatuses().subscribe((stats) =>
+    {
+      this.statuses = stats;
+     });
+    this.route.params.subscribe((params) => {
+      this.id = +params['id']; // (+) converts string 'id' to a number
+      console.log(this.id);
+      if (this.id)
+      {
+        this.dataSource.queryBy({clientid: this.id});
+      }
+    });
+  }
 
   select(id: number){
     console.log(id);
@@ -55,6 +76,11 @@ export class JobListComponent {
   onChange(event:any ) {
     console.log("onChange " + event)
     this.onFileChange(event.target.files);
+  }
+
+  onStatusChange(jobId:number, status: number) {
+    this.dataService.updateStatus(jobId, status).subscribe();
+    console.log('status ' + status + ' - JobId ' + jobId);
   }
 
   private onFileChange(files: any) {

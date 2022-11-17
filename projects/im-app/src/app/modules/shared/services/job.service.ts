@@ -105,6 +105,18 @@ export class JobService {
     );
   }
 
+  updateStatus(id: number, status: number): Observable<boolean> {
+    this.busyService.AddBusy();
+    const href = environment.msalConfig.resources.imApi.endpoint + 'job';
+    let requestUrl = `${href}/${id}/status`;
+
+    return this._httpClient.put<boolean>(requestUrl, status, httpOptions).pipe(
+      catchError((err) => this.handleError(err)),
+      finalize(() => this.busyService.RemoveBusy())
+    );
+
+  }
+
   private handleError(error: HttpErrorResponse) {
     //    this.busyService.RemoveBusy();
     if (error.error instanceof ErrorEvent) {

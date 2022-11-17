@@ -4,6 +4,7 @@
 @use './app/modules/admin/components/job/job-list/job-list.theme.scss' as joblist;
 
 @use './app/modules/measure/components/measure.theme.scss' as measure;
+@use './app/modules/secure/Components/client/client.theme.scss' as client;
 // For more information: https://material.angular.io/guide/theming
 // Plus imports for other components in your app.
 
@@ -51,6 +52,7 @@ $app-light-theme: mat-light-theme($mat-primary-palette, $mat-accent-palette);
   @include bid.theme($app-light-theme);
   @include joblist.theme($app-light-theme);
   @include measure.theme($app-light-theme);
+  @include client.theme($app-light-theme);
 }
 
 $app-dark-theme: mat-dark-theme($mat-primary-palette, $mat-accent-palette);
@@ -59,6 +61,7 @@ $app-dark-theme: mat-dark-theme($mat-primary-palette, $mat-accent-palette);
   @include bid.theme($app-dark-theme);
   @include joblist.theme($app-dark-theme);
   @include measure.theme($app-dark-theme);
+  @include client.theme($app-dark-theme);
 
   background-color: #333;
   color: whitesmoke;

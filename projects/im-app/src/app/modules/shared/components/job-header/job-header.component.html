@@ -24,7 +24,7 @@
         <div class="col m-1">
           <h2>Project</h2>
           <lib-display-data title="End Date" data="{{ data?.projectEndDate | date: 'mediumDate' }}"></lib-display-data>
-          <lib-display-data title="Status" data="{{ data?.status }}"></lib-display-data>
+          <lib-display-data title="Status" data="{{ data?.statusTitle }}"></lib-display-data>
           <lib-display-data title="Reno Budget" data="{{ data?.renovationBudget | currency:'USD' }}">
           </lib-display-data>
           <lib-display-data title="Our Total" data="{{ data?.ourTotal | currency:'USD' }}"></lib-display-data>

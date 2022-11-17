@@ -5,10 +5,12 @@ import { AuthGuard, RoleGuard } from 'msal-lib';
 
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { CustomerComponent } from './Components/customer/customer.component';
+import { ClientComponent } from './Components/client/client.component';
 
 const routes: Routes = [
   { path: 'dashboard', canActivate: [], component: DashboardComponent },
   { path: 'customer', canActivate: [AuthGuard], component: CustomerComponent },
+  { path: 'client', canActivate: [AuthGuard], component: ClientComponent },
 
 
 //  { path: 'manager', loadChildren: () => import('./modules/manager/manager.module').then(m => m.ManagerModule) },

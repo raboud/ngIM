@@ -8,5 +8,6 @@ export interface JobList {
   zipCode: string;
   projectEndDate: Date;
   ourTotal: number;
-  status: string;
+  status: number
+//  statusTitle: string;
 }

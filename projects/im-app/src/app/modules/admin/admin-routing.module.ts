@@ -9,7 +9,8 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
 
 const routes: Routes = [
   { path: 'jobs', component: JobListComponent },
-  { path: 'jobs/:id', component: JobDetailComponent },
+  { path: 'jobs/:id', component: JobListComponent },
+  { path: 'job/:id', component: JobDetailComponent },
   { path: 'users', component: UserListComponent },
 
 

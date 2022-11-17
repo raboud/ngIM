@@ -1,6 +1,5 @@
 export interface JobEdit {
   id: number;
-//  name: string;
   propertyCode: string;
   address1: string;
   address2: string;
@@ -9,19 +8,14 @@ export interface JobEdit {
   zipCode: string;
   squareFoot: string;
   bedBath: string;
-
   lockBox: string;
   gateCode: string;
   garageCode: string;
-
   year: string;
-
   renovationBudget: number;
-
   projectEndDate: Date;
-//  renoTotal: number;
   ourTotal: number;
-//  status: string;
+  status: number;
 }
 
 export interface Address {

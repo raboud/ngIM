@@ -111,7 +111,9 @@
           Status
         </th>
         <td mat-cell *matCellDef="let row">
-          {{row.status}}
+            <mat-select [(value)]="row.status" placeholder="Favorite" (selectionChange)="onStatusChange(row.id, row.status)">
+              <mat-option *ngFor="let status of statuses" [value]="status.id">{{status.title}}</mat-option>
+            </mat-select>
         </td>
       </ng-container>
 
@@ -136,7 +138,7 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns" class="full"></tr>
-      <tr mat-row routerLink="/admin/jobs/{{row.id}}" (dblclick)="select(row.id)"
+      <tr mat-row (dblclick)="select(row.id)"
         *matRowDef="let row; columns: displayedColumns;" class="full"></tr>
     </mat-table>
   </div>

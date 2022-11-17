@@ -8,6 +8,7 @@ import { JobHeaderComponent } from './components/job-header/job-header.component
 import { JobEditComponent } from './components/job-edit/job-edit.component';
 import { JobService } from './services/job.service';
 import { MsalLibModule } from 'msal-lib';
+import { ListService } from './services/list.service';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { MsalLibModule } from 'msal-lib';
     MsalLibModule,
    ],
   providers:[
-    JobService
+    JobService,
+    ListService
   ],
   exports:[
     JobHeaderComponent,
