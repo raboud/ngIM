@@ -14,8 +14,13 @@ import { BidItemEditComponent } from './components/bid/bid-item-edit/bid-item-ed
 import { BidSheetComponent } from './components/bid/bid-sheet/bid-sheet.component';
 import { BidSheetsComponent } from './components/bid/bid-sheets/bid-sheets.component';
 import { ImagesComponent } from './components/images/images/images.component';
+import { ImagesContainerComponent } from './components/images/image-container/images-container.component';
 import { JobDetailComponent } from './components/job/job-detail/job-detail.component';
 import { JobListComponent } from './components/job/job-list/job-list.component';
+import { LogComponent } from './components/log/log.component';
+import { SummaryComponent } from './components/summary/summary/summary.component';
+import { SummaryAreaEditComponent } from './components/summary/summary-area-edit/summary-area-edit.component';
+import { SummaryItemEditComponent } from './components/summary/summary-item-edit/summary-item-edit.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { WorkOrderComponent } from './components/work-order/work-order.component';
 
@@ -26,7 +31,6 @@ import { WorkOderService } from './services/work-oder.service';
 
 import { MeasureModule } from '../measure/measure.module';
 import { SahredModule } from '../shared/shared.module';
-import { ImagesContainerComponent } from './components/images/image-container/images-container.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,10 @@ import { ImagesContainerComponent } from './components/images/image-container/im
     ImagesContainerComponent,
     JobDetailComponent,
     JobListComponent,
+    LogComponent,
+    SummaryComponent,
+    SummaryAreaEditComponent,
+    SummaryItemEditComponent,
     UserListComponent,
     WorkOrderComponent,
   ],

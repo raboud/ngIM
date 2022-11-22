@@ -1,0 +1,17 @@
+<div class="PageContainer container mat-elevation-z8" >
+  <h1 mat-dialog-title>Summary Item Edit</h1>
+  <div mat-dialog-content class="container" [formGroup]="form">
+    <input [hidden]="true" type="number" formControlName="id" placeholder="id">
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Description</mat-label>
+      <input matInput type="text" placeholder="INSTALL AND STAIN" uppercase formControlName="description" />
+      <mat-error *ngIf="displayMessage['description']">{{displayMessage['description']}}</mat-error>
+    </mat-form-field>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button (click)="onSave()" color="primary" [disabled]="!form.valid || !isDirty()">
+      Save
+    </button>
+  </div>
+</div>

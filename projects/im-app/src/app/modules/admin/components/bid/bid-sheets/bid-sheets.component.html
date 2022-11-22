@@ -39,5 +39,6 @@
   </table>
 </div>
 <div *ngIf="data.length > 0">
-  <app-bid-sheet [bidId]=selectedId></app-bid-sheet>
+  <app-bid-sheet [bidId]="selectedId"></app-bid-sheet>
+  <app-summary [bidId]="selectedId"></app-summary>
 </div>

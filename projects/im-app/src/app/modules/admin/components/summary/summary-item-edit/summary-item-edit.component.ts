@@ -6,16 +6,16 @@ import { debounceTime } from 'rxjs/operators';
 
 import { GenericValidator } from 'randr-lib';
 
-import { BidAreaItemEdit, BidItemEdit } from '../../../models/bidsheet.model';
+import { SummaryItemEdit } from '../../../models/summary.model';
 import { BidSheetService } from '../../../services/bid-sheet.service';
 
 @Component({
-  selector: 'app-bid-item-edit',
-  templateUrl: './bid-item-edit.component.html',
-  styleUrls: ['./bid-item-edit.component.scss']
+  selector: 'app-summary-item-edit',
+  templateUrl: './summary-item-edit.component.html',
+  styleUrls: ['./summary-item-edit.component.scss']
 })
 
-export class BidItemEditComponent implements OnInit, AfterViewInit {
+export class SummaryItemEditComponent implements OnInit, AfterViewInit {
   @ViewChildren(FormControlName, { read: ElementRef })
   formInputElements: ElementRef[] = [];
 
@@ -23,26 +23,17 @@ export class BidItemEditComponent implements OnInit, AfterViewInit {
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
   form: FormGroup = this.fb.group({
-    id: [this.data?.bidItemId],
-    category: [
-      this.data?.item.category,
-      [Validators.required, Validators.maxLength(255)],
-    ],
-    categoryId: [this.data?.item.categoryId],
-    description: [this.data?.item.description, [Validators.maxLength(1000)]],
-    quantity: [this.data?.quantity],
-    unitCost: [this.data?.unitCost],
-    ours: [this.data?.ours],
-    deleted: [this.data?.deleted],
-    row: [this.data?.row]
+    id: [this.data?.id],
+    categoryId: [this.data?.categoryId],
+    description: [this.data?.description, [Validators.maxLength(200)]],
   });
 
-  constructor(public dialogRef: MatDialogRef<BidItemEditComponent>,
+  constructor(public dialogRef: MatDialogRef<SummaryItemEditComponent>,
     private service: BidSheetService,
     private fb: FormBuilder,
     //    private currencyPipe: CurrencyPipe,
 
-    @Inject(MAT_DIALOG_DATA) public data: BidAreaItemEdit
+    @Inject(MAT_DIALOG_DATA) public data: SummaryItemEdit
   ) {
     this.validationMessages = {
       description: {
@@ -71,7 +62,7 @@ export class BidItemEditComponent implements OnInit, AfterViewInit {
 
   onSave(): void {
     let a = this.form.value;
-    a.id = this.data.bidItemId;
+    a.id = this.data.id;
     this.dialogRef.close(a);
   }
 
@@ -82,7 +73,7 @@ export class BidItemEditComponent implements OnInit, AfterViewInit {
 
   isDirty(): boolean | Observable<boolean> {
     let a = this.form.value;
-    a.id = this.data.bidItemId;
+    a.id = this.data.id;
     return (JSON.stringify(this.data) != JSON.stringify(a));
   }
 }

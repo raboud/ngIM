@@ -1,8 +1,9 @@
+import { BidAreaEditComponent } from "../components/bid/bid-area-edit/bid-area-edit.component"
+
 export interface BidSheet {
     jobId: number,
     preliminary: boolean,
-    areas: BidArea[],
-    logs: Log[],
+    areas: BidArea[]
 }
 
 export interface BidArea {
@@ -12,7 +13,36 @@ export interface BidArea {
   notes: string,
   row: number,
   deleted: boolean,
-  items: BidItem[]
+  areaItems: BidAreaItem[]
+}
+
+export interface BidAreaItem{
+  bidAreaId: number,
+  bidItemId: number,
+  ours: boolean,
+  deleted: boolean,
+  quantity: number,
+  unitCost: number,
+  row: number,
+  item: BidItem
+}
+
+export interface BidItem {
+  id: number,
+  category: string,
+  categoryId: number,
+  description: string
+}
+
+export interface BidAreaItemEdit{
+  bidAreaId: number,
+  bidItemId: number,
+  ours: boolean,
+  deleted: boolean,
+  quantity: number,
+  unitCost: number,
+  row: number,
+  item: BidItemEdit
 }
 
 export interface BidAreaEdit {
@@ -24,33 +54,11 @@ export interface BidAreaEdit {
   deleted: boolean
 }
 
-export interface BidItem {
-    id: number,
-    category: string,
-    categoryId: number,
-    description: string,
-    quantity: number,
-    unitCost: number,
-    ours: boolean,
-    deleted: boolean,
-    row: number
-}
-
 export interface BidItemEdit {
   id: number,
   areaId: number,
   category: string,
   categoryId: number,
-  description: string,
-  quantity: number,
-  unitCost: number,
-  ours: boolean,
-  deleted: boolean,
-  row: number
+  description: string
 }
 
-export interface Log{
-  id: number,
-  logLeve: string,
-  message: string,
-}

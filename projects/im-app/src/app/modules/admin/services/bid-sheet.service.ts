@@ -7,6 +7,8 @@ import { AlertService, BusyService } from 'randr-lib';
 
 import { environment } from 'projects/im-app/src/environments/environment';
 import { BidSheet } from '../models/bidsheet.model';
+import { Log } from '../models/log.model';
+import { Summary } from '../models/summary.model';
 
 
 const httpOptions = {
@@ -40,6 +42,31 @@ export class BidSheetService {
 
   }
 
+  getSummary(id: number): Observable<Summary> {
+    this.busyService.AddBusy();
+    const href = environment.msalConfig.resources.imApi.endpoint + 'bid';
+    let requestUrl = `${href}/${id}/summary`;
+
+    return this._httpClient.get<Summary>(requestUrl)
+      .pipe(
+        catchError(err => this.handleError(err)),
+        finalize(() => this.busyService.RemoveBusy())
+      );
+
+  }
+
+  getLogs(id: number): Observable<Log[]> {
+    this.busyService.AddBusy();
+    const href = environment.msalConfig.resources.imApi.endpoint + 'bid';
+    let requestUrl = `${href}/${id}/logs`;
+
+    return this._httpClient.get<Log[]>(requestUrl)
+      .pipe(
+        catchError(err => this.handleError(err)),
+        finalize(() => this.busyService.RemoveBusy())
+      );
+
+  }
 
   put(id: number, item: BidSheet): Observable<BidSheet> {
     console.log(item);

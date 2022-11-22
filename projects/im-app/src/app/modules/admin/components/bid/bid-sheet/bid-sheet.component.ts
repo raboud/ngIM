@@ -3,7 +3,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@
 import { MatAccordion } from '@angular/material/expansion';
 import { MatDialog } from '@angular/material/dialog';
 
-import { BidArea, BidAreaEdit, BidItem, BidItemEdit, BidSheet } from '../../../models/bidsheet.model';
+import { BidArea, BidAreaEdit, BidAreaItem, BidItem, BidItemEdit, BidSheet } from '../../../models/bidsheet.model';
 import { BidSheetService } from '../../../services/bid-sheet.service';
 import { BidItemEditComponent } from '../bid-item-edit/bid-item-edit.component';
 import { BidAreaEditComponent } from '../bid-area-edit/bid-area-edit.component';
@@ -43,20 +43,20 @@ export class BidSheetComponent implements OnInit, OnChanges {
     }
   }
 
-  hide(item: BidItem): boolean {
-    return (item.deleted && !this.showDeleted) || (!item.ours && !this.showAll);
+  hide(areaItem: BidAreaItem): boolean {
+    return (areaItem.deleted && !this.showDeleted) || (!areaItem.ours && !this.showAll);
   }
 
   hideArea(area: BidArea): boolean {
-    let anyNotDeleted: boolean = area.items.some(function (x) { return !x.deleted; });
-    let anyOurs: boolean = area.items.some(function (x) { return x.ours });
+    let anyNotDeleted: boolean = area.areaItems.some(function (x) { return !x.deleted; });
+    let anyOurs: boolean = area.areaItems.some(function (x) { return x.ours });
 
     return (!anyNotDeleted && !this.showDeleted) || (!anyOurs && !this.showAll) || (area.deleted && !this.showDeleted);
 
   }
 
-  editItem(item: BidItem, areaId: number) {
-    const dataIn: BidItemEdit = JSON.parse(JSON.stringify(item));
+  editItem(areaItem: BidAreaItem, areaId: number) {
+    const dataIn: BidItemEdit = JSON.parse(JSON.stringify(areaItem));
     dataIn.areaId = areaId;
 
     const dialogRef = this.dialog.open(BidItemEditComponent, {
@@ -66,7 +66,7 @@ export class BidSheetComponent implements OnInit, OnChanges {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result != undefined) {
-        item = Object.assign(item, result);
+        areaItem = Object.assign(areaItem, result);
         this.update();
       }
     });
@@ -83,19 +83,19 @@ export class BidSheetComponent implements OnInit, OnChanges {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result != undefined) {
-        area.items.push(result);
+        area.areaItems.push(result);
         this.update();
       }
     });
 
   }
 
-  deleteItem(item: BidItem) {
-    item.deleted = true;
+  deleteItem(areaItem: BidAreaItem) {
+    areaItem.deleted = true;
   }
 
-  restoreItem(item: BidItem) {
-    item.deleted = false;
+  restoreItem(areaItem: BidAreaItem) {
+    areaItem.deleted = false;
   }
 
   addArea() {
@@ -122,7 +122,7 @@ export class BidSheetComponent implements OnInit, OnChanges {
 
   editArea($event: any, area: BidArea) {
     $event.stopPropagation();
-    const {items, ...edit} = area;
+    const {areaItems, ...edit} = area;
     const dialogRef = this.dialog.open(BidAreaEditComponent, {
       width: '700px',
       data: edit });
