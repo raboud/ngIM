@@ -20,7 +20,7 @@
           {{item?.description}}
         </mat-panel-title>
         <mat-panel-description [ngClass]="{'oursdeleted': (isDeleted(item))}">
-          {{item?.description}}
+          {{item?.totalQuanity}} - {{item.totalCost | currency:'USD'}}
         </mat-panel-description>
         <mat-action-row>
           <mat-icon (click)="editItem($event, item)" aria-hidden="false" aria-label="Example home icon" matTooltip="Edit Area">

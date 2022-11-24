@@ -37,7 +37,7 @@ export class SummaryComponent implements OnInit, OnChanges {
   getItem() {
     if (this.bidId) {
       this.service.getSummary(this.bidId).subscribe((item) => {
-        this.data = item;
+        this.data = new Summary(item.jobId, item.preliminary, item.items);
         console.log(this.data);
       });
     }
