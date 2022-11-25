@@ -153,9 +153,5 @@ export class SummaryComponent implements OnInit, OnChanges {
 
   update() {
     const edit: Summary = JSON.parse(JSON.stringify(this.data))
-//    this.service.put(edit.jobId, edit).subscribe((item) => {
-//      this.getItem();
-//    });
-
   }
 }

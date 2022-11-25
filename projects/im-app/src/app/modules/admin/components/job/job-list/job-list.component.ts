@@ -1,6 +1,7 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+
 import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute } from '@angular/router';
 import { ThrottlingUtils } from '@azure/msal-common';
@@ -25,7 +26,7 @@ export class JobListComponent {
       (request, query) => this.dataService.getPage(request, query),
       this.psort,
       {lastname: ''});
-  displayedColumns: string[] = ['name', 'line1', 'city', 'state', 'zip', 'status', 'date', 'ourTotal'];
+  displayedColumns: string[] = ['name', 'line1', 'city', 'state', 'zip', 'date', 'ourTotal', 'status'];
 
   resultsLength = 0;
   pageSize = 20;
@@ -78,7 +79,9 @@ export class JobListComponent {
     this.onFileChange(event.target.files);
   }
 
-  onStatusChange(jobId:number, status: number) {
+  onStatusChange(event: any, jobId:number, status: number) {
+//    event.stopPropagation();
+    console.log(event);
     this.dataService.updateStatus(jobId, status).subscribe();
     console.log('status ' + status + ' - JobId ' + jobId);
   }

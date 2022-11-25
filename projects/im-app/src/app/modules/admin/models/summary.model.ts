@@ -25,11 +25,9 @@ export class SummaryItem {
     public itemAreas: SummaryItemArea[]
 
   ){
-    console.log("Constructor");
   }
 
   public get totalQuanity(): number {
-    console.log(this);
     const sum = this.itemAreas
       .filter(item => item.ours && !item.deleted)
       .reduce((sum, current) =>
@@ -39,7 +37,6 @@ export class SummaryItem {
   }
 
   public get totalCost(): number {
-    console.log(this);
     const sum = this.itemAreas
       .filter(item => item.ours && !item.deleted)
       .reduce((sum, current) =>
