@@ -3,41 +3,68 @@
 @include mat-core();
 
 .container {
-    position: relative;
-    min-height: 200px;
-    margin: 20px;
-  }
+  position: relative;
+  min-height: 200px;
+  margin: 20px;
+}
 
-  .table-container {
-    position: relative;
-    max-height: 600px;
-  }
+.table-container {
+  position: relative;
+  max-height: 600px;
+}
 
-  th, td {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+th,
+td {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
+th {
+  text-align: center !important;
+}
 
-  .mat-cell,
+.mat-header-cell {
+  text-align: center !important;
+}
+
+.mat-cell,
 .mat-header-cell {
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+:host ::ng-deep .mat-sort-header-container {
+  justify-content: center;
+}
 
-  mat-table {
-    width: 100%;
-    table-layout: fixed;
+.center {
+  text-align: center;
+}
 
-  }
+.left {
+  text-align: left;
+}
 
-  .mat-footer-row, .mat-header-row, .mat-row {
-    align-items: center;
-    height: 1.5em;
-    line-height: 1.5em;
+.right {
+  text-align: right;
+}
+
+
+.mat-table {
+  width: 100%;
+  table-layout: fixed;
 
 }
+
+.mat-footer-row,
+.mat-header-row,
+.mat-row {
+  align-items: center;
+  height: 1.5em;
+  line-height: 1.5em;
+
+}
+
 /*
 tr {
   width: 1600px;
@@ -58,8 +85,9 @@ tr {
   height: 50px;
   background-color: coral;
 }
+
 .dropdiv.processing {
-    display: none;
+  display: none;
 }
 
 .progress {
@@ -68,55 +96,61 @@ tr {
   height: 50px;
   background-color: gray;
 }
+
 .progress.processing {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.custom-file-upload > input {
+.custom-file-upload>input {
   display: none;
 }
 
-@mixin mat-table-columns($columns)
-    {
-        .mat-column-
-        {
-            @each $colName, $props in $columns {
+@mixin mat-table-columns($columns) {
+  .mat-column- {
 
-                $width: map-get($props, 'width');
+    @each $colName,
+    $props in $columns {
 
-                &#{$colName}
-                {
-//                    flex: 0 0 $width;
-                    width: $width !important;
-                    min-width: $width !important;
-                    max-width: $width !important;
+      $width: map-get($props, 'width');
 
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                    visibility: visible;
+      &#{$colName} {
+        //                    flex: 0 0 $width;
+        width: $width !important;
+        min-width: $width !important;
+        max-width: $width !important;
 
-                    @if map-has-key($props, 'color')
-                    {
-                        color: map-get($props, 'color');
-                    }
-                }
-            }
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        visibility: visible;
+        padding-right: 20px;
+        padding-left: 20px;
+
+        @if map-has-key($props, 'color') {
+          color: map-get($props, 'color');
         }
+
+        @if map-has-key($props, 'align') {
+          align-content: map-get($props, 'align');
+          ;
+          justify-content: map-get($props, 'align');
+          text-align: map-get($props, 'align');
+        }
+      }
     }
+  }
+}
 
 
-    @include mat-table-columns((
+@include mat-table-columns((
+  id: (width: 0),
+    name: (width: 200px),
+    line1: (width: 400px),
 
-      id: (width: 0, color: gray),
-      name: (width: 200px, color: grey),
-      line1: (width: 400px),
-
-      city: (width: 200px),
-      state: (width: 5%),
-      zip: (width: 10%),
-      status: (width: 10%),
-      date:(width: 10%),
-      ourTotal:(width: 10%)
-  ));
+    city: (width: 200px),
+    state: (width: 5%),
+    zip: (width: 10%),
+    date:(width: 10%),
+    ourTotal:(width: 10%, align: 'center'),
+    status: (width: 10%)));
