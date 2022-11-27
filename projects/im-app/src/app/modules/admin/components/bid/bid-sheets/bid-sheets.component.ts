@@ -17,6 +17,7 @@ export class BidSheetsComponent implements OnInit {
   data: BidSheetList[] = [];
   showDeleted: boolean = false;
   selectedId: number = 0;
+  summary: boolean = true;
 
   constructor(
     private service: JobService) { }

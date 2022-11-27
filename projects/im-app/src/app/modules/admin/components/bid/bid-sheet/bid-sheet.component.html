@@ -46,7 +46,8 @@
             <td class="col-1 center">Actions</td>
           </tr>
         </thead>
-        <tbody *ngFor="let areaItem of area.areaItems">
+        <tbody>
+          <ng-container *ngFor="let areaItem of area.areaItems">
           <tr *ngIf="!hide(areaItem)"
             [ngClass]="{'oursdeleted': ((areaItem.deleted || area.deleted) && areaItem.ours), 'othersdelete': ((areaItem.deleted || area.deleted) && !areaItem.ours), 'others': (!areaItem.deleted && !areaItem.ours) }">
             <td class="col-2 center td">{{areaItem.item.category}}</td>
@@ -64,6 +65,7 @@
                 aria-label="Example home icon" matTooltip="Undelete Item">restore</mat-icon>
             </td>
           </tr>
+          </ng-container>
         </tbody>
       </table>
 

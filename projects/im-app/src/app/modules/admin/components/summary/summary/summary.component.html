@@ -13,14 +13,28 @@
     add_box</mat-icon>
 </div>
 <mat-accordion class="BidSheet" multi>
+  <table class="SummaryTable">
+    <thead>
+      <tr>
+        <td class="col-5 left">Item</td>
+        <td class="col-1 center">Quantity</td>
+        <td class="col-1 center">Unit Cost</td>
+        <td class="col-1 center">Ext. Cost</td>
+        <td *ngIf="showRow" class="col-1 center">Row</td>
+        <td class="col-1 center">Actions</td>
+      </tr>
+    </thead>
+  </table>
+
+
+
   <div *ngFor="let item of data?.items">
-    <mat-expansion-panel [expanded]="true" *ngIf="!hideItem(item)" >
+    <mat-expansion-panel [expanded]="false" *ngIf="!hideItem(item)" >
       <mat-expansion-panel-header>
-        <mat-panel-title [ngClass]="{'oursdeleted': (isDeleted(item))}">
+<!--        <mat-panel-title [ngClass]="{'oursdeleted': (isDeleted(item))}">
           {{item?.description}}
         </mat-panel-title>
-        <mat-panel-description [ngClass]="{'oursdeleted': (isDeleted(item))}">
-          {{item?.totalQuanity}} - {{item.totalCost | currency:'USD'}}
+      <mat-panel-description [ngClass]="{'oursdeleted': (isDeleted(item))}">
         </mat-panel-description>
         <mat-action-row>
           <mat-icon (click)="editItem($event, item)" aria-hidden="false" aria-label="Example home icon" matTooltip="Edit Area">
@@ -32,34 +46,48 @@
           <mat-icon (click)="addArea($event, item)" aria-hidden="false" aria-label="Example home icon" matTooltip="Add Item">
             add_box</mat-icon>
         </mat-action-row>
+      -->
+      <table class="SummaryTable">
+          <tbody >
+            <tr >
+              <td class="col-5 td" [ngClass]="{'oursdeleted': (isDeleted(item))}"> {{item?.description}}</td>
+              <td class="col-1 center td">{{item?.totalQuanity}}</td>
+              <td class="col-1 right td"></td>
+              <td class="col-1 right td"> {{item.totalCost | currency:'USD'}}</td>
+              <td *ngIf="showRow" class="col-1 center td"></td>
+              <td class="td col-1 center">
+                <mat-icon (click)="editItem($event, item)" aria-hidden="false" aria-label="Example home icon" matTooltip="Edit Item">
+                  edit</mat-icon>
+                <mat-icon (click)="deleteItem($event, item)" *ngIf="!(isDeleted(item))" aria-hidden="false" aria-label="Example home icon"
+                  matTooltip="Delete Item">delete</mat-icon>
+                <mat-icon (click)="restoreItem($event, item)" *ngIf="(isDeleted(item))" aria-hidden="false" aria-label="Example home icon"
+                  matTooltip="Undelete Item">restore</mat-icon>
+                <mat-icon (click)="addArea($event, item)" aria-hidden="false" aria-label="Example home icon" matTooltip="Add Room">
+                  add_box</mat-icon>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
 
       </mat-expansion-panel-header>
-      <table class="table">
-        <thead>
-          <tr>
-            <td class="col-5 left">Room</td>
-            <td class="col-1 center">Quantity</td>
-            <td class="col-1 center">Unit Cost</td>
-            <td class="col-1 center">Ext. Cost</td>
-            <td *ngIf="showRow" class="col-1 center">Row</td>
-            <td class="col-1 center">Actions</td>
-          </tr>
-        </thead>
-        <tbody *ngFor="let itemArea of item.itemAreas">
-          <tr *ngIf="!hide(itemArea)"
+      <table class="SummaryTable">
+        <tbody>
+          <tr *ngFor="let itemArea of item.itemAreas" class="SummaryTable"
             [ngClass]="{'oursdeleted': (((isDeleted(item)) || itemArea.area.deleted) && itemArea.ours), 'othersdelete': ((itemArea.deleted || (isDeleted(item))) && !itemArea.ours), 'others': (!(isDeleted(item)) && !itemArea.ours) }">
-            <td class="col-5 td">{{itemArea.area.name}}</td>
+            <td class="col-1 right td"></td>
+            <td class="col-4 td">{{itemArea.area.name}}</td>
             <td class="col-1 center td">{{itemArea.quantity}}</td>
             <td class="col-1 right td">{{itemArea.unitCost | currency:'USD'}}</td>
             <td class="col-1 right td">{{itemArea.unitCost * itemArea.quantity | currency:'USD'}}</td>
             <td *ngIf="showRow" class="col-1 center td">{{itemArea.row}}</td>
             <td class="td col-1 center">
               <mat-icon (click)="editArea(itemArea, item.id)" aria-hidden="false" aria-label="Example home icon"
-                matTooltip="Edit Area">edit</mat-icon>
+                matTooltip="Edit Room">edit</mat-icon>
               <mat-icon (click)="deleteArea(itemArea)" *ngIf="!itemArea.deleted" aria-hidden="false"
-                aria-label="Example home icon" matTooltip="Delete Area">delete</mat-icon>
+                aria-label="Example home icon" matTooltip="Delete Room">delete</mat-icon>
               <mat-icon (click)="restoreArea(itemArea)" *ngIf="itemArea.deleted" aria-hidden="false"
-                aria-label="Example home icon" matTooltip="Undelete Area">restore</mat-icon>
+                aria-label="Example home icon" matTooltip="Undelete Room">restore</mat-icon>
             </td>
           </tr>
         </tbody>

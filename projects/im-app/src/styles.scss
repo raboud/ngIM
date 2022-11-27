@@ -1,7 +1,9 @@
 // Custom Theming for Angular Material
+@use 'sass:map';
 @use "@angular/material" as mat;
 @use './app/modules/admin/components/bid/bid.theme.scss' as bid;
 @use './app/modules/admin/components/job/job-list/job-list.theme.scss' as joblist;
+@use './app/modules/admin/components/summary/summary/summary.theme.scss' as summary;
 
 @use './app/modules/measure/components/measure.theme.scss' as measure;
 @use './app/modules/secure/Components/client/client.theme.scss' as client;
@@ -50,18 +52,33 @@ $app-light-theme: mat-light-theme($mat-primary-palette, $mat-accent-palette);
 .light-mode {
   @include angular-material-theme($app-light-theme);
   @include bid.theme($app-light-theme);
-  @include joblist.theme($app-light-theme);
+  @include joblist.theme($app-light-theme, false);
   @include measure.theme($app-light-theme);
   @include client.theme($app-light-theme);
+  @include summary.theme($app-light-theme, false);
+
+  $accent-palette: map.get($app-light-theme, 'accent');
+
+  table tr:nth-child(even) {
+    background-color: mat.get-color-from-palette($accent-palette, 500);
+  }
+
 }
 
 $app-dark-theme: mat-dark-theme($mat-primary-palette, $mat-accent-palette);
 .dark-mode {
   @include angular-material-theme($app-dark-theme);
   @include bid.theme($app-dark-theme);
-  @include joblist.theme($app-dark-theme);
+  @include joblist.theme($app-dark-theme, true);
   @include measure.theme($app-dark-theme);
   @include client.theme($app-dark-theme);
+  @include summary.theme($app-dark-theme, true);
+
+  $accent-palette: map.get($app-dark-theme, 'accent');
+
+  table tr:nth-child(even) {
+    color: mat.get-color-from-palette($accent-palette, 500);
+  }
 
   background-color: #333;
   color: whitesmoke;

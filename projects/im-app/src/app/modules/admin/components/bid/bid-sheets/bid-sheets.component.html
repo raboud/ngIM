@@ -39,6 +39,11 @@
   </table>
 </div>
 <div *ngIf="data.length > 0">
-  <app-bid-sheet [bidId]="selectedId"></app-bid-sheet>
-  <app-summary [bidId]="selectedId"></app-summary>
+  <mat-slide-toggle
+  [(ngModel)]="summary"
+  class="theme-toggle"
+  aria-label="Toggle Summary View"
+>Summary View</mat-slide-toggle>
+  <app-bid-sheet *ngIf="!summary" [bidId]="selectedId"></app-bid-sheet>
+  <app-summary *ngIf="summary" [bidId]="selectedId"></app-summary>
 </div>
