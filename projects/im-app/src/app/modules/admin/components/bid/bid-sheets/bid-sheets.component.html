@@ -16,8 +16,7 @@
       </tr>
     </thead>
     <tbody *ngFor="let bid of data">
-      <tr *ngIf="!hide(bid)"
-        [ngClass]="{'oursdeleted': (bid.deleted) }">
+      <tr *ngIf="!hide(bid)" [ngClass]="{'oursdeleted': (bid.deleted) }">
         <td class="td col-1 center">
           <mat-icon *ngIf="bid.id == selectedId" aria-hidden="false" aria-label="Selected">done
           </mat-icon>
@@ -27,23 +26,21 @@
         <td class="col-1 center td">{{bid.preliminary}}</td>
         <td class="col-1 right td">{{bid.modified}}</td>
         <td class="td col-1 center">
-          <mat-icon (click)="edit(bid)" aria-hidden="false" aria-label="Example home icon"
-            matTooltip="Edit">edit</mat-icon>
-          <mat-icon (click)="delete(bid)" *ngIf="!bid.deleted" aria-hidden="false"
-            aria-label="Example home icon" matTooltip="Delete">delete</mat-icon>
-          <mat-icon (click)="restore(bid)" *ngIf="bid.deleted" aria-hidden="false"
-            aria-label="Example home icon" matTooltip="Undelete">restore</mat-icon>
+          <mat-icon (click)="edit(bid)" aria-hidden="false" aria-label="Example home icon" matTooltip="Edit">edit
+          </mat-icon>
+          <mat-icon (click)="delete(bid)" *ngIf="!bid.deleted" aria-hidden="false" aria-label="Example home icon"
+            matTooltip="Delete">delete</mat-icon>
+          <mat-icon (click)="restore(bid)" *ngIf="bid.deleted" aria-hidden="false" aria-label="Example home icon"
+            matTooltip="Undelete">restore</mat-icon>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
 <div *ngIf="data.length > 0">
-  <mat-slide-toggle
-  [(ngModel)]="summary"
-  class="theme-toggle"
-  aria-label="Toggle Summary View"
->Summary View</mat-slide-toggle>
+  <mat-slide-toggle [(ngModel)]="summary" class="theme-toggle" aria-label="Toggle Summary View">Summary View
+  </mat-slide-toggle>
+  <app-log [bidId]="selectedId"></app-log>
   <app-bid-sheet *ngIf="!summary" [bidId]="selectedId"></app-bid-sheet>
   <app-summary *ngIf="summary" [bidId]="selectedId"></app-summary>
 </div>

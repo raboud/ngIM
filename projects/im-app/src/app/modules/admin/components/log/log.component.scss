@@ -1,0 +1,25 @@
+.Debug {
+  background-color: grey;
+}
+
+.Information {
+  background-color: Green;
+}
+
+.Warning {
+  background-color: yellow;
+}
+.Error {
+  background-color: purple;
+}
+
+.Critical {
+  background-color: red;
+}
+
+.table {
+  width: 100%;
+}
+
+table tr:nth-child(even) {
+}

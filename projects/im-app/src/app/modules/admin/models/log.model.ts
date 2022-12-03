@@ -1,5 +1,5 @@
 export interface Log{
   id: number,
-  logLeve: string,
+  logLevel: string,
   message: string,
 }
