@@ -11,7 +11,7 @@ import { JobEditComponent } from '../job-edit/job-edit.component';
 })
 export class JobHeaderComponent implements OnInit {
 @Input() id?: number;
-data: JobDetail | undefined;
+data?: JobDetail | undefined;
 
 constructor(
   public dialog: MatDialog,

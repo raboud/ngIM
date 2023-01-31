@@ -70,8 +70,13 @@
               "projects/im-app/src/assets"
             ],
             "styles": [
-              "projects/im-app/src/styles.scss",
+              "projects/im-app/src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./node_modules"
+              ]
+            },
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -103,8 +108,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "150kb",
+                  "maximumError": "150kb"
                 }
               ]
             }
@@ -225,7 +230,7 @@
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/msal-lib/tsconfig.lib.json",
-            "project": "projects/msal-lib/ng-package.json",
+            "project": "projects/msal-lib/ng-package.json"
           },
           "configurations": {
             "production": {

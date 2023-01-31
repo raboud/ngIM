@@ -15,7 +15,7 @@ export class MeasureDetailComponent implements AfterViewInit {
   @ViewChild(MatAccordion) accordion?: MatAccordion;
   @Input() jobId: number = 0;
 
-  data: Measure | undefined = undefined;
+  data?: Measure | undefined = undefined;
   showDeleted = false;
 
   constructor(public dialog: MatDialog, private service: MeasureService) { }

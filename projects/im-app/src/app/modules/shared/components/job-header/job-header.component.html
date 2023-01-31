@@ -6,34 +6,34 @@
       <div class="row">
         <div class="col m-1">
           <h2>Address</h2>
-          <div>{{ data?.address1 }}<br /></div>
+          <div>{{ data.address1 }}<br /></div>
           <div *ngIf="data.address2">
-            {{ data?.address2 }}<br />
+            {{ data.address2 }}<br />
           </div>
           <div>
-            {{ data?.city }}, {{ data?.state }}
-            {{ data?.zipCode }}
+            {{ data.city }}, {{ data.state }}
+            {{ data.zipCode }}
           </div>
         </div>
         <div class="col m-1">
           <h2>Codes</h2>
-          <lib-display-data title="Lock Box" data="{{ data?.lockBox }}"></lib-display-data>
-          <lib-display-data title="Gate Code" data="{{ data?.gateCode }}"></lib-display-data>
-          <lib-display-data title="Garage Code" data="{{ data?.garageCode }}"></lib-display-data>
+          <lib-display-data title="Lock Box" data="{{ data.lockBox }}"></lib-display-data>
+          <lib-display-data title="Gate Code" data="{{ data.gateCode }}"></lib-display-data>
+          <lib-display-data title="Garage Code" data="{{ data.garageCode }}"></lib-display-data>
         </div>
         <div class="col m-1">
           <h2>Project</h2>
-          <lib-display-data title="End Date" data="{{ data?.projectEndDate | date: 'mediumDate' }}"></lib-display-data>
-          <lib-display-data title="Status" data="{{ data?.statusTitle }}"></lib-display-data>
-          <lib-display-data title="Reno Budget" data="{{ data?.renovationBudget | currency:'USD' }}">
+          <lib-display-data title="End Date" data="{{ data.projectEndDate | date: 'mediumDate' }}"></lib-display-data>
+          <lib-display-data title="Status" data="{{ data.statusTitle }}"></lib-display-data>
+          <lib-display-data title="Reno Budget" data="{{ data.renovationBudget | currency:'USD' }}">
           </lib-display-data>
-          <lib-display-data title="Our Total" data="{{ data?.ourTotal | currency:'USD' }}"></lib-display-data>
+          <lib-display-data title="Our Total" data="{{ data.ourTotal | currency:'USD' }}"></lib-display-data>
         </div>
         <div class="col m-1">
           <h2>Building</h2>
-          <lib-display-data title="Year" data="{{ data?.year }}"></lib-display-data>
-          <lib-display-data title="Square Foot" data="{{ data?.squareFoot }}"></lib-display-data>
-          <lib-display-data title="Bed/Bath" data="{{ data?.bedBath }}"></lib-display-data>
+          <lib-display-data title="Year" data="{{ data.year }}"></lib-display-data>
+          <lib-display-data title="Square Foot" data="{{ data.squareFoot }}"></lib-display-data>
+          <lib-display-data title="Bed/Bath" data="{{ data.bedBath }}"></lib-display-data>
         </div>
       </div>
     </div>
