@@ -90,8 +90,8 @@ $app-dark-theme: mat-dark-theme($mat-primary-palette, $mat-accent-palette);
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins";
-@import "bootstrap/scss/utilities"; // Configures the utility classes that should be generated
 @import "bootstrap/scss/maps";
+@import "bootstrap/scss/utilities"; // Configures the utility classes that should be generated
 
 // Import Bootstrap Reboot
 //@import "~bootstrap/scss/root"; // Contains :root CSS variables used by other Bootstrap files

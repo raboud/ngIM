@@ -18,6 +18,7 @@ RUN npm run build-prod im-app
 FROM nginx:alpine
 COPY --from=build-step /app/dist/im-app /usr/share/nginx/html
 COPY ../Nginx/nginx.conf /etc/nginx/nginx.conf
+COPY ../certbot/Letsencrypt /etc/letsencrypt
 
 RUN ls /etc
 EXPOSE 80
